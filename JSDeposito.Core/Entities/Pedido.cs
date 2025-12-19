@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using JSDeposito.Core.Enums;
+using System.Collections.ObjectModel;
 
 namespace JSDeposito.Core.Entities;
 
@@ -8,6 +9,8 @@ public class Pedido
     public DateTime DataCriacao { get; private set; }
     public PedidoStatus Status { get; private set; }
     public decimal Total { get; private set; }
+    public decimal Desconto { get; private set; }
+    public string? CodigoCupom { get; private set; }
 
     private readonly List<ItemPedido> _itens = new();
     public IReadOnlyCollection<ItemPedido> Itens => new ReadOnlyCollection<ItemPedido>(_itens);
@@ -40,5 +43,18 @@ public class Pedido
     public void MarcarComoPago()
     {
         Status = PedidoStatus.Pago;
+    }
+
+    public void AplicarCupom(Cupom cupom)
+    {
+        var desconto = cupom.CalcularDesconto(Total);
+
+        if (desconto <= 0)
+            throw new Exception("Desconto inválido");
+
+        Desconto = desconto;
+        CodigoCupom = cupom.Codigo;
+
+        Total -= desconto;
     }
 }

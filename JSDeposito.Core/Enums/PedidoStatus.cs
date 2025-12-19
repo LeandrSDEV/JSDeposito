@@ -1,4 +1,4 @@
-﻿namespace JSDeposito.Core.Entities
+﻿namespace JSDeposito.Core.Enums
 {
     public enum PedidoStatus
     {
