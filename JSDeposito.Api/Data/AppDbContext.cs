@@ -13,5 +13,6 @@ namespace JSDeposito.Api.Data
         public DbSet<Pedido> Pedidos => Set<Pedido>();
         public DbSet<ItemPedido> ItensPedido => Set<ItemPedido>();
         public DbSet<Cupom> Cupons => Set<Cupom>();
+        public DbSet<Pagamento> Pagamentos => Set<Pagamento>();
     }
 }
