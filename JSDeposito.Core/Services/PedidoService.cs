@@ -9,15 +9,21 @@ public class PedidoService
     private readonly IPedidoRepository _pedidoRepository;
     private readonly IProdutoRepository _produtoRepository;
     private readonly ICupomRepository _cupomRepository;
+    private readonly FreteService _freteService;
+    private readonly IEnderecoRepository _enderecoRepository;
 
     public PedidoService(
         IPedidoRepository pedidoRepository,
         IProdutoRepository produtoRepository,
-        ICupomRepository cupomRepository)
+        ICupomRepository cupomRepository,
+        FreteService freteService,
+        IEnderecoRepository enderecoRepository)
     {
         _pedidoRepository = pedidoRepository;
         _produtoRepository = produtoRepository;
         _cupomRepository = cupomRepository;
+        _freteService = freteService;
+        _enderecoRepository = enderecoRepository;
     }
 
     public Pedido CriarPedido(CriarPedidoDto dto)
@@ -45,5 +51,20 @@ public class PedidoService
 
         _pedidoRepository.Criar(pedido);
         return pedido;
+    }
+
+    public void AplicarFrete(int pedidoId, int enderecoId)
+    {
+        var pedido = _pedidoRepository.ObterPorId(pedidoId);
+        var endereco = _enderecoRepository.ObterPorId(enderecoId);
+
+        var distancia = _freteService.CalcularDistanciaKm(
+            endereco.Latitude,
+            endereco.Longitude
+        );
+
+        var valorFrete = _freteService.CalcularValorFrete(distancia);
+
+        pedido.AplicarFrete(valorFrete);
     }
 }

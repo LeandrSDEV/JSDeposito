@@ -1,5 +1,6 @@
 ﻿using JSDeposito.Core.Enums;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace JSDeposito.Core.Entities;
 
@@ -10,6 +11,7 @@ public class Pedido
     public PedidoStatus Status { get; private set; }
     public decimal Total { get; private set; }
     public decimal Desconto { get; private set; }
+    public decimal ValorFrete { get; private set; }
     public string? CodigoCupom { get; private set; }
 
     private readonly List<ItemPedido> _itens = new();
@@ -37,7 +39,7 @@ public class Pedido
 
     private void RecalcularTotal()
     {
-        Total = _itens.Sum(i => i.Subtotal);
+        Total = _itens.Sum(i => i.Subtotal) - Desconto + ValorFrete;
     }
 
     public void MarcarComoPago()
@@ -47,7 +49,7 @@ public class Pedido
 
     public void AplicarCupom(Cupom cupom)
     {
-        var desconto = cupom.CalcularDesconto(Total);
+        var desconto = cupom.CalcularDesconto(_itens.Sum(i => i.Subtotal));
 
         if (desconto <= 0)
             throw new Exception("Desconto inválido");
@@ -55,6 +57,16 @@ public class Pedido
         Desconto = desconto;
         CodigoCupom = cupom.Codigo;
 
-        Total -= desconto;
+        RecalcularTotal();
     }
+
+    public void AplicarFrete(decimal valorFrete)
+    {
+        ValorFrete = valorFrete;
+        RecalcularTotal();
+    }
+
+    
+
+
 }

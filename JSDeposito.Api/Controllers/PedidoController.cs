@@ -21,4 +21,11 @@ public class PedidoController : ControllerBase
         var pedido = _pedidoService.CriarPedido(dto);
         return Ok(pedido);
     }
+
+    [HttpPost("{pedidoId}/frete/{enderecoId}")]
+    public IActionResult AplicarFrete(int pedidoId, int enderecoId)
+    {
+        _pedidoService.AplicarFrete(pedidoId, enderecoId);
+        return Ok();
+    }
 }
