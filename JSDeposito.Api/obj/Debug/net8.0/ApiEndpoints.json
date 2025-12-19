@@ -1,0 +1,23 @@
+[
+  {
+    "ContainingType": "JSDeposito.Api.Controllers.ProdutoController",
+    "Method": "Baixar",
+    "RelativePath": "api/produtos/{id}/baixar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "quantidade",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

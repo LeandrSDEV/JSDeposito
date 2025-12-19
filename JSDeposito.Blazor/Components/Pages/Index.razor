@@ -1,0 +1,15 @@
+﻿@page "/"
+
+<h1>JSDeposito</h1>
+
+@inject IHttpClientFactory HttpFactory
+
+<button @onclick="Baixar">Baixar Estoque</button>
+
+@code {
+    async Task Baixar()
+    {
+        var client = HttpFactory.CreateClient("Api");
+        await client.PostAsync("api/produtos/1/baixar?quantidade=1", null);
+    }
+}
