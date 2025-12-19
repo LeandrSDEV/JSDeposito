@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("JSDeposito.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cffe0c04cd29135cfe189e3d89074bbb62b6f9a2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+664b07246457ba5d66d2993e9f09f8ef99fc1bc8")]
 [assembly: System.Reflection.AssemblyProductAttribute("JSDeposito.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("JSDeposito.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

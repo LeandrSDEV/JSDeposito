@@ -3,8 +3,12 @@
   "WorkspaceRootPath": "C:\\Desenvolvedor\\JSDeposito\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2DE452D7-9E6E-4136-9E10-11E5E7B277D9}|JSDeposito.Core\\JSDeposito.Core.csproj|c:\\desenvolvedor\\jsdeposito\\jsdeposito.core\\entities\\produto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2DE452D7-9E6E-4136-9E10-11E5E7B277D9}|JSDeposito.Core\\JSDeposito.Core.csproj|solutionrelative:jsdeposito.core\\entities\\produto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EF7189D4-A410-40EE-BF0A-B6EF741CD937}|JSDeposito.Api\\JSDeposito.Api.csproj|c:\\desenvolvedor\\jsdeposito\\jsdeposito.api\\data\\produtorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF7189D4-A410-40EE-BF0A-B6EF741CD937}|JSDeposito.Api\\JSDeposito.Api.csproj|solutionrelative:jsdeposito.api\\data\\produtorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF7189D4-A410-40EE-BF0A-B6EF741CD937}|JSDeposito.Api\\JSDeposito.Api.csproj|c:\\desenvolvedor\\jsdeposito\\jsdeposito.api\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF7189D4-A410-40EE-BF0A-B6EF741CD937}|JSDeposito.Api\\JSDeposito.Api.csproj|solutionrelative:jsdeposito.api\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2DE452D7-9E6E-4136-9E10-11E5E7B277D9}|JSDeposito.Core\\JSDeposito.Core.csproj|c:\\desenvolvedor\\jsdeposito\\jsdeposito.core\\services\\estoqueservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -13,6 +17,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{2DE452D7-9E6E-4136-9E10-11E5E7B277D9}|JSDeposito.Core\\JSDeposito.Core.csproj|c:\\desenvolvedor\\jsdeposito\\jsdeposito.core\\interfaces\\iprodutorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2DE452D7-9E6E-4136-9E10-11E5E7B277D9}|JSDeposito.Core\\JSDeposito.Core.csproj|solutionrelative:jsdeposito.core\\interfaces\\iprodutorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2DE452D7-9E6E-4136-9E10-11E5E7B277D9}|JSDeposito.Core\\JSDeposito.Core.csproj|c:\\desenvolvedor\\jsdeposito\\jsdeposito.core\\entities\\produto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2DE452D7-9E6E-4136-9E10-11E5E7B277D9}|JSDeposito.Core\\JSDeposito.Core.csproj|solutionrelative:jsdeposito.core\\entities\\produto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2DE452D7-9E6E-4136-9E10-11E5E7B277D9}|JSDeposito.Core\\JSDeposito.Core.csproj|c:\\desenvolvedor\\jsdeposito\\jsdeposito.core\\jsdeposito.core.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
@@ -26,24 +34,50 @@
       "DocumentGroups": [
         {
           "DockedWidth": 193,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ProdutoRepository.cs",
+              "DocumentMoniker": "C:\\Desenvolvedor\\JSDeposito\\JSDeposito.Api\\Data\\ProdutoRepository.cs",
+              "RelativeDocumentMoniker": "JSDeposito.Api\\Data\\ProdutoRepository.cs",
+              "ToolTip": "C:\\Desenvolvedor\\JSDeposito\\JSDeposito.Api\\Data\\ProdutoRepository.cs",
+              "RelativeToolTip": "JSDeposito.Api\\Data\\ProdutoRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-19T00:37:23.231Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Desenvolvedor\\JSDeposito\\JSDeposito.Api\\Data\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "JSDeposito.Api\\Data\\AppDbContext.cs",
+              "ToolTip": "C:\\Desenvolvedor\\JSDeposito\\JSDeposito.Api\\Data\\AppDbContext.cs",
+              "RelativeToolTip": "JSDeposito.Api\\Data\\AppDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-19T00:37:14.562Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "EstoqueService.cs",
               "DocumentMoniker": "C:\\Desenvolvedor\\JSDeposito\\JSDeposito.Core\\Services\\EstoqueService.cs",
               "RelativeDocumentMoniker": "JSDeposito.Core\\Services\\EstoqueService.cs",
               "ToolTip": "C:\\Desenvolvedor\\JSDeposito\\JSDeposito.Core\\Services\\EstoqueService.cs",
               "RelativeToolTip": "JSDeposito.Core\\Services\\EstoqueService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-19T00:27:08.985Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "IProdutoRepository.cs",
               "DocumentMoniker": "C:\\Desenvolvedor\\JSDeposito\\JSDeposito.Core\\Interfaces\\IProdutoRepository.cs",
               "RelativeDocumentMoniker": "JSDeposito.Core\\Interfaces\\IProdutoRepository.cs",
@@ -56,20 +90,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "Produto.cs",
               "DocumentMoniker": "C:\\Desenvolvedor\\JSDeposito\\JSDeposito.Core\\Entities\\Produto.cs",
               "RelativeDocumentMoniker": "JSDeposito.Core\\Entities\\Produto.cs",
               "ToolTip": "C:\\Desenvolvedor\\JSDeposito\\JSDeposito.Core\\Entities\\Produto.cs",
               "RelativeToolTip": "JSDeposito.Core\\Entities\\Produto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAcAAAAsAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwBkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-19T00:24:29.908Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "JSDeposito.Core.csproj",
               "DocumentMoniker": "C:\\Desenvolvedor\\JSDeposito\\JSDeposito.Core\\JSDeposito.Core.csproj",
               "RelativeDocumentMoniker": "JSDeposito.Core\\JSDeposito.Core.csproj",
@@ -77,8 +111,7 @@
               "RelativeToolTip": "JSDeposito.Core\\JSDeposito.Core.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-12-19T00:17:22.407Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-19T00:17:22.407Z"
             }
           ]
         }
