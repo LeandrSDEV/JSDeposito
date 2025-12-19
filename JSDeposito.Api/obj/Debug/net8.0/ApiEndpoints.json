@@ -1,5 +1,21 @@
 [
   {
+    "ContainingType": "JSDeposito.Api.Controllers.PedidoController",
+    "Method": "Criar",
+    "RelativePath": "api/pedidos",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "JSDeposito.Core.DTOs.CriarPedidoDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "JSDeposito.Api.Controllers.ProdutoController",
     "Method": "Baixar",
     "RelativePath": "api/produtos/{id}/baixar",
