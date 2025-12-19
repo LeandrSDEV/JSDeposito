@@ -24,6 +24,7 @@ builder.Services.AddScoped<IProdutoRepository, ProdutoRepository>();
 builder.Services.AddScoped<EstoqueService>();
 builder.Services.AddScoped<IPedidoRepository, PedidoRepository>();
 builder.Services.AddScoped<PedidoService>();
+builder.Services.AddScoped<ICupomRepository, CupomRepository>();
 
 var app = builder.Build();
 

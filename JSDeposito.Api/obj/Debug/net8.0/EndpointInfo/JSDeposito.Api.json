@@ -79,6 +79,10 @@
               "$ref": "#/components/schemas/ItemPedidoDto"
             },
             "nullable": true
+          },
+          "codigoCupom": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
