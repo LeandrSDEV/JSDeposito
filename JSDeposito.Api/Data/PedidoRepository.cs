@@ -19,9 +19,15 @@ public class PedidoRepository : IPedidoRepository
         _context.SaveChanges();
     }
 
-    public Pedido ObterPorId(int id)
+    public Pedido? ObterPorId(int id)
     {
         return _context.Pedidos
-            .First(p => p.Id == id);
+            .FirstOrDefault(p => p.Id == id);
+    }
+
+    public void Atualizar(Pedido pedido)
+    {
+        _context.Pedidos.Update(pedido);
+        _context.SaveChanges();
     }
 }

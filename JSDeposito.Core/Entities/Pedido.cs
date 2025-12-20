@@ -15,7 +15,7 @@ public class Pedido
     public string? CodigoCupom { get; private set; }
 
     private readonly List<ItemPedido> _itens = new();
-    public IReadOnlyCollection<ItemPedido> Itens => new ReadOnlyCollection<ItemPedido>(_itens);
+    public IReadOnlyCollection<ItemPedido> Itens => _itens.AsReadOnly();
 
     public Pedido()
     {
@@ -66,7 +66,21 @@ public class Pedido
         RecalcularTotal();
     }
 
-    
+    public bool EstaEmAberto()
+    {
+        return Status == PedidoStatus.Criado;
+    }
 
+    public void RemoverItem(int itemId)
+    {
+        var item = _itens.FirstOrDefault(i => i.Id == itemId);
+
+        if (item == null)
+            throw new Exception("Item não encontrado no pedido");
+
+        _itens.Remove(item);
+
+        RecalcularTotal();
+    }
 
 }

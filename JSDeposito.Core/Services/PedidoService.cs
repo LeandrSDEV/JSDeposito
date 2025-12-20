@@ -28,25 +28,34 @@ public class PedidoService
 
     public Pedido CriarPedido(CriarPedidoDto dto)
     {
+        if (dto.Itens == null || !dto.Itens.Any())
+            throw new Exception("Pedido deve conter ao menos um item");
+
         var pedido = new Pedido();
 
         foreach (var item in dto.Itens)
         {
             var produto = _produtoRepository.ObterPorId(item.ProdutoId);
 
+            if (produto == null)
+                throw new Exception($"Produto {item.ProdutoId} não encontrado");
+
             produto.BaixarEstoque(item.Quantidade);
 
             pedido.AdicionarItem(produto, item.Quantidade);
+        }
 
-            if (!string.IsNullOrEmpty(dto.CodigoCupom))
-            {
-                var cupom = _cupomRepository.ObterPorCodigo(dto.CodigoCupom);
+        if (!string.IsNullOrWhiteSpace(dto.CodigoCupom))
+        {
+            var cupom = _cupomRepository.ObterPorCodigo(dto.CodigoCupom);
 
-                pedido.AplicarCupom(cupom);
+            if (cupom == null)
+                throw new Exception("Cupom inválido ou inexistente");
 
-                cupom.RegistrarUso();
-                _cupomRepository.Atualizar(cupom);
-            }
+            pedido.AplicarCupom(cupom);
+
+            cupom.RegistrarUso();
+            _cupomRepository.Atualizar(cupom);
         }
 
         _pedidoRepository.Criar(pedido);
@@ -66,5 +75,43 @@ public class PedidoService
         var valorFrete = _freteService.CalcularValorFrete(distancia);
 
         pedido.AplicarFrete(valorFrete);
+        _pedidoRepository.Atualizar(pedido);
     }
+    public Pedido ObterPedido(int pedidoId)
+    {
+        return _pedidoRepository.ObterPorId(pedidoId);
+    }
+
+    public void AdicionarItem(int pedidoId, AdicionarItemPedidoDto dto)
+    {
+        var pedido = _pedidoRepository.ObterPorId(pedidoId);
+        if (pedido == null)
+            throw new Exception("Pedido não encontrado");
+
+        if (!pedido.EstaEmAberto())
+            throw new Exception("Pedido não está em aberto");
+
+        var produto = _produtoRepository.ObterPorId(dto.ProdutoId);
+        if (produto == null)
+            throw new Exception("Produto não encontrado");
+
+        pedido.AdicionarItem(produto, dto.Quantidade);
+        _pedidoRepository.Atualizar(pedido);
+    }
+
+    public void RemoverItem(int pedidoId, int itemId)
+    {
+        var pedido = _pedidoRepository.ObterPorId(pedidoId);
+
+        if (pedido == null)
+            throw new Exception("Pedido não encontrado");
+
+        if (!pedido.EstaEmAberto())
+            throw new Exception("Pedido não está em aberto");
+
+        pedido.RemoverItem(itemId);
+
+        _pedidoRepository.Atualizar(pedido);
+    }
+
 }

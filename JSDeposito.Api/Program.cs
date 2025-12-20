@@ -32,6 +32,7 @@ builder.Services.AddScoped<ClienteService>();
 builder.Services.AddScoped<IEnderecoRepository, EnderecoRepository>();
 builder.Services.AddScoped<EnderecoService>();
 builder.Services.AddScoped<FreteService>();
+builder.Services.AddScoped<CheckoutService>();
 
 
 var app = builder.Build();

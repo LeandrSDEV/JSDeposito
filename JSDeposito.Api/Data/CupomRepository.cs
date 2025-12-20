@@ -14,7 +14,7 @@ public class CupomRepository : ICupomRepository
 
     public Cupom ObterPorCodigo(string codigo)
     {
-        return _context.Cupons.First(c => c.Codigo == codigo);
+        return _context.Cupons.FirstOrDefault(c => c.Codigo == codigo);
     }
 
     public void Atualizar(Cupom cupom)

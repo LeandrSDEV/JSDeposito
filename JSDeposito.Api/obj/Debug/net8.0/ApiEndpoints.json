@@ -1,5 +1,90 @@
 [
   {
+    "ContainingType": "JSDeposito.Api.Controllers.CheckoutController",
+    "Method": "Checkout",
+    "RelativePath": "api/checkout",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "JSDeposito.Core.DTOs.CheckoutDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ClientesController",
+    "Method": "Criar",
+    "RelativePath": "api/clientes",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "JSDeposito.Core.DTOs.ClienteDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EnderecosController",
+    "Method": "Criar",
+    "RelativePath": "api/enderecos",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "JSDeposito.Core.DTOs.EnderecoDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "JSDeposito.Api.Controllers.PagamentoController",
+    "Method": "Criar",
+    "RelativePath": "api/pagamentos/{pedidoId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pedidoId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "tipo",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "JSDeposito.Api.Controllers.PagamentoController",
+    "Method": "Confirmar",
+    "RelativePath": "api/pagamentos/{pedidoId}/confirmar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pedidoId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "JSDeposito.Api.Controllers.PedidoController",
     "Method": "Criar",
     "RelativePath": "api/pedidos",
@@ -10,6 +95,85 @@
       {
         "Name": "dto",
         "Type": "JSDeposito.Core.DTOs.CriarPedidoDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "JSDeposito.Api.Controllers.PedidoController",
+    "Method": "Obter",
+    "RelativePath": "api/pedidos/{pedidoId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pedidoId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "JSDeposito.Api.Controllers.PedidoController",
+    "Method": "AplicarFrete",
+    "RelativePath": "api/pedidos/{pedidoId}/frete/{enderecoId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pedidoId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "enderecoId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "JSDeposito.Api.Controllers.PedidoController",
+    "Method": "Adicionar",
+    "RelativePath": "api/pedidos/{pedidoId}/itens",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pedidoId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "JSDeposito.Core.DTOs.AdicionarItemPedidoDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "JSDeposito.Api.Controllers.PedidoController",
+    "Method": "Remover",
+    "RelativePath": "api/pedidos/{pedidoId}/itens/{itemId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pedidoId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "itemId",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],

@@ -1,4 +1,5 @@
 ﻿using JSDeposito.Core.DTOs;
+using JSDeposito.Core.Entities;
 using JSDeposito.Core.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,10 +23,35 @@ public class PedidoController : ControllerBase
         return Ok(pedido);
     }
 
+    [HttpGet("{pedidoId}")]
+    public IActionResult Obter(int pedidoId)
+    {
+        var pedido = _pedidoService.ObterPedido(pedidoId);
+
+        if (pedido == null)
+            return NotFound("Pedido não encontrado");
+
+        return Ok(pedido);
+    }
+
+    [HttpPost("{pedidoId}/itens")]
+    public IActionResult Adicionar(int pedidoId, AdicionarItemPedidoDto dto)
+    {
+        _pedidoService.AdicionarItem(pedidoId, dto);
+        return NoContent();
+    }
+
+    [HttpDelete("{pedidoId}/itens/{itemId}")]
+    public IActionResult Remover(int pedidoId, int itemId)
+    {
+        _pedidoService.RemoverItem(pedidoId, itemId);
+        return NoContent();
+    }
+
     [HttpPost("{pedidoId}/frete/{enderecoId}")]
     public IActionResult AplicarFrete(int pedidoId, int enderecoId)
     {
         _pedidoService.AplicarFrete(pedidoId, enderecoId);
-        return Ok();
+        return NoContent();
     }
 }
