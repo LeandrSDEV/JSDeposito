@@ -38,13 +38,13 @@ public class PedidoController : ControllerBase
     public IActionResult Adicionar(int pedidoId, AdicionarItemPedidoDto dto)
     {
         _pedidoService.AdicionarItem(pedidoId, dto);
-        return NoContent();
+        return Ok();
     }
 
-    [HttpDelete("{pedidoId}/itens/{itemId}")]
-    public IActionResult Remover(int pedidoId, int itemId)
+    [HttpDelete("{pedidoId}/produtos/{produtoId}")]
+    public IActionResult RemoverPorProduto(int pedidoId, int produtoId)
     {
-        _pedidoService.RemoverItem(pedidoId, itemId);
+        _pedidoService.RemoverItemPorProduto(pedidoId, produtoId);
         return NoContent();
     }
 

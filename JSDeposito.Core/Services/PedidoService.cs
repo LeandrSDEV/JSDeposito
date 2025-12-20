@@ -99,17 +99,14 @@ public class PedidoService
         _pedidoRepository.Atualizar(pedido);
     }
 
-    public void RemoverItem(int pedidoId, int itemId)
+    public void RemoverItemPorProduto(int pedidoId, int produtoId)
     {
         var pedido = _pedidoRepository.ObterPorId(pedidoId);
 
         if (pedido == null)
             throw new Exception("Pedido não encontrado");
 
-        if (!pedido.EstaEmAberto())
-            throw new Exception("Pedido não está em aberto");
-
-        pedido.RemoverItem(itemId);
+        pedido.RemoverItemPorProduto(produtoId);
 
         _pedidoRepository.Atualizar(pedido);
     }

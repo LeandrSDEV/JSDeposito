@@ -71,15 +71,14 @@ public class Pedido
         return Status == PedidoStatus.Criado;
     }
 
-    public void RemoverItem(int itemId)
+    public void RemoverItemPorProduto(int produtoId)
     {
-        var item = _itens.FirstOrDefault(i => i.Id == itemId);
+        var produto = _itens.FirstOrDefault(i => i.ProdutoId == produtoId);
 
-        if (item == null)
+        if (produto == null)
             throw new Exception("Item não encontrado no pedido");
 
-        _itens.Remove(item);
-
+        _itens.Remove(produto);
         RecalcularTotal();
     }
 

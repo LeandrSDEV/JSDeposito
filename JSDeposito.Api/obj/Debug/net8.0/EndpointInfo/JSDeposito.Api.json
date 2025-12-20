@@ -247,7 +247,7 @@
         }
       }
     },
-    "/api/pedidos/{pedidoId}/itens/{itemId}": {
+    "/api/pedidos/{pedidoId}/produtos/{produtoId}": {
       "delete": {
         "tags": [
           "Pedido"
@@ -263,7 +263,7 @@
             }
           },
           {
-            "name": "itemId",
+            "name": "produtoId",
             "in": "path",
             "required": true,
             "schema": {

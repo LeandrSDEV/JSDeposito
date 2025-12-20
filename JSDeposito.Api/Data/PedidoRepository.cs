@@ -1,6 +1,7 @@
 ﻿using JSDeposito.Api.Data;
 using JSDeposito.Core.Entities;
 using JSDeposito.Core.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace JSDeposito.Api.Data;
 
@@ -22,8 +23,10 @@ public class PedidoRepository : IPedidoRepository
     public Pedido? ObterPorId(int id)
     {
         return _context.Pedidos
+            .Include(p => p.Itens)
             .FirstOrDefault(p => p.Id == id);
     }
+
 
     public void Atualizar(Pedido pedido)
     {

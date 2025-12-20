@@ -160,8 +160,8 @@
   },
   {
     "ContainingType": "JSDeposito.Api.Controllers.PedidoController",
-    "Method": "Remover",
-    "RelativePath": "api/pedidos/{pedidoId}/itens/{itemId}",
+    "Method": "RemoverPorProduto",
+    "RelativePath": "api/pedidos/{pedidoId}/produtos/{produtoId}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -172,7 +172,7 @@
         "IsRequired": true
       },
       {
-        "Name": "itemId",
+        "Name": "produtoId",
         "Type": "System.Int32",
         "IsRequired": true
       }
