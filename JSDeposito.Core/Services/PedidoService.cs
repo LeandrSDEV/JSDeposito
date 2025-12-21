@@ -1,5 +1,6 @@
 ﻿using JSDeposito.Core.DTOs;
 using JSDeposito.Core.Entities;
+using JSDeposito.Core.Enums;
 using JSDeposito.Core.Interfaces;
 
 namespace JSDeposito.Core.Services;
@@ -77,6 +78,7 @@ public class PedidoService
         pedido.AplicarFrete(valorFrete);
         _pedidoRepository.Atualizar(pedido);
     }
+
     public Pedido ObterPedido(int pedidoId)
     {
         return _pedidoRepository.ObterPorId(pedidoId);
@@ -84,20 +86,22 @@ public class PedidoService
 
     public void AdicionarItem(int pedidoId, AdicionarItemPedidoDto dto)
     {
-        var pedido = _pedidoRepository.ObterPorId(pedidoId);
-        if (pedido == null)
-            throw new Exception("Pedido não encontrado");
+        var pedido = _pedidoRepository.ObterPorId(pedidoId)
+            ?? throw new Exception("Pedido não encontrado");
 
-        if (!pedido.EstaEmAberto())
-            throw new Exception("Pedido não está em aberto");
+        if (pedido.Status != PedidoStatus.Criado)
+            throw new Exception("Pedido não pode ser alterado");
 
-        var produto = _produtoRepository.ObterPorId(dto.ProdutoId);
-        if (produto == null)
-            throw new Exception("Produto não encontrado");
+        var produto = _produtoRepository.ObterPorId(dto.ProdutoId)
+            ?? throw new Exception("Produto não encontrado");
 
+        // 🔥 REGRA CRÍTICA
         pedido.AdicionarItem(produto, dto.Quantidade);
+
+        _produtoRepository.Atualizar(produto);
         _pedidoRepository.Atualizar(pedido);
     }
+
 
     public void RemoverItemPorProduto(int pedidoId, int produtoId)
     {

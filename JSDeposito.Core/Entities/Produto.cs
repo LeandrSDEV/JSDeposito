@@ -48,6 +48,9 @@ public class Produto
 
     public void SaidaEstoque(int quantidade)
     {
+        if (!Ativo)
+            throw new Exception("Produto inativo");
+
         if (quantidade <= 0)
             throw new Exception("Quantidade inválida");
 

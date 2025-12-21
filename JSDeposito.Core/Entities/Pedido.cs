@@ -26,6 +26,14 @@ public class Pedido
 
     public void AdicionarItem(Produto produto, int quantidade)
     {
+        if (Status != PedidoStatus.Criado)
+            throw new Exception("Pedido não pode ser alterado");
+
+        var itemExistente = _itens.FirstOrDefault(i => i.ProdutoId == produto.Id);
+
+        if (itemExistente != null)
+            throw new Exception("Produto já adicionado ao pedido");
+
         var item = new ItemPedido(
             produto.Id,
             produto.Nome,
