@@ -37,6 +37,10 @@ builder.Services.AddScoped<IEnderecoRepository, EnderecoRepository>();
 builder.Services.AddScoped<EnderecoService>();
 builder.Services.AddScoped<CheckoutService>();
 
+
+builder.Services.AddHttpClient<IGeocodingService, NominatimGeocodingService>();
+
+
 builder.Services.Configure<DepositoConfig>(
     builder.Configuration.GetSection("Deposito")
 );

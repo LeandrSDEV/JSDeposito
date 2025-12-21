@@ -1,4 +1,5 @@
-﻿using JSDeposito.Core.Entities;
+﻿using JSDeposito.Core.DTOs;
+using JSDeposito.Core.Entities;
 using JSDeposito.Core.Interfaces;
 
 namespace JSDeposito.Core.Services;
@@ -7,38 +8,37 @@ public class EnderecoService
 {
     private readonly IEnderecoRepository _enderecoRepository;
     private readonly IClienteRepository _clienteRepository;
+    private readonly IGeocodingService _geocodingService;
+
 
     public EnderecoService(
         IEnderecoRepository enderecoRepository,
-        IClienteRepository clienteRepository)
+        IClienteRepository clienteRepository,
+        IGeocodingService geocodingService)
     {
         _enderecoRepository = enderecoRepository;
         _clienteRepository = clienteRepository;
+        _geocodingService = geocodingService;
     }
 
-    public Endereco CriarEndereco(
-    int clienteId,
-    string rua,
-    string numero,
-    string bairro,
-    string cidade,
-    double latitude,
-    double longitude)
+    public async Task CriarEndereco(EnderecoDto dto)
     {
-        var cliente = _clienteRepository.ObterPorId(clienteId)
-            ?? throw new Exception("Cliente não encontrado");
+        var enderecoCompleto =
+            $"{dto.Rua}, {dto.Numero}, {dto.Bairro}, {dto.Cidade}, Brasil";
+
+        var (lat, lon) =
+            await _geocodingService.ObterCoordenadasAsync(enderecoCompleto);
 
         var endereco = new Endereco(
-            clienteId,
-            rua,
-            numero,
-            bairro,
-            cidade,
-            latitude,
-            longitude
+            dto.ClienteId,
+            dto.Rua,
+            dto.Numero,
+            dto.Bairro,
+            dto.Cidade,
+            lat,
+            lon
         );
 
         _enderecoRepository.Criar(endereco);
-        return endereco;
     }
 }

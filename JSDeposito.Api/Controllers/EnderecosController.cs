@@ -14,18 +14,9 @@ public class EnderecosController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult Criar([FromBody] EnderecoDto dto)
+    public async Task<IActionResult> Criar(EnderecoDto dto)
     {
-        var endereco = _service.CriarEndereco(
-            dto.ClienteId,
-            dto.Rua,
-            dto.Numero,
-            dto.Bairro,
-            dto.Cidade,
-            dto.Latitude,
-            dto.Longitude
-        );
-
-        return Ok(endereco);
+        await _service.CriarEndereco(dto);
+        return Ok();
     }
 }
