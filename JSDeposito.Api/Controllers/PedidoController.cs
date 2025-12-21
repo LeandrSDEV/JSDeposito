@@ -58,4 +58,13 @@ public class PedidoController : ControllerBase
         _pedidoService.AplicarFrete(pedidoId, enderecoId);
         return NoContent();
     }
+
+
+    [HttpPost("{pedidoId}/cancelar")]
+    public IActionResult Cancelar(int pedidoId)
+    {
+        _pedidoService.CancelarPedido(pedidoId);
+        return NoContent();
+    }
+
 }

@@ -123,4 +123,25 @@ public class PedidoService
         _pedidoRepository.Atualizar(pedido);
     }
 
+    public void CancelarPedido(int pedidoId)
+    {
+        var pedido = _pedidoRepository.ObterPorId(pedidoId)
+            ?? throw new Exception("Pedido não encontrado");
+
+        if (pedido.Status != PedidoStatus.Criado)
+            throw new Exception("Pedido não pode ser cancelado");
+
+        foreach (var item in pedido.Itens)
+        {
+            var produto = _produtoRepository.ObterPorId(item.ProdutoId)
+                ?? throw new Exception($"Produto {item.ProdutoId} não encontrado");
+
+            produto.EntradaEstoque(item.Quantidade);
+            _produtoRepository.Atualizar(produto);
+        }
+
+        pedido.Cancelar();
+        _pedidoRepository.Atualizar(pedido);
+    }
+
 }

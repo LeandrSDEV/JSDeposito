@@ -134,6 +134,22 @@
   },
   {
     "ContainingType": "JSDeposito.Api.Controllers.PedidoController",
+    "Method": "Cancelar",
+    "RelativePath": "api/pedidos/{pedidoId}/cancelar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pedidoId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "JSDeposito.Api.Controllers.PedidoController",
     "Method": "AplicarFrete",
     "RelativePath": "api/pedidos/{pedidoId}/frete/{enderecoId}",
     "HttpMethod": "POST",

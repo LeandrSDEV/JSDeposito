@@ -100,7 +100,7 @@ public class Pedido
 
     public void Cancelar()
     {
-        if (Status == PedidoStatus.Pago)
+        if (Status != PedidoStatus.Criado)
             throw new Exception("Pedido pago não pode ser cancelado");
 
         Status = PedidoStatus.Cancelado;
