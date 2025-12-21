@@ -26,8 +26,7 @@ public class Pedido
 
     public void AdicionarItem(Produto produto, int quantidade)
     {
-        if (Status != PedidoStatus.Criado)
-            throw new Exception("Pedido não pode ser alterado");
+        GarantirPedidoEditavel();
 
         var itemExistente = _itens.FirstOrDefault(i => i.ProdutoId == produto.Id);
 
@@ -52,14 +51,15 @@ public class Pedido
 
     public void MarcarComoPago()
     {
-        if (Status != PedidoStatus.Criado)
-            throw new Exception("Pedido não pode ser pago");
+        ValidarParaPagamento();
 
         Status = PedidoStatus.Pago;
     }
 
     public void AplicarCupom(Cupom cupom)
     {
+        GarantirPedidoEditavel();
+
         var desconto = cupom.CalcularDesconto(_itens.Sum(i => i.Subtotal));
 
         if (desconto <= 0)
@@ -73,6 +73,8 @@ public class Pedido
 
     public void AplicarFrete(decimal valorFrete)
     {
+        GarantirPedidoEditavel();
+
         ValorFrete = valorFrete;
         RecalcularTotal();
     }
@@ -84,8 +86,7 @@ public class Pedido
 
     public ItemPedido RemoverItemPorProduto(int produtoId)
     {
-        if (Status != PedidoStatus.Criado)
-            throw new Exception("Pedido não pode ser alterado");
+        GarantirPedidoEditavel();
 
         var item = _itens.FirstOrDefault(i => i.ProdutoId == produtoId);
 
@@ -104,5 +105,23 @@ public class Pedido
             throw new Exception("Pedido pago não pode ser cancelado");
 
         Status = PedidoStatus.Cancelado;
+    }
+
+    public void ValidarParaPagamento()
+    {
+        if (Status == PedidoStatus.Cancelado)
+            throw new Exception("Pedido cancelado não pode ser pago");
+
+        if (Status != PedidoStatus.Criado)
+            throw new Exception("Pedido não pode ser pago");
+
+        if (!_itens.Any())
+            throw new Exception("Pedido sem itens não pode ser pago");
+    }
+
+    private void GarantirPedidoEditavel()
+    {
+        if (Status != PedidoStatus.Criado)
+            throw new Exception("Pedido não pode ser alterado");
     }
 }

@@ -19,10 +19,10 @@ public class PagamentoService
 
     public Pagamento CriarPagamento(int pedidoId, TipoPagamento tipo)
     {
-        var pedido = _pedidoRepository.ObterPorId(pedidoId);
+        var pedido = _pedidoRepository.ObterPorId(pedidoId)
+        ?? throw new Exception("Pedido não encontrado");
 
-        if (pedido.Status != PedidoStatus.Criado)
-            throw new Exception("Pedido não pode ser pago");
+        pedido.ValidarParaPagamento();
 
         var pagamento = new Pagamento(
             pedidoId,
