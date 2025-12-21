@@ -4,7 +4,8 @@ namespace JSDeposito.Core.Interfaces;
 
 public interface IProdutoRepository
 {
-    Produto ObterPorId(int id);
-    IEnumerable<Produto> ObterTodos();
+    void Criar(Produto produto);
     void Atualizar(Produto produto);
+    Produto? ObterPorId(int id);
+    IEnumerable<Produto> ListarAtivos();
 }

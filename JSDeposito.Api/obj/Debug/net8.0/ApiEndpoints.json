@@ -197,8 +197,81 @@
   },
   {
     "ContainingType": "JSDeposito.Api.Controllers.ProdutoController",
-    "Method": "Baixar",
-    "RelativePath": "api/produtos/{id}/baixar",
+    "Method": "Criar",
+    "RelativePath": "api/produtos",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "nome",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "preco",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "estoqueInicial",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "JSDeposito.Api.Controllers.ProdutoController",
+    "Method": "Listar",
+    "RelativePath": "api/produtos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "JSDeposito.Api.Controllers.ProdutoController",
+    "Method": "Obter",
+    "RelativePath": "api/produtos/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "JSDeposito.Api.Controllers.ProdutoController",
+    "Method": "EntradaEstoque",
+    "RelativePath": "api/produtos/{id}/entrada-estoque",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "quantidade",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "JSDeposito.Api.Controllers.ProdutoController",
+    "Method": "SaidaEstoque",
+    "RelativePath": "api/produtos/{id}/saida-estoque",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,

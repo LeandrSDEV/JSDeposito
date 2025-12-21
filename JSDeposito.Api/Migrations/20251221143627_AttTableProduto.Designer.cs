@@ -4,6 +4,7 @@ using JSDeposito.Api.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JSDeposito.Api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251221143627_AttTableProduto")]
+    partial class AttTableProduto
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,7 +53,7 @@ namespace JSDeposito.Api.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<decimal?>("ValorDesconto")
-                        .HasColumnType("decimal(10,2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.HasKey("Id");
 
@@ -138,7 +141,7 @@ namespace JSDeposito.Api.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("PrecoUnitario")
-                        .HasColumnType("decimal(10,2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.Property<int>("ProdutoId")
                         .HasColumnType("int");
@@ -174,7 +177,7 @@ namespace JSDeposito.Api.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("Valor")
-                        .HasColumnType("decimal(10,2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.HasKey("Id");
 
@@ -196,16 +199,16 @@ namespace JSDeposito.Api.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<decimal>("Desconto")
-                        .HasColumnType("decimal(10,2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Total")
-                        .HasColumnType("decimal(10,2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.Property<decimal>("ValorFrete")
-                        .HasColumnType("decimal(10,2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.HasKey("Id");
 
@@ -231,7 +234,7 @@ namespace JSDeposito.Api.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<decimal>("Preco")
-                        .HasColumnType("decimal(10,2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.HasKey("Id");
 

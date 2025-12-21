@@ -7,17 +7,42 @@ namespace JSDeposito.Api.Controllers;
 [Route("api/produtos")]
 public class ProdutoController : ControllerBase
 {
-    private readonly EstoqueService _estoqueService;
+    private readonly ProdutoService _produtoService;
 
-    public ProdutoController(EstoqueService estoqueService)
+    public ProdutoController(ProdutoService produtoService)
     {
-        _estoqueService = estoqueService;
+        _produtoService = produtoService;
     }
 
-    [HttpPost("{id}/baixar")]
-    public IActionResult Baixar(int id, int quantidade)
+    [HttpPost]
+    public IActionResult Criar(string nome, decimal preco, int estoqueInicial)
     {
-        _estoqueService.Baixar(id, quantidade);
-        return Ok();
+        return Ok(_produtoService.Criar(nome, preco, estoqueInicial));
+    }
+
+    [HttpGet]
+    public IActionResult Listar()
+    {
+        return Ok(_produtoService.Listar());
+    }
+
+    [HttpGet("{id}")]
+    public IActionResult Obter(int id)
+    {
+        return Ok(_produtoService.Obter(id));
+    }
+
+    [HttpPost("{id}/entrada-estoque")]
+    public IActionResult EntradaEstoque(int id, int quantidade)
+    {
+        _produtoService.EntradaEstoque(id, quantidade);
+        return NoContent();
+    }
+
+    [HttpPost("{id}/saida-estoque")]
+    public IActionResult SaidaEstoque(int id, int quantidade)
+    {
+        _produtoService.SaidaEstoque(id, quantidade);
+        return NoContent();
     }
 }

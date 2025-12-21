@@ -16,5 +16,43 @@ namespace JSDeposito.Api.Data
         public DbSet<Pagamento> Pagamentos => Set<Pagamento>();
         public DbSet<Cliente> Clientes => Set<Cliente>();
         public DbSet<Endereco> Enderecos => Set<Endereco>();
-    }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Produto>(entity =>
+            {
+                entity.Property(p => p.Preco)
+                      .HasColumnType("decimal(10,2)");
+
+            });
+
+            modelBuilder.Entity<Pedido>(entity =>
+            {
+                entity.Property(p => p.Total)
+                      .HasColumnType("decimal(10,2)");
+                entity.Property(p => p.Desconto)
+                      .HasColumnType("decimal(10,2)");
+                entity.Property(p => p.ValorFrete)
+                      .HasColumnType("decimal(10,2)");
+            });
+
+            modelBuilder.Entity<Pagamento>(entity =>
+            {
+                entity.Property(p => p.Valor)
+                .HasColumnType("decimal(10,2)");
+            });
+
+            modelBuilder.Entity<ItemPedido>(entity =>
+            {
+                entity.Property(i => i.PrecoUnitario)
+                .HasColumnType("decimal(10,2)");         
+            });
+
+            modelBuilder.Entity<Cupom>(entity =>
+            {
+                entity.Property(c => c.ValorDesconto)
+                .HasColumnType("decimal(10,2)");
+            });
+        }
+}
 }

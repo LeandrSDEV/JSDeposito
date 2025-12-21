@@ -40,7 +40,7 @@ public class PedidoService
             if (produto == null)
                 throw new Exception($"Produto {item.ProdutoId} não encontrado");
 
-            produto.BaixarEstoque(item.Quantidade);
+            produto.SaidaEstoque(item.Quantidade);
 
             pedido.AdicionarItem(produto, item.Quantidade);
         }

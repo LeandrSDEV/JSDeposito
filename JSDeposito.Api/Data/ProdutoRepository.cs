@@ -12,15 +12,25 @@ public class ProdutoRepository : IProdutoRepository
         _context = context;
     }
 
-    public Produto ObterPorId(int id)
-        => _context.Produtos.Find(id)!;
-
-    public IEnumerable<Produto> ObterTodos()
-        => _context.Produtos.ToList();
+    public void Criar(Produto produto)
+    {
+        _context.Produtos.Add(produto);
+        _context.SaveChanges();
+    }
 
     public void Atualizar(Produto produto)
     {
         _context.Produtos.Update(produto);
         _context.SaveChanges();
+    }
+
+    public Produto? ObterPorId(int id)
+    {
+        return _context.Produtos.Find(id);
+    }
+
+    public IEnumerable<Produto> ListarAtivos()
+    {
+        return _context.Produtos.Where(p => p.Ativo).ToList();
     }
 }
