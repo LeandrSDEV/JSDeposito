@@ -27,7 +27,15 @@ public class Produto
         Ativo = true;
     }
 
-    public void AtualizarPreco(decimal preco)
+    public void AlterarNome(string nome)
+    {
+        if (string.IsNullOrWhiteSpace(nome))
+            throw new Exception("Nome inválido");
+
+        Nome = nome.Trim();
+    }
+
+    public void AlterarPreco(decimal preco)
     {
         if (preco <= 0)
             throw new Exception("Preço inválido");

@@ -1,4 +1,5 @@
-﻿using JSDeposito.Core.Services;
+﻿using JSDeposito.Core.DTOs;
+using JSDeposito.Core.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JSDeposito.Api.Controllers;
@@ -20,11 +21,13 @@ public class ProdutoController : ControllerBase
         return Ok(_produtoService.Criar(nome, preco, estoqueInicial));
     }
 
+
     [HttpGet]
     public IActionResult Listar()
     {
         return Ok(_produtoService.Listar());
     }
+
 
     [HttpGet("{id}")]
     public IActionResult Obter(int id)
@@ -32,12 +35,22 @@ public class ProdutoController : ControllerBase
         return Ok(_produtoService.Obter(id));
     }
 
+
+    [HttpPut("{id}")]
+    public IActionResult Atualizar(int id, AtualizarProdutoDto dto)
+    {
+        _produtoService.AtualizarProduto(id, dto);
+        return NoContent();
+    }
+
+
     [HttpPost("{id}/entrada-estoque")]
     public IActionResult EntradaEstoque(int id, int quantidade)
     {
         _produtoService.EntradaEstoque(id, quantidade);
         return NoContent();
     }
+
 
     [HttpPost("{id}/saida-estoque")]
     public IActionResult SaidaEstoque(int id, int quantidade)

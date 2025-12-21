@@ -265,6 +265,27 @@
   },
   {
     "ContainingType": "JSDeposito.Api.Controllers.ProdutoController",
+    "Method": "Atualizar",
+    "RelativePath": "api/produtos/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "JSDeposito.Core.DTOs.AtualizarProdutoDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "JSDeposito.Api.Controllers.ProdutoController",
     "Method": "EntradaEstoque",
     "RelativePath": "api/produtos/{id}/entrada-estoque",
     "HttpMethod": "POST",

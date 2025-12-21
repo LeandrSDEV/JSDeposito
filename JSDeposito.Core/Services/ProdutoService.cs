@@ -1,4 +1,5 @@
-﻿using JSDeposito.Core.Entities;
+﻿using JSDeposito.Core.DTOs;
+using JSDeposito.Core.Entities;
 using JSDeposito.Core.Interfaces;
 
 namespace JSDeposito.Core.Services;
@@ -49,5 +50,28 @@ public class ProdutoService
 
         produto.SaidaEstoque(quantidade);
         _produtoRepository.Atualizar(produto);
+    }
+
+    public void AtualizarProduto(int produtoId, AtualizarProdutoDto dto)
+    {
+        var produto = _produtoRepository.ObterPorId(produtoId)
+            ?? throw new Exception("Produto não encontrado");
+
+        produto.AlterarNome(dto.Nome);
+        produto.AlterarPreco(dto.Preco);
+
+        AjustarEstoque(produto, dto.Estoque);
+
+        _produtoRepository.Atualizar(produto);
+    }
+
+    private void AjustarEstoque(Produto produto, int estoqueDesejado)
+    {
+        var diferenca = estoqueDesejado - produto.Estoque;
+
+        if (diferenca > 0)
+            produto.EntradaEstoque(diferenca);
+        else if (diferenca < 0)
+            produto.SaidaEstoque(Math.Abs(diferenca));
     }
 }
