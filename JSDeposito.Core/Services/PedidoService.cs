@@ -102,16 +102,24 @@ public class PedidoService
         _pedidoRepository.Atualizar(pedido);
     }
 
-
     public void RemoverItemPorProduto(int pedidoId, int produtoId)
     {
-        var pedido = _pedidoRepository.ObterPorId(pedidoId);
+        var pedido = _pedidoRepository.ObterPorId(pedidoId)
+            ?? throw new Exception("Pedido não encontrado");
 
-        if (pedido == null)
-            throw new Exception("Pedido não encontrado");
+        if (pedido.Status != PedidoStatus.Criado)
+            throw new Exception("Pedido não pode ser alterado");
 
-        pedido.RemoverItemPorProduto(produtoId);
+        // Remove do pedido e recupera o item
+        var itemRemovido = pedido.RemoverItemPorProduto(produtoId);
 
+        // Devolve estoque
+        var produto = _produtoRepository.ObterPorId(produtoId)
+            ?? throw new Exception("Produto não encontrado");
+
+        produto.EntradaEstoque(itemRemovido.Quantidade);
+
+        _produtoRepository.Atualizar(produto);
         _pedidoRepository.Atualizar(pedido);
     }
 

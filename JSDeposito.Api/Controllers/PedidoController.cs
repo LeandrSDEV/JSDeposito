@@ -23,6 +23,7 @@ public class PedidoController : ControllerBase
         return Ok(pedido);
     }
 
+
     [HttpGet("{pedidoId}")]
     public IActionResult Obter(int pedidoId)
     {
@@ -34,6 +35,7 @@ public class PedidoController : ControllerBase
         return Ok(pedido);
     }
 
+
     [HttpPost("{pedidoId}/itens")]
     public IActionResult Adicionar(int pedidoId, AdicionarItemPedidoDto dto)
     {
@@ -41,12 +43,14 @@ public class PedidoController : ControllerBase
         return Ok();
     }
 
+
     [HttpDelete("{pedidoId}/produtos/{produtoId}")]
     public IActionResult RemoverPorProduto(int pedidoId, int produtoId)
     {
         _pedidoService.RemoverItemPorProduto(pedidoId, produtoId);
         return NoContent();
     }
+
 
     [HttpPost("{pedidoId}/frete/{enderecoId}")]
     public IActionResult AplicarFrete(int pedidoId, int enderecoId)

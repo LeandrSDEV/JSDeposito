@@ -82,15 +82,20 @@ public class Pedido
         return Status == PedidoStatus.Criado;
     }
 
-    public void RemoverItemPorProduto(int produtoId)
+    public ItemPedido RemoverItemPorProduto(int produtoId)
     {
-        var produto = _itens.FirstOrDefault(i => i.ProdutoId == produtoId);
+        if (Status != PedidoStatus.Criado)
+            throw new Exception("Pedido não pode ser alterado");
 
-        if (produto == null)
+        var item = _itens.FirstOrDefault(i => i.ProdutoId == produtoId);
+
+        if (item == null)
             throw new Exception("Item não encontrado no pedido");
 
-        _itens.Remove(produto);
+        _itens.Remove(item);
         RecalcularTotal();
+
+        return item;
     }
 
     public void Cancelar()
