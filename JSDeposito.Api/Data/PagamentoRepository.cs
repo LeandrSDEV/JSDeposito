@@ -1,4 +1,5 @@
 ﻿using JSDeposito.Core.Entities;
+using JSDeposito.Core.Enums;
 using JSDeposito.Core.Interfaces;
 
 namespace JSDeposito.Api.Data;

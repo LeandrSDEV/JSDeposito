@@ -70,6 +70,22 @@
   },
   {
     "ContainingType": "JSDeposito.Api.Controllers.PagamentoController",
+    "Method": "Cancelar",
+    "RelativePath": "api/pagamentos/{pedidoId}/cancelar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pedidoId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "JSDeposito.Api.Controllers.PagamentoController",
     "Method": "Confirmar",
     "RelativePath": "api/pagamentos/{pedidoId}/confirmar",
     "HttpMethod": "POST",

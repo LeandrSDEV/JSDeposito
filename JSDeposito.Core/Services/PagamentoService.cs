@@ -57,4 +57,21 @@ public class PagamentoService
         _pedidoRepository.Atualizar(pedido);
     }
 
+    public void CancelarPagamento(int pedidoId)
+    {
+        var pagamento = _pagamentoRepository.ObterPorPedido(pedidoId);
+
+        if (pagamento == null)
+            throw new Exception("Pagamento não encontrado");
+
+        pagamento.Cancelar();
+
+        _pagamentoRepository.Atualizar(pagamento);
+
+        var pedido = _pedidoRepository.ObterPorId(pedidoId);
+
+        if (pedido != null && pedido.Status == PedidoStatus.Criado)
+            pedido.Cancelar();
+    }
+
 }

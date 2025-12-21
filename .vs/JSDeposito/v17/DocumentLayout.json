@@ -7,20 +7,28 @@
       "RelativeMoniker": "D:0:0:{2DE452D7-9E6E-4136-9E10-11E5E7B277D9}|JSDeposito.Core\\JSDeposito.Core.csproj|solutionrelative:jsdeposito.core\\entities\\pedido.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EF7189D4-A410-40EE-BF0A-B6EF741CD937}|JSDeposito.Api\\JSDeposito.Api.csproj|c:\\desenvolvedor\\jsdeposito\\jsdeposito.api\\controllers\\pagamentocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EF7189D4-A410-40EE-BF0A-B6EF741CD937}|JSDeposito.Api\\JSDeposito.Api.csproj|solutionrelative:jsdeposito.api\\controllers\\pagamentocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2DE452D7-9E6E-4136-9E10-11E5E7B277D9}|JSDeposito.Core\\JSDeposito.Core.csproj|c:\\desenvolvedor\\jsdeposito\\jsdeposito.core\\services\\pagamentoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2DE452D7-9E6E-4136-9E10-11E5E7B277D9}|JSDeposito.Core\\JSDeposito.Core.csproj|solutionrelative:jsdeposito.core\\services\\pagamentoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EF7189D4-A410-40EE-BF0A-B6EF741CD937}|JSDeposito.Api\\JSDeposito.Api.csproj|c:\\desenvolvedor\\jsdeposito\\jsdeposito.api\\data\\pagamentorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EF7189D4-A410-40EE-BF0A-B6EF741CD937}|JSDeposito.Api\\JSDeposito.Api.csproj|solutionrelative:jsdeposito.api\\data\\pagamentorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{2DE452D7-9E6E-4136-9E10-11E5E7B277D9}|JSDeposito.Core\\JSDeposito.Core.csproj|c:\\desenvolvedor\\jsdeposito\\jsdeposito.core\\entities\\pagamento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2DE452D7-9E6E-4136-9E10-11E5E7B277D9}|JSDeposito.Core\\JSDeposito.Core.csproj|solutionrelative:jsdeposito.core\\entities\\pagamento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF7189D4-A410-40EE-BF0A-B6EF741CD937}|JSDeposito.Api\\JSDeposito.Api.csproj|c:\\desenvolvedor\\jsdeposito\\jsdeposito.api\\controllers\\pagamentocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF7189D4-A410-40EE-BF0A-B6EF741CD937}|JSDeposito.Api\\JSDeposito.Api.csproj|solutionrelative:jsdeposito.api\\controllers\\pagamentocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{2DE452D7-9E6E-4136-9E10-11E5E7B277D9}|JSDeposito.Core\\JSDeposito.Core.csproj|c:\\desenvolvedor\\jsdeposito\\jsdeposito.core\\interfaces\\ipagamentorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2DE452D7-9E6E-4136-9E10-11E5E7B277D9}|JSDeposito.Core\\JSDeposito.Core.csproj|solutionrelative:jsdeposito.core\\interfaces\\ipagamentorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2DE452D7-9E6E-4136-9E10-11E5E7B277D9}|JSDeposito.Core\\JSDeposito.Core.csproj|c:\\desenvolvedor\\jsdeposito\\jsdeposito.core\\services\\pagamentoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2DE452D7-9E6E-4136-9E10-11E5E7B277D9}|JSDeposito.Core\\JSDeposito.Core.csproj|solutionrelative:jsdeposito.core\\services\\pagamentoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2DE452D7-9E6E-4136-9E10-11E5E7B277D9}|JSDeposito.Core\\JSDeposito.Core.csproj|c:\\desenvolvedor\\jsdeposito\\jsdeposito.core\\enums\\statuspagamento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2DE452D7-9E6E-4136-9E10-11E5E7B277D9}|JSDeposito.Core\\JSDeposito.Core.csproj|solutionrelative:jsdeposito.core\\enums\\statuspagamento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2DE452D7-9E6E-4136-9E10-11E5E7B277D9}|JSDeposito.Core\\JSDeposito.Core.csproj|c:\\desenvolvedor\\jsdeposito\\jsdeposito.core\\interfaces\\ipedidorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -34,8 +42,34 @@
       "DocumentGroups": [
         {
           "DockedWidth": 193,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "StatusPagamento.cs",
+              "DocumentMoniker": "C:\\Desenvolvedor\\JSDeposito\\JSDeposito.Core\\Enums\\StatusPagamento.cs",
+              "RelativeDocumentMoniker": "JSDeposito.Core\\Enums\\StatusPagamento.cs",
+              "ToolTip": "C:\\Desenvolvedor\\JSDeposito\\JSDeposito.Core\\Enums\\StatusPagamento.cs",
+              "RelativeToolTip": "JSDeposito.Core\\Enums\\StatusPagamento.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-21T13:51:36.473Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Pagamento.cs",
+              "DocumentMoniker": "C:\\Desenvolvedor\\JSDeposito\\JSDeposito.Core\\Entities\\Pagamento.cs",
+              "RelativeDocumentMoniker": "JSDeposito.Core\\Entities\\Pagamento.cs",
+              "ToolTip": "C:\\Desenvolvedor\\JSDeposito\\JSDeposito.Core\\Entities\\Pagamento.cs",
+              "RelativeToolTip": "JSDeposito.Core\\Entities\\Pagamento.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAAwCkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-21T13:43:33.489Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -44,14 +78,14 @@
               "RelativeDocumentMoniker": "JSDeposito.Core\\Entities\\Pedido.cs",
               "ToolTip": "C:\\Desenvolvedor\\JSDeposito\\JSDeposito.Core\\Entities\\Pedido.cs",
               "RelativeToolTip": "JSDeposito.Core\\Entities\\Pedido.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAXAAAAAAAAAA==",
+              "ViewState": "AgIAAEcAAAAAAAAAAAA6wF0AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-21T13:34:55.795Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "IPedidoRepository.cs",
               "DocumentMoniker": "C:\\Desenvolvedor\\JSDeposito\\JSDeposito.Core\\Interfaces\\IPedidoRepository.cs",
               "RelativeDocumentMoniker": "JSDeposito.Core\\Interfaces\\IPedidoRepository.cs",
@@ -59,12 +93,11 @@
               "RelativeToolTip": "JSDeposito.Core\\Interfaces\\IPedidoRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-21T13:23:46.989Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-21T13:23:46.989Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "IPagamentoRepository.cs",
               "DocumentMoniker": "C:\\Desenvolvedor\\JSDeposito\\JSDeposito.Core\\Interfaces\\IPagamentoRepository.cs",
               "RelativeDocumentMoniker": "JSDeposito.Core\\Interfaces\\IPagamentoRepository.cs",
@@ -77,13 +110,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "PagamentoService.cs",
               "DocumentMoniker": "C:\\Desenvolvedor\\JSDeposito\\JSDeposito.Core\\Services\\PagamentoService.cs",
               "RelativeDocumentMoniker": "JSDeposito.Core\\Services\\PagamentoService.cs",
               "ToolTip": "C:\\Desenvolvedor\\JSDeposito\\JSDeposito.Core\\Services\\PagamentoService.cs",
               "RelativeToolTip": "JSDeposito.Core\\Services\\PagamentoService.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAmwDcAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAADYAAAAAAAAAAAAwwEgAAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-21T13:18:57.115Z",
               "EditorCaption": ""
@@ -96,20 +129,20 @@
               "RelativeDocumentMoniker": "JSDeposito.Api\\Data\\PagamentoRepository.cs",
               "ToolTip": "C:\\Desenvolvedor\\JSDeposito\\JSDeposito.Api\\Data\\PagamentoRepository.cs",
               "RelativeToolTip": "JSDeposito.Api\\Data\\PagamentoRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAuAAAAAAAAAA==",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAQwCAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-21T13:18:51.958Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "PagamentoController.cs",
               "DocumentMoniker": "C:\\Desenvolvedor\\JSDeposito\\JSDeposito.Api\\Controllers\\PagamentoController.cs",
               "RelativeDocumentMoniker": "JSDeposito.Api\\Controllers\\PagamentoController.cs",
               "ToolTip": "C:\\Desenvolvedor\\JSDeposito\\JSDeposito.Api\\Controllers\\PagamentoController.cs",
               "RelativeToolTip": "JSDeposito.Api\\Controllers\\PagamentoController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAAACYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-21T13:18:45.698Z",
               "EditorCaption": ""

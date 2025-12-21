@@ -151,6 +151,29 @@
         }
       }
     },
+    "/api/pagamentos/{pedidoId}/cancelar": {
+      "post": {
+        "tags": [
+          "Pagamento"
+        ],
+        "parameters": [
+          {
+            "name": "pedidoId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/pedidos": {
       "post": {
         "tags": [

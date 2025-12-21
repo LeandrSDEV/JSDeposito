@@ -85,4 +85,11 @@ public class Pedido
         RecalcularTotal();
     }
 
+    public void Cancelar()
+    {
+        if (Status == PedidoStatus.Pago)
+            throw new Exception("Pedido pago não pode ser cancelado");
+
+        Status = PedidoStatus.Cancelado;
+    }
 }

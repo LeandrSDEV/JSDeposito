@@ -28,4 +28,11 @@ public class PagamentoController : ControllerBase
         _pagamentoService.ConfirmarPagamento(pedidoId);
         return Ok();
     }
+
+    [HttpPost("{pedidoId}/cancelar")]
+    public IActionResult Cancelar(int pedidoId)
+    {
+        _pagamentoService.CancelarPagamento(pedidoId);
+        return NoContent();
+    }
 }

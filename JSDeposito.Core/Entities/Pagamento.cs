@@ -32,6 +32,11 @@ public class Pagamento
 
     public void Cancelar()
     {
+        if (Status == StatusPagamento.Pago)
+            throw new Exception("Pagamento já foi confirmado");
+
         Status = StatusPagamento.Cancelado;
     }
+
+
 }
