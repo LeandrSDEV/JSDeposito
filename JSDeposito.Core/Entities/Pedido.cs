@@ -44,6 +44,9 @@ public class Pedido
 
     public void MarcarComoPago()
     {
+        if (Status != PedidoStatus.Criado)
+            throw new Exception("Pedido não pode ser pago");
+
         Status = PedidoStatus.Pago;
     }
 

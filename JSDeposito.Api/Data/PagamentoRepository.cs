@@ -18,8 +18,14 @@ public class PagamentoRepository : IPagamentoRepository
         _context.SaveChanges();
     }
 
-    public Pagamento ObterPorPedido(int pedidoId)
+    public Pagamento? ObterPorPedido(int pedidoId)
     {
-        return _context.Pagamentos.First(p => p.PedidoId == pedidoId);
+        return _context.Pagamentos.FirstOrDefault(p => p.PedidoId == pedidoId);
+    }
+
+    public void Atualizar(Pagamento pagamento)
+    {
+        _context.Pagamentos.Update(pagamento);
+        _context.SaveChanges();
     }
 }
