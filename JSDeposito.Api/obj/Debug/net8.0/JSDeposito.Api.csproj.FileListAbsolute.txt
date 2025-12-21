@@ -107,10 +107,10 @@ C:\Desenvolvedor\JSDeposito\JSDeposito.Api\obj\Debug\net8.0\staticwebassets.buil
 C:\Desenvolvedor\JSDeposito\JSDeposito.Api\obj\Debug\net8.0\staticwebassets.build.json.cache
 C:\Desenvolvedor\JSDeposito\JSDeposito.Api\obj\Debug\net8.0\staticwebassets.development.json
 C:\Desenvolvedor\JSDeposito\JSDeposito.Api\obj\Debug\net8.0\staticwebassets.build.endpoints.json
-C:\Desenvolvedor\JSDeposito\JSDeposito.Api\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Desenvolvedor\JSDeposito\JSDeposito.Api\obj\Debug\net8.0\JSDeposi.E9AEA241.Up2Date
 C:\Desenvolvedor\JSDeposito\JSDeposito.Api\obj\Debug\net8.0\JSDeposito.Api.dll
 C:\Desenvolvedor\JSDeposito\JSDeposito.Api\obj\Debug\net8.0\refint\JSDeposito.Api.dll
 C:\Desenvolvedor\JSDeposito\JSDeposito.Api\obj\Debug\net8.0\JSDeposito.Api.pdb
 C:\Desenvolvedor\JSDeposito\JSDeposito.Api\obj\Debug\net8.0\JSDeposito.Api.genruntimeconfig.cache
 C:\Desenvolvedor\JSDeposito\JSDeposito.Api\obj\Debug\net8.0\ref\JSDeposito.Api.dll
+C:\Desenvolvedor\JSDeposito\JSDeposito.Api\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

@@ -2,6 +2,7 @@
 using JSDeposito.Core.Entities;
 using JSDeposito.Core.Enums;
 using JSDeposito.Core.Interfaces;
+using JSDeposito.Core.ValueObjects;
 
 namespace JSDeposito.Core.Services;
 
@@ -66,20 +67,31 @@ public class PedidoService
     public void AplicarFrete(int pedidoId, int enderecoId)
     {
         var pedido = _pedidoRepository.ObterPorId(pedidoId);
-        var endereco = _enderecoRepository.ObterPorId(enderecoId)
-        ?? throw new Exception("Endereço não encontrado");
+        var endereco = _enderecoRepository.ObterPorId(enderecoId);
 
-        if (!endereco.Ativo)
-            throw new Exception("Endereço inativo");
+        if (pedido == null || endereco == null)
+            throw new Exception("Pedido ou endereço inválido");
 
-        var distancia = _freteService.CalcularDistanciaKm(
-            new Localizacao(endereco.Latitude, endereco.Longitude)
+        var snapshot = new EnderecoSnapshot(
+            endereco.Rua,
+            endereco.Numero,
+            endereco.Bairro,
+            endereco.Cidade,
+            endereco.Latitude,
+            endereco.Longitude
         );
 
-        var valorFrete = _freteService.CalcularValorFrete(distancia);
-        pedido.AplicarFrete(valorFrete);
+        var (valorFrete, promocional) =
+            _freteService.CalcularFrete(
+                new Localizacao(snapshot.Latitude, snapshot.Longitude)
+            );
 
-        pedido.AplicarFrete(valorFrete);
+        pedido.DefinirEnderecoEAplicarFrete(
+            snapshot,
+            valorFrete,
+            promocional
+        );
+
         _pedidoRepository.Atualizar(pedido);
     }
 
@@ -147,5 +159,6 @@ public class PedidoService
         pedido.Cancelar();
         _pedidoRepository.Atualizar(pedido);
     }
+
 
 }

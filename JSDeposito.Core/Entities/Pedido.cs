@@ -1,4 +1,5 @@
 ﻿using JSDeposito.Core.Enums;
+using JSDeposito.Core.ValueObjects;
 using System.Collections.ObjectModel;
 using System.Linq;
 
@@ -13,6 +14,9 @@ public class Pedido
     public decimal Desconto { get; private set; }
     public decimal ValorFrete { get; private set; }
     public string? CodigoCupom { get; private set; }
+    public EnderecoSnapshot? EnderecoEntrega { get; private set; }
+    public bool FretePromocional { get; private set; }
+
 
     private readonly List<ItemPedido> _itens = new();
     public IReadOnlyCollection<ItemPedido> Itens => _itens.AsReadOnly();
@@ -71,11 +75,12 @@ public class Pedido
         RecalcularTotal();
     }
 
-    public void AplicarFrete(decimal valorFrete)
+    public void AplicarFrete(decimal valorFrete, bool promocional = false)
     {
         GarantirPedidoEditavel();
 
         ValorFrete = valorFrete;
+        FretePromocional = promocional;
         RecalcularTotal();
     }
 
@@ -117,11 +122,40 @@ public class Pedido
 
         if (!_itens.Any())
             throw new Exception("Pedido sem itens não pode ser pago");
+
+        if (ValorFrete <= 0 && !FretePromocional)
+            throw new Exception("Frete não calculado");
+
+        if (EnderecoEntrega == null)
+            throw new Exception("Endereço de entrega não informado");
     }
 
     private void GarantirPedidoEditavel()
     {
         if (Status != PedidoStatus.Criado)
             throw new Exception("Pedido não pode ser alterado");
+    }
+
+    public void DefinirEnderecoEntrega(EnderecoSnapshot endereco)
+    {
+        if (Status != PedidoStatus.Criado)
+            throw new Exception("Endereço não pode ser alterado");
+
+        EnderecoEntrega = endereco;
+    }
+
+    public void DefinirEnderecoEAplicarFrete(
+    EnderecoSnapshot endereco,
+    decimal valorFrete,
+    bool promocional)
+    {
+        GarantirPedidoEditavel();
+
+        EnderecoEntrega = endereco;
+
+        ValorFrete = valorFrete;
+        FretePromocional = promocional;
+
+        RecalcularTotal();
     }
 }

@@ -325,5 +325,68 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PromocaoFreteController",
+    "Method": "Criar",
+    "RelativePath": "api/promocoes-frete",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "PromocaoFreteDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PromocaoFreteController",
+    "Method": "Listar",
+    "RelativePath": "api/promocoes-frete",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PromocaoFreteController",
+    "Method": "ObterPorId",
+    "RelativePath": "api/promocoes-frete/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PromocaoFreteController",
+    "Method": "Atualizar",
+    "RelativePath": "api/promocoes-frete/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "PromocaoFreteDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

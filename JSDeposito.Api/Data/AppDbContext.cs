@@ -16,6 +16,7 @@ namespace JSDeposito.Api.Data
         public DbSet<Pagamento> Pagamentos => Set<Pagamento>();
         public DbSet<Cliente> Clientes => Set<Cliente>();
         public DbSet<Endereco> Enderecos => Set<Endereco>();
+        public DbSet<PromocaoFrete> PromocaoFretes => Set<PromocaoFrete>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -34,6 +35,11 @@ namespace JSDeposito.Api.Data
                       .HasColumnType("decimal(10,2)");
                 entity.Property(p => p.ValorFrete)
                       .HasColumnType("decimal(10,2)");
+                entity.OwnsOne(p => p.EnderecoEntrega, endereco =>
+                {
+                    endereco.Property(e => e.Rua).HasMaxLength(200);
+                    endereco.Property(e => e.Cidade).HasMaxLength(100);
+                });
             });
 
             modelBuilder.Entity<Pagamento>(entity =>

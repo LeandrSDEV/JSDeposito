@@ -1,5 +1,6 @@
 ﻿using JSDeposito.Core.DTOs;
 using JSDeposito.Core.Interfaces;
+using JSDeposito.Core.ValueObjects;
 
 namespace JSDeposito.Core.Services;
 
