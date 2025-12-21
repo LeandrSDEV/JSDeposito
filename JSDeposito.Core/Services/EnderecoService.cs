@@ -17,18 +17,16 @@ public class EnderecoService
     }
 
     public Endereco CriarEndereco(
-        int clienteId,
-        string rua,
-        string numero,
-        string bairro,
-        string cidade,
-        double latitude,
-        double longitude)
+    int clienteId,
+    string rua,
+    string numero,
+    string bairro,
+    string cidade,
+    double latitude,
+    double longitude)
     {
-        var cliente = _clienteRepository.ObterPorId(clienteId);
-
-        if (cliente == null)
-            throw new Exception("Cliente não encontrado");
+        var cliente = _clienteRepository.ObterPorId(clienteId)
+            ?? throw new Exception("Cliente não encontrado");
 
         var endereco = new Endereco(
             clienteId,

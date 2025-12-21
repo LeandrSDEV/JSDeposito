@@ -12,13 +12,13 @@ public class EnderecoRepository : IEnderecoRepository
         _context = context;
     }
 
-    public Endereco ObterPorId(int id)
+    public Endereco? ObterPorId(int id)
         => _context.Enderecos.FirstOrDefault(e => e.Id == id);
 
-    public List<Endereco> ObterPorCliente(int clienteId)
-        => _context.Enderecos
-            .Where(e => e.ClienteId == clienteId)
-            .ToList();
+    public List<Endereco> ObterAtivosPorCliente(int clienteId)
+    => _context.Enderecos
+        .Where(e => e.ClienteId == clienteId && e.Ativo)
+        .ToList();
 
     public void Criar(Endereco endereco)
     {

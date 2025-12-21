@@ -1,7 +1,9 @@
 using JSDeposito.Api.Data;
+using JSDeposito.Core.Configurations;
 using JSDeposito.Core.Interfaces;
 using JSDeposito.Core.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,6 +36,21 @@ builder.Services.AddScoped<EnderecoService>();
 builder.Services.AddScoped<FreteService>();
 builder.Services.AddScoped<CheckoutService>();
 
+builder.Services.Configure<DepositoConfig>(
+    builder.Configuration.GetSection("Deposito")
+);
+
+builder.Services.AddScoped<FreteService>(sp =>
+{
+    var config = sp.GetRequiredService<IOptions<DepositoConfig>>().Value;
+
+    var origem = new Localizacao(
+        config.Latitude,
+        config.Longitude
+    );
+
+    return new FreteService(origem);
+});
 
 var app = builder.Build();
 

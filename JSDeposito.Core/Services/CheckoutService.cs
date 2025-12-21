@@ -30,41 +30,43 @@ public class CheckoutService
 
     public void RealizarCheckout(CheckoutDto dto)
     {
-        // 1️⃣ Pedido
+
         var pedido = _pedidoRepository.ObterPorId(dto.PedidoId);
         if (pedido == null)
             throw new Exception("Pedido não encontrado");
 
-        // 2️⃣ Cliente
+
         var cliente = _clienteRepository.ObterPorId(dto.ClienteId);
         if (cliente == null)
             throw new Exception("Cliente inválido");
 
-        // 3️⃣ Endereço
+
         var endereco = _enderecoRepository.ObterPorId(dto.EnderecoId);
         if (endereco == null || endereco.ClienteId != cliente.Id)
             throw new Exception("Endereço inválido");
 
-        // 4️⃣ Cupom (opcional)
+
         if (!string.IsNullOrEmpty(dto.CodigoCupom))
         {
             var cupom = _cupomRepository.ObterPorCodigo(dto.CodigoCupom);
             pedido.AplicarCupom(cupom);
         }
 
-        // 5️⃣ Frete
-        var distancia = _freteService.CalcularDistanciaKm(
+
+            var destino = new Localizacao(
             endereco.Latitude,
             endereco.Longitude
         );
 
+        var distancia = _freteService.CalcularDistanciaKm(destino);
+
         var valorFrete = _freteService.CalcularValorFrete(distancia);
         pedido.AplicarFrete(valorFrete);
 
-        // 6️⃣ Pagamento
+
         _pagamentoService.CriarPagamento(pedido.Id, dto.TipoPagamento);
 
-        // 7️⃣ Persistir estado final
+
         _pedidoRepository.Atualizar(pedido);
     }
 }

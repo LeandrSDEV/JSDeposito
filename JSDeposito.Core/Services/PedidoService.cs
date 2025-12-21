@@ -66,14 +66,18 @@ public class PedidoService
     public void AplicarFrete(int pedidoId, int enderecoId)
     {
         var pedido = _pedidoRepository.ObterPorId(pedidoId);
-        var endereco = _enderecoRepository.ObterPorId(enderecoId);
+        var endereco = _enderecoRepository.ObterPorId(enderecoId)
+        ?? throw new Exception("Endereço não encontrado");
+
+        if (!endereco.Ativo)
+            throw new Exception("Endereço inativo");
 
         var distancia = _freteService.CalcularDistanciaKm(
-            endereco.Latitude,
-            endereco.Longitude
+            new Localizacao(endereco.Latitude, endereco.Longitude)
         );
 
         var valorFrete = _freteService.CalcularValorFrete(distancia);
+        pedido.AplicarFrete(valorFrete);
 
         pedido.AplicarFrete(valorFrete);
         _pedidoRepository.Atualizar(pedido);
