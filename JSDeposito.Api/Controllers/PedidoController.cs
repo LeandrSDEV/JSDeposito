@@ -1,6 +1,7 @@
 ﻿using JSDeposito.Core.DTOs;
 using JSDeposito.Core.Entities;
 using JSDeposito.Core.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JSDeposito.Api.Controllers;
@@ -17,13 +18,14 @@ public class PedidoController : ControllerBase
     }
 
     [HttpPost]
+    [AllowAnonymous]
     public IActionResult Criar(CriarPedidoDto dto)
     {
-        var pedido = _pedidoService.CriarPedido(dto);
+        var pedido = _pedidoService.Criar(dto);
         return Ok(pedido);
     }
 
-
+    
     [HttpGet("{pedidoId}")]
     public IActionResult Obter(int pedidoId)
     {
@@ -35,7 +37,7 @@ public class PedidoController : ControllerBase
         return Ok(pedido);
     }
 
-
+    
     [HttpPost("{pedidoId}/itens")]
     public IActionResult Adicionar(int pedidoId, AdicionarItemPedidoDto dto)
     {
@@ -51,7 +53,7 @@ public class PedidoController : ControllerBase
         return NoContent();
     }
 
-
+    [Authorize(Roles = "Cliente")]
     [HttpPost("{pedidoId}/frete/{enderecoId}")]
     public IActionResult AplicarFrete(int pedidoId, int enderecoId)
     {
@@ -59,7 +61,7 @@ public class PedidoController : ControllerBase
         return NoContent();
     }
 
-
+    [Authorize]
     [HttpPost("{pedidoId}/cancelar")]
     public IActionResult Cancelar(int pedidoId)
     {

@@ -1,5 +1,6 @@
 ﻿using JSDeposito.Core.DTOs;
 using JSDeposito.Core.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
@@ -13,6 +14,7 @@ public class ClientesController : ControllerBase
         _service = service;
     }
 
+    [Authorize(Roles = "Cliente")]
     [HttpPost]
     public IActionResult Criar([FromBody] ClienteDto dto)
     {

@@ -63,6 +63,10 @@
               "target": "Package",
               "version": "[8.0.2, )"
             },
+            "QRCoder": {
+              "target": "Package",
+              "version": "[1.7.0, )"
+            },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
               "version": "[8.15.0, )"

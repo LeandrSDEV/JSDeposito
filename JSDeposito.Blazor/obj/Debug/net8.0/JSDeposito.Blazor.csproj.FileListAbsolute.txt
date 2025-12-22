@@ -69,3 +69,9 @@ C:\Desenvolvedor\JSDeposito\JSDeposito.Blazor\bin\Debug\net8.0\Microsoft.Identit
 C:\Desenvolvedor\JSDeposito\JSDeposito.Blazor\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
 C:\Desenvolvedor\JSDeposito\JSDeposito.Blazor\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Desenvolvedor\JSDeposito\JSDeposito.Blazor\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Desenvolvedor\JSDeposito\JSDeposito.Blazor\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
+C:\Desenvolvedor\JSDeposito\JSDeposito.Blazor\bin\Debug\net8.0\QRCoder.dll
+C:\Desenvolvedor\JSDeposito\JSDeposito.Blazor\bin\Debug\net8.0\System.Drawing.Common.dll
+C:\Desenvolvedor\JSDeposito\JSDeposito.Blazor\bin\Debug\net8.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Desenvolvedor\JSDeposito\JSDeposito.Blazor\bin\Debug\net8.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
+C:\Desenvolvedor\JSDeposito\JSDeposito.Blazor\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll

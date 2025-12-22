@@ -49,22 +49,6 @@
   },
   {
     "ContainingType": "JSDeposito.Api.Controllers.CheckoutController",
-    "Method": "Checkout",
-    "RelativePath": "api/checkout",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "dto",
-        "Type": "JSDeposito.Core.DTOs.CheckoutDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "JSDeposito.Api.Controllers.CheckoutController",
     "Method": "FinalizarPedido",
     "RelativePath": "api/checkout/{pedidoId}/finalizar",
     "HttpMethod": "POST",
@@ -74,6 +58,22 @@
       {
         "Name": "pedidoId",
         "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "JSDeposito.Api.Controllers.CheckoutController",
+    "Method": "Checkout",
+    "RelativePath": "api/checkout/checkout",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "JSDeposito.Core.DTOs.CheckoutDto",
         "IsRequired": true
       }
     ],
@@ -113,27 +113,6 @@
   },
   {
     "ContainingType": "JSDeposito.Api.Controllers.PagamentoController",
-    "Method": "Criar",
-    "RelativePath": "api/pagamentos/{pedidoId}",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "pedidoId",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "tipo",
-        "Type": "System.String",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "JSDeposito.Api.Controllers.PagamentoController",
     "Method": "Cancelar",
     "RelativePath": "api/pagamentos/{pedidoId}/cancelar",
     "HttpMethod": "POST",
@@ -159,6 +138,27 @@
       {
         "Name": "pedidoId",
         "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "JSDeposito.Api.Controllers.PagamentoController",
+    "Method": "CriarPagamento",
+    "RelativePath": "api/pagamentos/{pedidoId}/pagamento",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pedidoId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "JSDeposito.Core.DTOs.CriarPagamentoDto",
         "IsRequired": true
       }
     ],

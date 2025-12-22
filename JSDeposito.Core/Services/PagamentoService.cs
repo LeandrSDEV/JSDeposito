@@ -10,37 +10,62 @@ public class PagamentoService
 {
     private readonly IPagamentoRepository _pagamentoRepository;
     private readonly IPedidoRepository _pedidoRepository;
+    private readonly PixService _pixService;
 
     public PagamentoService(
         IPagamentoRepository pagamentoRepository,
-        IPedidoRepository pedidoRepository)
+        IPedidoRepository pedidoRepository,
+        PixService pixService)
     {
         _pagamentoRepository = pagamentoRepository;
         _pedidoRepository = pedidoRepository;
+        _pixService = pixService;
     }
 
-    public Pagamento CriarPagamento(int pedidoId, TipoPagamento tipo)
+    public object CriarPagamento(int pedidoId, TipoPagamento tipo, int usuarioId)
     {
         var pedido = _pedidoRepository.ObterPorId(pedidoId)
             ?? throw new Exception("Pedido não encontrado");
 
+        if (!pedido.UsuarioId.HasValue)
+        {
+            pedido.AssociarUsuario(usuarioId);
+            _pedidoRepository.Atualizar(pedido);
+        }
+
+        if (pedido.UsuarioId == null)
+            throw new Exception("Pedido precisa estar associado a um usuário");
+
+        if (pedido.UsuarioId != usuarioId)
+            throw new Exception("Pedido não pertence ao usuário autenticado");
 
         pedido.ValidarParaPagamento();
 
         var pagamentoExistente = _pagamentoRepository.ObterPorPedido(pedidoId);
-
         if (pagamentoExistente != null)
-            return pagamentoExistente; // 🔥 IDEMPOTÊNCIA
+            return pagamentoExistente;
 
-        var pagamento = new Pagamento(
-            pedidoId,
-            pedido.Total,
-            tipo
-        );
-
+        var pagamento = new Pagamento(pedidoId, pedido.Total, tipo);
         _pagamentoRepository.Criar(pagamento);
+
+        if (tipo == TipoPagamento.Pix)
+        {
+            var pix = _pixService.GerarPix(
+                pedido.Total,
+                $"Pedido #{pedido.Id}"
+            );
+
+            return new
+            {
+                pagamento.Id,
+                pagamento.Status,
+                Pix = pix
+            };
+        }
+
         return pagamento;
     }
+
 
     public void ConfirmarPagamento(int pedidoId)
     {
@@ -81,5 +106,8 @@ public class PagamentoService
         if (pedido != null && pedido.Status == PedidoStatus.Criado)
             pedido.Cancelar();
     }
+
+   
+
 
 }

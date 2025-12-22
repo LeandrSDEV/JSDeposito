@@ -113,7 +113,6 @@ C:\Desenvolvedor\JSDeposito\JSDeposito.Api\obj\Debug\net8.0\refint\JSDeposito.Ap
 C:\Desenvolvedor\JSDeposito\JSDeposito.Api\obj\Debug\net8.0\JSDeposito.Api.pdb
 C:\Desenvolvedor\JSDeposito\JSDeposito.Api\obj\Debug\net8.0\JSDeposito.Api.genruntimeconfig.cache
 C:\Desenvolvedor\JSDeposito\JSDeposito.Api\obj\Debug\net8.0\ref\JSDeposito.Api.dll
-C:\Desenvolvedor\JSDeposito\JSDeposito.Api\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Desenvolvedor\JSDeposito\JSDeposito.Api\bin\Debug\net8.0\BCrypt.Net-Next.dll
 C:\Desenvolvedor\JSDeposito\JSDeposito.Api\bin\Debug\net8.0\Docker.DotNet.dll
 C:\Desenvolvedor\JSDeposito\JSDeposito.Api\bin\Debug\net8.0\jose-jwt.dll
@@ -126,3 +125,10 @@ C:\Desenvolvedor\JSDeposito\JSDeposito.Api\bin\Debug\net8.0\Microsoft.IdentityMo
 C:\Desenvolvedor\JSDeposito\JSDeposito.Api\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
 C:\Desenvolvedor\JSDeposito\JSDeposito.Api\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Desenvolvedor\JSDeposito\JSDeposito.Api\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Desenvolvedor\JSDeposito\JSDeposito.Api\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
+C:\Desenvolvedor\JSDeposito\JSDeposito.Api\bin\Debug\net8.0\QRCoder.dll
+C:\Desenvolvedor\JSDeposito\JSDeposito.Api\bin\Debug\net8.0\System.Drawing.Common.dll
+C:\Desenvolvedor\JSDeposito\JSDeposito.Api\bin\Debug\net8.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Desenvolvedor\JSDeposito\JSDeposito.Api\bin\Debug\net8.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
+C:\Desenvolvedor\JSDeposito\JSDeposito.Api\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+C:\Desenvolvedor\JSDeposito\JSDeposito.Api\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

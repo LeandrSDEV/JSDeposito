@@ -2,12 +2,14 @@ using JSDeposito.Api.Data;
 using JSDeposito.Core.Configurations;
 using JSDeposito.Core.Interfaces;
 using JSDeposito.Core.Services;
-using Microsoft.EntityFrameworkCore;
 using JSDeposito.Core.ValueObjects;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using System.Security;
 using System.Text;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,6 +39,8 @@ builder.Services.AddScoped<ClienteService>();
 builder.Services.AddScoped<IEnderecoRepository, EnderecoRepository>();
 builder.Services.AddScoped<EnderecoService>();
 builder.Services.AddScoped<CheckoutService>();
+builder.Services.AddScoped<PixService>();
+
 
 builder.Services.AddSwaggerGen(c =>
 {
@@ -137,6 +141,17 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseExceptionHandler(app =>
+{
+    app.Run(async context =>
+    {
+        var error = context.Features.Get<IExceptionHandlerFeature>()?.Error;
+
+        if (error is SecurityException)
+            context.Response.StatusCode = StatusCodes.Status403Forbidden;
+    });
+});
 
 app.UseHttpsRedirection();
 

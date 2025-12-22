@@ -1,6 +1,9 @@
 ﻿using JSDeposito.Core.DTOs;
+using JSDeposito.Core.Entities;
+using JSDeposito.Core.Enums;
 using JSDeposito.Core.Interfaces;
 using JSDeposito.Core.ValueObjects;
+using System.Security;
 
 namespace JSDeposito.Core.Services;
 
@@ -29,23 +32,20 @@ public class CheckoutService
         _pagamentoService = pagamentoService;
     }
 
-    public void RealizarCheckout(CheckoutDto dto)
+    public void RealizarCheckout(CheckoutDto dto, int usuarioId)
     {
+        var pedido = _pedidoRepository.ObterPorId(dto.PedidoId)
+            ?? throw new Exception("Pedido não encontrado");
 
-        var pedido = _pedidoRepository.ObterPorId(dto.PedidoId);
-        if (pedido == null)
-            throw new Exception("Pedido não encontrado");
+        if (pedido.UsuarioId != usuarioId)
+            throw new SecurityException("Pedido não pertence ao usuário");
 
-
-        var cliente = _clienteRepository.ObterPorId(dto.ClienteId);
-        if (cliente == null)
-            throw new Exception("Cliente inválido");
-
+        var cliente = _clienteRepository.ObterPorId(usuarioId)
+            ?? throw new Exception("Cliente não encontrado");
 
         var endereco = _enderecoRepository.ObterPorId(dto.EnderecoId);
         if (endereco == null || endereco.ClienteId != cliente.Id)
             throw new Exception("Endereço inválido");
-
 
         if (!string.IsNullOrEmpty(dto.CodigoCupom))
         {
@@ -53,26 +53,25 @@ public class CheckoutService
             pedido.AplicarCupom(cupom);
         }
 
-
-            var destino = new Localizacao(
-            endereco.Latitude,
-            endereco.Longitude
-        );
-
+        var destino = new Localizacao(endereco.Latitude, endereco.Longitude);
         var distancia = _freteService.CalcularDistanciaKm(destino);
-
         var valorFrete = _freteService.CalcularValorFrete(distancia);
+
         pedido.AplicarFrete(valorFrete);
 
-
-        _pagamentoService.CriarPagamento(pedido.Id, dto.TipoPagamento);
-
+        _pagamentoService
+            .CriarPagamento(pedido.Id, dto.TipoPagamento, usuarioId);
 
         _pedidoRepository.Atualizar(pedido);
-
     }
 
-    public void Finalizar(int pedidoId, int clienteId)
+
+    public object CriarCheckout(int pedidoId, TipoPagamento tipo, int usuarioId)
+    {
+        return _pagamentoService.CriarPagamento(pedidoId, tipo, usuarioId);
+    }
+
+    public void Finalizar(int pedidoId, int usuarioId)
     {
         var pedido = _pedidoRepository.ObterPorId(pedidoId)
             ?? throw new Exception("Pedido não encontrado");
@@ -80,7 +79,7 @@ public class CheckoutService
         if (!pedido.EstaEmAberto())
             throw new Exception("Pedido não pode ser finalizado");
 
-        pedido.AssociarCliente(clienteId);
+        pedido.AssociarUsuario(usuarioId);
 
         _pedidoRepository.Atualizar(pedido);
     }

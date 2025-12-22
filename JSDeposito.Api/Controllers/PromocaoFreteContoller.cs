@@ -1,5 +1,6 @@
 ﻿using JSDeposito.Core.Entities;
 using JSDeposito.Core.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
@@ -13,6 +14,7 @@ public class PromocaoFreteController : ControllerBase
         _repository = repository;
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpPost]
     public IActionResult Criar([FromBody] PromocaoFreteDto dto)
     {
@@ -34,7 +36,7 @@ public class PromocaoFreteController : ControllerBase
         );
     }
 
-
+    [Authorize(Roles = "Admin")]
     [HttpGet("{id}")]
     public IActionResult ObterPorId(int id)
     {
@@ -46,7 +48,7 @@ public class PromocaoFreteController : ControllerBase
         return Ok(promocao);
     }
 
-
+    [Authorize(Roles = "Admin")]
     [HttpGet]
     public IActionResult Listar()
     {
@@ -54,7 +56,7 @@ public class PromocaoFreteController : ControllerBase
         return Ok(promocoes);
     }
 
-
+    [Authorize(Roles = "Admin")]
     [HttpPut("{id}")]
     public IActionResult Atualizar(int id, [FromBody] PromocaoFreteDto dto)
     {

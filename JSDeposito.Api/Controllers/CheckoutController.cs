@@ -17,11 +17,15 @@ public class CheckoutController : ControllerBase
         _checkoutService = checkoutService;
     }
 
-    [HttpPost]
-    public IActionResult Checkout([FromBody] CheckoutDto dto)
+    [Authorize(Roles = "Cliente")]
+    [HttpPost("checkout")]
+    public IActionResult Checkout(CheckoutDto dto)
     {
-        _checkoutService.RealizarCheckout(dto);
-        return Ok(new { message = "Checkout realizado com sucesso" });
+        var usuarioId = User.GetUserId();
+
+        _checkoutService.RealizarCheckout(dto, usuarioId);
+
+        return Ok();
     }
 
     [Authorize(Roles = "Cliente")]
@@ -34,4 +38,6 @@ public class CheckoutController : ControllerBase
 
         return NoContent();
     }
+
+
 }

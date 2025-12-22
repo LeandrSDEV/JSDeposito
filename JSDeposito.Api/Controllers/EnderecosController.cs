@@ -1,7 +1,10 @@
 ﻿using JSDeposito.Core.DTOs;
 using JSDeposito.Core.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
+
+[Authorize(Roles = "Cliente")]
 [ApiController]
 [Route("api/enderecos")]
 public class EnderecosController : ControllerBase

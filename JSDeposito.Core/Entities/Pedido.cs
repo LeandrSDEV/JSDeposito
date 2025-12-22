@@ -8,6 +8,8 @@ namespace JSDeposito.Core.Entities;
 public class Pedido
 {
     public int Id { get; private set; }
+    public int? UsuarioId { get; private set; }
+    public Usuario? Usuario { get; private set; }
     public DateTime DataCriacao { get; private set; }
     public PedidoStatus Status { get; private set; }
     public decimal Total { get; private set; }
@@ -23,11 +25,13 @@ public class Pedido
     public IReadOnlyCollection<ItemPedido> Itens => _itens.AsReadOnly();
 
     public Pedido()
-    {
-        DataCriacao = DateTime.Now;
-        Status = PedidoStatus.Criado;
-        Total = 0;
-    }
+{
+    DataCriacao = DateTime.Now;
+    Status = PedidoStatus.Criado;
+    Total = 0;
+}
+
+    
 
     public void AdicionarItem(Produto produto, int quantidade)
     {
@@ -160,11 +164,11 @@ public class Pedido
         RecalcularTotal();
     }
 
-    public void AssociarCliente(int clienteId)
+    public void AssociarUsuario(int usuarioId)
     {
-        if (ClienteId.HasValue)
-            throw new Exception("Pedido já possui cliente");
+        if (UsuarioId.HasValue)
+            throw new Exception("Pedido já possui usuário associado");
 
-        ClienteId = clienteId;
+        UsuarioId = usuarioId;
     }
 }

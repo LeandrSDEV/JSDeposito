@@ -28,36 +28,16 @@ public class PedidoService
         _enderecoRepository = enderecoRepository;
     }
 
-    public Pedido CriarPedido(CriarPedidoDto dto)
+    public Pedido Criar(CriarPedidoDto dto)
     {
-        if (dto.Itens == null || !dto.Itens.Any())
-            throw new Exception("Pedido deve conter ao menos um item");
-
         var pedido = new Pedido();
 
         foreach (var item in dto.Itens)
         {
-            var produto = _produtoRepository.ObterPorId(item.ProdutoId);
-
-            if (produto == null)
-                throw new Exception($"Produto {item.ProdutoId} não encontrado");
-
-            produto.SaidaEstoque(item.Quantidade);
+            var produto = _produtoRepository.ObterPorId(item.ProdutoId)
+                ?? throw new Exception("Produto não encontrado");
 
             pedido.AdicionarItem(produto, item.Quantidade);
-        }
-
-        if (!string.IsNullOrWhiteSpace(dto.CodigoCupom))
-        {
-            var cupom = _cupomRepository.ObterPorCodigo(dto.CodigoCupom);
-
-            if (cupom == null)
-                throw new Exception("Cupom inválido ou inexistente");
-
-            pedido.AplicarCupom(cupom);
-
-            cupom.RegistrarUso();
-            _cupomRepository.Atualizar(cupom);
         }
 
         _pedidoRepository.Criar(pedido);
@@ -159,6 +139,5 @@ public class PedidoService
         pedido.Cancelar();
         _pedidoRepository.Atualizar(pedido);
     }
-
 
 }

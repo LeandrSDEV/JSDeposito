@@ -70,9 +70,9 @@ public class AuthService
     {
         var claims = new[]
         {
-            new Claim(JwtRegisteredClaimNames.Sub, usuario.Id.ToString()),
-            new Claim(JwtRegisteredClaimNames.Email, usuario.Email),
-            new Claim(ClaimTypes.Role, usuario.Role)
+            new Claim(ClaimTypes.NameIdentifier, usuario.Id.ToString()),
+            new Claim(ClaimTypes.Role, usuario.Role),
+            new Claim(ClaimTypes.Email, usuario.Email)
         };
 
         if (string.IsNullOrEmpty(_jwt.Secret))

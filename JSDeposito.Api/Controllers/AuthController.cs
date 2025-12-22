@@ -20,6 +20,7 @@ namespace JSDeposito.Api.Controllers
         public IActionResult Login(LoginRequest request)
             => Ok(_auth.Login(request.Email, request.Senha));
 
+        [Authorize]
         [HttpPost("refresh")]
         public IActionResult Refresh(RefreshRequest request)
             => Ok(_auth.Refresh(request.RefreshToken));
