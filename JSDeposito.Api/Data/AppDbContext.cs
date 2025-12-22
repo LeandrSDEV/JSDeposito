@@ -17,6 +17,10 @@ namespace JSDeposito.Api.Data
         public DbSet<Cliente> Clientes => Set<Cliente>();
         public DbSet<Endereco> Enderecos => Set<Endereco>();
         public DbSet<PromocaoFrete> PromocaoFretes => Set<PromocaoFrete>();
+        public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
+
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

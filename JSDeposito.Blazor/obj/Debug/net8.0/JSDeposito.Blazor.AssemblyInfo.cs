@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("JSDeposito.Blazor")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6d97c77377a950e33437d657ec1c08de04ceebb5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+49c7241d91c9fdf7c803a1a7cbd811235c8dfef6")]
 [assembly: System.Reflection.AssemblyProductAttribute("JSDeposito.Blazor")]
 [assembly: System.Reflection.AssemblyTitleAttribute("JSDeposito.Blazor")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

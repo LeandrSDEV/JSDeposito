@@ -16,6 +16,7 @@ public class Pedido
     public string? CodigoCupom { get; private set; }
     public EnderecoSnapshot? EnderecoEntrega { get; private set; }
     public bool FretePromocional { get; private set; }
+    public int? ClienteId { get; private set; }
 
 
     private readonly List<ItemPedido> _itens = new();
@@ -157,5 +158,13 @@ public class Pedido
         FretePromocional = promocional;
 
         RecalcularTotal();
+    }
+
+    public void AssociarCliente(int clienteId)
+    {
+        if (ClienteId.HasValue)
+            throw new Exception("Pedido já possui cliente");
+
+        ClienteId = clienteId;
     }
 }

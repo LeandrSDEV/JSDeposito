@@ -1,5 +1,6 @@
 ﻿using JSDeposito.Core.Enums;
 using JSDeposito.Core.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JSDeposito.Api.Controllers;
@@ -15,6 +16,7 @@ public class PagamentoController : ControllerBase
         _pagamentoService = pagamentoService;
     }
 
+    [Authorize(Roles = "Cliente")]
     [HttpPost("{pedidoId}")]
     public IActionResult Criar(int pedidoId, TipoPagamento tipo)
     {
@@ -22,6 +24,8 @@ public class PagamentoController : ControllerBase
         return Ok(pagamento);
     }
 
+    [Authorize]
+    [Authorize(Roles = "Admin")]
     [HttpPost("{pedidoId}/confirmar")]
     public IActionResult Confirmar(int pedidoId)
     {
@@ -35,4 +39,5 @@ public class PagamentoController : ControllerBase
         _pagamentoService.CancelarPagamento(pedidoId);
         return NoContent();
     }
+
 }

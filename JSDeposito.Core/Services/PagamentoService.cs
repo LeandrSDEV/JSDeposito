@@ -1,6 +1,8 @@
-﻿using JSDeposito.Core.Entities;
+﻿using JSDeposito.Core.DTOs;
+using JSDeposito.Core.Entities;
 using JSDeposito.Core.Enums;
 using JSDeposito.Core.Interfaces;
+using System.Security;
 
 namespace JSDeposito.Core.Services;
 
@@ -21,6 +23,7 @@ public class PagamentoService
     {
         var pedido = _pedidoRepository.ObterPorId(pedidoId)
             ?? throw new Exception("Pedido não encontrado");
+
 
         pedido.ValidarParaPagamento();
 

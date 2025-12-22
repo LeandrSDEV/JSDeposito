@@ -10,3 +10,4 @@ C:\Desenvolvedor\JSDeposito\JSDeposito.Core\obj\Debug\net8.0\JSDeposito.Core.dll
 C:\Desenvolvedor\JSDeposito\JSDeposito.Core\obj\Debug\net8.0\refint\JSDeposito.Core.dll
 C:\Desenvolvedor\JSDeposito\JSDeposito.Core\obj\Debug\net8.0\JSDeposito.Core.pdb
 C:\Desenvolvedor\JSDeposito\JSDeposito.Core\obj\Debug\net8.0\ref\JSDeposito.Core.dll
+C:\Desenvolvedor\JSDeposito\JSDeposito.Core\obj\Debug\net8.0\JSDeposito.Core.csproj.AssemblyReference.cache

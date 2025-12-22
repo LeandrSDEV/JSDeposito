@@ -69,5 +69,19 @@ public class CheckoutService
 
 
         _pedidoRepository.Atualizar(pedido);
+
+    }
+
+    public void Finalizar(int pedidoId, int clienteId)
+    {
+        var pedido = _pedidoRepository.ObterPorId(pedidoId)
+            ?? throw new Exception("Pedido não encontrado");
+
+        if (!pedido.EstaEmAberto())
+            throw new Exception("Pedido não pode ser finalizado");
+
+        pedido.AssociarCliente(clienteId);
+
+        _pedidoRepository.Atualizar(pedido);
     }
 }
