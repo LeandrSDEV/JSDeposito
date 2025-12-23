@@ -15,9 +15,9 @@ public class EnderecoRepository : IEnderecoRepository
     public Endereco? ObterPorId(int id)
         => _context.Enderecos.FirstOrDefault(e => e.Id == id);
 
-    public List<Endereco> ObterAtivosPorCliente(int clienteId)
+    public List<Endereco> ObterAtivosPorUsuario(int usuarioId)
     => _context.Enderecos
-        .Where(e => e.ClienteId == clienteId && e.Ativo)
+        .Where(e => e.UsuarioId == usuarioId && e.Ativo)
         .ToList();
 
     public void Criar(Endereco endereco)

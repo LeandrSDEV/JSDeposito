@@ -22,18 +22,15 @@ public class PagamentoService
         _pixService = pixService;
     }
 
-    public object CriarPagamento(int pedidoId, TipoPagamento tipo, int usuarioId)
+    public CriarPagamentoResponseDto CriarPagamento(
+    int pedidoId,
+    TipoPagamento tipo,
+    int usuarioId)
     {
         var pedido = _pedidoRepository.ObterPorId(pedidoId)
             ?? throw new Exception("Pedido não encontrado");
 
         if (!pedido.UsuarioId.HasValue)
-        {
-            pedido.AssociarUsuario(usuarioId);
-            _pedidoRepository.Atualizar(pedido);
-        }
-
-        if (pedido.UsuarioId == null)
             throw new Exception("Pedido precisa estar associado a um usuário");
 
         if (pedido.UsuarioId != usuarioId)
@@ -41,35 +38,36 @@ public class PagamentoService
 
         pedido.ValidarParaPagamento();
 
-        var pagamentoExistente = _pagamentoRepository.ObterPorPedido(pedidoId);
-        if (pagamentoExistente != null)
-            return pagamentoExistente;
+        var pagamentoPendente =
+            _pagamentoRepository.ObterPagamentoPendentePorPedido(pedidoId);
+
+        if (pagamentoPendente != null)
+            throw new Exception("Já existe um pagamento em andamento");
 
         var pagamento = new Pagamento(pedidoId, pedido.Total, tipo);
         _pagamentoRepository.Criar(pagamento);
 
+        var response = new CriarPagamentoResponseDto
+        {
+            PagamentoId = pagamento.Id,
+            Status = pagamento.Status
+        };
+
         if (tipo == TipoPagamento.Pix)
         {
-            var pix = _pixService.GerarPix(
+            response.Pix = _pixService.GerarPix(
                 pedido.Total,
                 $"Pedido #{pedido.Id}"
             );
-
-            return new
-            {
-                pagamento.Id,
-                pagamento.Status,
-                Pix = pix
-            };
         }
 
-        return pagamento;
+        return response;
     }
 
 
     public void ConfirmarPagamento(int pedidoId)
     {
-        var pagamento = _pagamentoRepository.ObterPorPedido(pedidoId);
+        var pagamento = _pagamentoRepository.ObterPagamentoPendentePorPedido(pedidoId);
 
         if (pagamento == null)
             throw new Exception("Pagamento não encontrado");
@@ -92,19 +90,14 @@ public class PagamentoService
 
     public void CancelarPagamento(int pedidoId)
     {
-        var pagamento = _pagamentoRepository.ObterPorPedido(pedidoId);
+        var pagamento = _pagamentoRepository.ObterPagamentoPendentePorPedido(pedidoId)
+         ?? throw new Exception("Pagamento não encontrado");
 
-        if (pagamento == null)
-            throw new Exception("Pagamento não encontrado");
+        if (pagamento.Status != StatusPagamento.Pendente)
+            throw new Exception("Pagamento não pode ser cancelado");
 
         pagamento.Cancelar();
-
         _pagamentoRepository.Atualizar(pagamento);
-
-        var pedido = _pedidoRepository.ObterPorId(pedidoId);
-
-        if (pedido != null && pedido.Status == PedidoStatus.Criado)
-            pedido.Cancelar();
     }
 
    

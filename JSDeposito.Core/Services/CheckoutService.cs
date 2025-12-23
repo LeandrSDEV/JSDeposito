@@ -10,7 +10,6 @@ namespace JSDeposito.Core.Services;
 public class CheckoutService
 {
     private readonly IPedidoRepository _pedidoRepository;
-    private readonly IClienteRepository _clienteRepository;
     private readonly IEnderecoRepository _enderecoRepository;
     private readonly ICupomRepository _cupomRepository;
     private readonly FreteService _freteService;
@@ -18,14 +17,12 @@ public class CheckoutService
 
     public CheckoutService(
         IPedidoRepository pedidoRepository,
-        IClienteRepository clienteRepository,
         IEnderecoRepository enderecoRepository,
         ICupomRepository cupomRepository,
         FreteService freteService,
         PagamentoService pagamentoService)
     {
         _pedidoRepository = pedidoRepository;
-        _clienteRepository = clienteRepository;
         _enderecoRepository = enderecoRepository;
         _cupomRepository = cupomRepository;
         _freteService = freteService;
@@ -38,13 +35,10 @@ public class CheckoutService
             ?? throw new Exception("Pedido não encontrado");
 
         if (pedido.UsuarioId != usuarioId)
-            throw new SecurityException("Pedido não pertence ao usuário");
-
-        var cliente = _clienteRepository.ObterPorId(usuarioId)
-            ?? throw new Exception("Cliente não encontrado");
+            throw new SecurityException("Pedido não pertence ao usuário");      
 
         var endereco = _enderecoRepository.ObterPorId(dto.EnderecoId);
-        if (endereco == null || endereco.ClienteId != cliente.Id)
+        if (endereco == null || endereco.UsuarioId != usuarioId)
             throw new Exception("Endereço inválido");
 
         if (!string.IsNullOrEmpty(dto.CodigoCupom))

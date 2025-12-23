@@ -33,4 +33,9 @@ public class PedidoRepository : IPedidoRepository
         _context.Pedidos.Update(pedido);
         _context.SaveChanges();
     }
+    public Pedido? ObterPorTokenAnonimo(Guid token)
+    {
+        return _context.Pedidos
+            .FirstOrDefault(p => p.TokenAnonimo == token);
+    }
 }

@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 namespace JSDeposito.Core.ValueObjects
 {
     public record LoginRequest(
-        string Email,
-        string Senha
-    );
+    string Email,
+    string Senha);
 }

@@ -8,8 +8,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "request",
-        "Type": "JSDeposito.Core.ValueObjects.LoginRequest",
+        "Name": "dto",
+        "Type": "JSDeposito.Core.DTOs.LoginDto",
         "IsRequired": true
       }
     ],
@@ -74,22 +74,6 @@
       {
         "Name": "dto",
         "Type": "JSDeposito.Core.DTOs.CheckoutDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "ClientesController",
-    "Method": "Criar",
-    "RelativePath": "api/clientes",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "dto",
-        "Type": "JSDeposito.Core.DTOs.ClienteDto",
         "IsRequired": true
       }
     ],
@@ -207,6 +191,27 @@
       {
         "Name": "pedidoId",
         "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "JSDeposito.Api.Controllers.PedidoController",
+    "Method": "AplicarCupom",
+    "RelativePath": "api/pedidos/{pedidoId}/cupom",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pedidoId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "JSDeposito.Core.DTOs.AplicarCupomDto",
         "IsRequired": true
       }
     ],

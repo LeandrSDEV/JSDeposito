@@ -57,75 +57,7 @@ namespace JSDeposito.Api.Migrations
                     b.ToTable("Cupons");
                 });
 
-            modelBuilder.Entity("JSDeposito.Core.Entities.Cliente", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Telefone")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Clientes");
-                });
-
-            modelBuilder.Entity("JSDeposito.Core.Entities.Endereco", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<bool>("Ativo")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<string>("Bairro")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Cidade")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<int>("ClienteId")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Latitude")
-                        .HasColumnType("double");
-
-                    b.Property<double>("Longitude")
-                        .HasColumnType("double");
-
-                    b.Property<string>("Numero")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Rua")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ClienteId");
-
-                    b.ToTable("Enderecos");
-                });
-
-            modelBuilder.Entity("JSDeposito.Core.Entities.ItemPedido", b =>
+            modelBuilder.Entity("ItemPedido", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -154,6 +86,49 @@ namespace JSDeposito.Api.Migrations
                     b.HasIndex("PedidoId");
 
                     b.ToTable("ItensPedido");
+                });
+
+            modelBuilder.Entity("JSDeposito.Core.Entities.Endereco", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("Ativo")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("Bairro")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Cidade")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<double>("Latitude")
+                        .HasColumnType("double");
+
+                    b.Property<double>("Longitude")
+                        .HasColumnType("double");
+
+                    b.Property<string>("Numero")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Rua")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UsuarioId");
+
+                    b.ToTable("Enderecos");
                 });
 
             modelBuilder.Entity("JSDeposito.Core.Entities.Pagamento", b =>
@@ -192,9 +167,6 @@ namespace JSDeposito.Api.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("ClienteId")
-                        .HasColumnType("int");
-
                     b.Property<string>("CodigoCupom")
                         .HasColumnType("longtext");
 
@@ -209,6 +181,9 @@ namespace JSDeposito.Api.Migrations
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
+
+                    b.Property<Guid?>("TokenAnonimo")
+                        .HasColumnType("char(36)");
 
                     b.Property<decimal>("Total")
                         .HasColumnType("decimal(10,2)");
@@ -328,25 +303,29 @@ namespace JSDeposito.Api.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<string>("Telefone")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.HasKey("Id");
 
                     b.ToTable("Usuarios");
                 });
 
-            modelBuilder.Entity("JSDeposito.Core.Entities.Endereco", b =>
-                {
-                    b.HasOne("JSDeposito.Core.Entities.Cliente", null)
-                        .WithMany("Enderecos")
-                        .HasForeignKey("ClienteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("JSDeposito.Core.Entities.ItemPedido", b =>
+            modelBuilder.Entity("ItemPedido", b =>
                 {
                     b.HasOne("JSDeposito.Core.Entities.Pedido", null)
                         .WithMany("Itens")
                         .HasForeignKey("PedidoId");
+                });
+
+            modelBuilder.Entity("JSDeposito.Core.Entities.Endereco", b =>
+                {
+                    b.HasOne("JSDeposito.Core.Entities.Usuario", null)
+                        .WithMany("Enderecos")
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("JSDeposito.Core.Entities.Pedido", b =>
@@ -397,14 +376,14 @@ namespace JSDeposito.Api.Migrations
                     b.Navigation("Usuario");
                 });
 
-            modelBuilder.Entity("JSDeposito.Core.Entities.Cliente", b =>
-                {
-                    b.Navigation("Enderecos");
-                });
-
             modelBuilder.Entity("JSDeposito.Core.Entities.Pedido", b =>
                 {
                     b.Navigation("Itens");
+                });
+
+            modelBuilder.Entity("JSDeposito.Core.Entities.Usuario", b =>
+                {
+                    b.Navigation("Enderecos");
                 });
 #pragma warning restore 612, 618
         }

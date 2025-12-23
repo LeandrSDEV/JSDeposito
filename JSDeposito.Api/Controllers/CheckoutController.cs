@@ -1,4 +1,5 @@
-﻿using JSDeposito.Core.DTOs;
+﻿using JSDeposito.Api.UserExtensions;
+using JSDeposito.Core.DTOs;
 using JSDeposito.Core.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

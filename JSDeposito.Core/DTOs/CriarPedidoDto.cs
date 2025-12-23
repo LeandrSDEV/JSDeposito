@@ -4,7 +4,6 @@
     public class CriarPedidoDto
     {
         public List<ItemPedidoDto> Itens { get; set; } = new();
-        public string? CodigoCupom { get; set; }
     }
 
 }

@@ -5,6 +5,6 @@ namespace JSDeposito.Core.Interfaces;
 public interface IPagamentoRepository
 {
     void Criar(Pagamento pagamento);
-    Pagamento? ObterPorPedido(int pedidoId);
+    Pagamento? ObterPagamentoPendentePorPedido(int pedidoId);
     void Atualizar(Pagamento pagamento);
 }

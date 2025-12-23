@@ -3,8 +3,7 @@
 public class Endereco
 {
     public int Id { get; private set; }
-    public int ClienteId { get; private set; }
-
+    public int UsuarioId { get; private set; }
     public string Rua { get; private set; }
     public string Numero { get; private set; }
     public string Bairro { get; private set; }
@@ -18,7 +17,7 @@ public class Endereco
     protected Endereco() { }
 
     public Endereco(
-        int clienteId,
+        int usuarioId,
         string rua,
         string numero,
         string bairro,
@@ -35,7 +34,7 @@ public class Endereco
         if (longitude < -180 || longitude > 180)
             throw new Exception("Longitude inválida");
 
-        ClienteId = clienteId;
+        UsuarioId = usuarioId;
         Rua = rua;
         Numero = numero;
         Bairro = bairro;

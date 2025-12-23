@@ -14,6 +14,7 @@ public static class DatabaseSeeder
             var admin = new Usuario(
                 nome: "Administrador",
                 email: "admin@jsdeposito.com",
+                telefone: "79988012359",
                 senhaHash: BCrypt.Net.BCrypt.HashPassword("Admin@123"),
                 role: "Admin"
             );
@@ -26,6 +27,7 @@ public static class DatabaseSeeder
             var cliente = new Usuario(
                 nome: "Cliente Teste",
                 email: "cliente@jsdeposito.com",
+                telefone: "79988012359",
                 senhaHash: BCrypt.Net.BCrypt.HashPassword("Cliente@123"),
                 role: "Cliente"
             );

@@ -14,17 +14,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/LoginRequest"
+                "$ref": "#/components/schemas/LoginDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/LoginRequest"
+                "$ref": "#/components/schemas/LoginDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/LoginRequest"
+                "$ref": "#/components/schemas/LoginDto"
               }
             }
           }
@@ -145,37 +145,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/clientes": {
-      "post": {
-        "tags": [
-          "Clientes"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ClienteDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ClienteDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/ClienteDto"
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
             "description": "OK"
@@ -485,6 +454,48 @@
         }
       }
     },
+    "/api/pedidos/{pedidoId}/cupom": {
+      "post": {
+        "tags": [
+          "Pedido"
+        ],
+        "parameters": [
+          {
+            "name": "pedidoId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AplicarCupomDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AplicarCupomDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AplicarCupomDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/produtos": {
       "post": {
         "tags": [
@@ -778,6 +789,16 @@
         },
         "additionalProperties": false
       },
+      "AplicarCupomDto": {
+        "type": "object",
+        "properties": {
+          "codigoCupom": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "AtualizarProdutoDto": {
         "type": "object",
         "properties": {
@@ -821,24 +842,6 @@
         },
         "additionalProperties": false
       },
-      "ClienteDto": {
-        "type": "object",
-        "properties": {
-          "nome": {
-            "type": "string",
-            "nullable": true
-          },
-          "email": {
-            "type": "string",
-            "nullable": true
-          },
-          "telefone": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "CriarPagamentoDto": {
         "type": "object",
         "properties": {
@@ -857,10 +860,6 @@
               "$ref": "#/components/schemas/ItemPedidoDto"
             },
             "nullable": true
-          },
-          "codigoCupom": {
-            "type": "string",
-            "nullable": true
           }
         },
         "additionalProperties": false
@@ -868,10 +867,6 @@
       "EnderecoDto": {
         "type": "object",
         "properties": {
-          "clienteId": {
-            "type": "integer",
-            "format": "int32"
-          },
           "rua": {
             "type": "string",
             "nullable": true
@@ -887,14 +882,6 @@
           "cidade": {
             "type": "string",
             "nullable": true
-          },
-          "latitude": {
-            "type": "number",
-            "format": "double"
-          },
-          "longitude": {
-            "type": "number",
-            "format": "double"
           }
         },
         "additionalProperties": false
@@ -913,7 +900,7 @@
         },
         "additionalProperties": false
       },
-      "LoginRequest": {
+      "LoginDto": {
         "type": "object",
         "properties": {
           "email": {

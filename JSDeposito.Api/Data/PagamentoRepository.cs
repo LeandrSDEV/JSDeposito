@@ -19,9 +19,11 @@ public class PagamentoRepository : IPagamentoRepository
         _context.SaveChanges();
     }
 
-    public Pagamento? ObterPorPedido(int pedidoId)
+    public Pagamento? ObterPagamentoPendentePorPedido(int pedidoId)
     {
-        return _context.Pagamentos.FirstOrDefault(p => p.PedidoId == pedidoId);
+        return _context.Pagamentos.FirstOrDefault(p =>
+            p.PedidoId == pedidoId &&
+            p.Status == StatusPagamento.Pendente);
     }
 
     public void Atualizar(Pagamento pagamento)
@@ -29,4 +31,5 @@ public class PagamentoRepository : IPagamentoRepository
         _context.Pagamentos.Update(pagamento);
         _context.SaveChanges();
     }
+
 }

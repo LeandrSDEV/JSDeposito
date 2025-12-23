@@ -1,5 +1,5 @@
-﻿using JSDeposito.Core.DTOs;
-using JSDeposito.Core.Enums;
+﻿using JSDeposito.Api.UserExtensions;
+using JSDeposito.Core.DTOs;
 using JSDeposito.Core.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -17,19 +17,20 @@ public class PagamentoController : ControllerBase
         _pagamentoService = pagamentoService;
     }
 
-    [Authorize(Roles = "Cliente")]
     [HttpPost("{pedidoId}/pagamento")]
-    public IActionResult CriarPagamento(int pedidoId,CriarPagamentoDto dto)
+    public IActionResult CriarPagamento(
+    int pedidoId,
+    CriarPagamentoDto dto)
     {
         var usuarioId = User.GetUserId();
 
-        var pagamento = _pagamentoService.CriarPagamento(
+        var resultado = _pagamentoService.CriarPagamento(
             pedidoId,
             dto.Tipo,
             usuarioId
         );
 
-        return Ok(pagamento);
+        return Ok(resultado);
     }
 
     [Authorize(Roles = "Admin")]

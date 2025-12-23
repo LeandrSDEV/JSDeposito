@@ -1,4 +1,4 @@
-﻿namespace JSDeposito.Core.Entities;
+﻿using JSDeposito.Core.Entities;
 
 public class ItemPedido
 {
@@ -7,19 +7,27 @@ public class ItemPedido
     public string NomeProduto { get; private set; }
     public decimal PrecoUnitario { get; private set; }
     public int Quantidade { get; private set; }
-    
+
     protected ItemPedido() { }
 
-    public ItemPedido(int produtoId, string nomeProduto, decimal preco, int quantidade)
+    public ItemPedido(Produto produto, int quantidade)
     {
         if (quantidade <= 0)
             throw new Exception("Quantidade inválida");
 
-        ProdutoId = produtoId;
-        NomeProduto = nomeProduto;
-        PrecoUnitario = preco;
+        ProdutoId = produto.Id;
+        NomeProduto = produto.Nome;
+        PrecoUnitario = produto.Preco;
         Quantidade = quantidade;
     }
 
     public decimal Subtotal => PrecoUnitario * Quantidade;
+
+    public void AumentarQuantidade(int quantidade)
+    {
+        if (quantidade <= 0)
+            throw new Exception("Quantidade inválida");
+
+        Quantidade += quantidade;
+    }
 }

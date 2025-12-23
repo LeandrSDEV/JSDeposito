@@ -1,4 +1,5 @@
-﻿using JSDeposito.Core.Services;
+﻿using JSDeposito.Core.DTOs;
+using JSDeposito.Core.Services;
 using JSDeposito.Core.ValueObjects;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -17,8 +18,27 @@ namespace JSDeposito.Api.Controllers
         }
 
         [HttpPost("login")]
-        public IActionResult Login(LoginRequest request)
-            => Ok(_auth.Login(request.Email, request.Senha));
+        public IActionResult Login([FromBody] LoginDto dto)
+        {
+            Guid? tokenAnonimo = null;
+
+            if (Request.Cookies.TryGetValue("pedido_anonimo", out var token))
+            {
+                tokenAnonimo = Guid.Parse(token);
+            }
+
+            var result = _auth.Login(
+                dto.Email,
+                dto.Senha,
+                tokenAnonimo
+            );
+
+            // apaga cookie após associação
+            if (tokenAnonimo.HasValue)
+                Response.Cookies.Delete("pedido_anonimo");
+
+            return Ok(result);
+        }
 
         [Authorize]
         [HttpPost("refresh")]
@@ -37,5 +57,6 @@ namespace JSDeposito.Api.Controllers
     
     public record RefreshRequest(string RefreshToken);
     public record LogoutRequest(string RefreshToken);
+
 
 }

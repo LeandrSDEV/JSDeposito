@@ -31,6 +31,7 @@ public class PedidoService
     public Pedido Criar(CriarPedidoDto dto)
     {
         var pedido = new Pedido();
+        pedido.GerarTokenAnonimo();
 
         foreach (var item in dto.Itens)
         {
@@ -138,6 +139,63 @@ public class PedidoService
 
         pedido.Cancelar();
         _pedidoRepository.Atualizar(pedido);
+    }
+
+    public void AssociarPedidoAnonimoAoUsuario(Guid tokenAnonimo, int usuarioId)
+    {
+        var pedido = _pedidoRepository.ObterPorTokenAnonimo(tokenAnonimo)
+            ?? throw new Exception("Pedido não encontrado");
+
+        if (pedido.UsuarioId != null)
+            return;
+
+        if (pedido.Status != PedidoStatus.Criado)
+            throw new Exception("Pedido inválido");
+
+        pedido.AssociarUsuario(usuarioId);
+        pedido.RemoverTokenAnonimo();
+
+        _pedidoRepository.Atualizar(pedido);
+    }
+
+    public void AplicarCupom(int pedidoId, string codigoCupom)
+    {
+        var pedido = _pedidoRepository.ObterPorId(pedidoId)
+            ?? throw new Exception("Pedido não encontrado");
+
+        if (pedido.Status != PedidoStatus.Criado)
+            throw new Exception("Pedido não pode receber cupom");
+
+        var cupom = _cupomRepository.ObterPorCodigo(codigoCupom)
+            ?? throw new Exception("Cupom inválido");
+
+        pedido.AplicarCupom(cupom);
+
+        _cupomRepository.Atualizar(cupom);
+        _pedidoRepository.Atualizar(pedido);
+    }
+
+    public CriarPedidoResponseDto CriarPedidoAnonimo(CriarPedidoDto dto)
+    {
+        var pedido = new Pedido();
+
+        pedido.GerarTokenAnonimo();
+
+        foreach (var item in dto.Itens)
+        {
+            var produto = _produtoRepository.ObterPorId(item.ProdutoId)
+                ?? throw new Exception("Produto não encontrado");
+
+            pedido.AdicionarItem(produto, item.Quantidade);
+        }
+
+        _pedidoRepository.Criar(pedido);
+
+        return new CriarPedidoResponseDto
+        {
+            PedidoId = pedido.Id,
+            TokenAnonimo = pedido.TokenAnonimo!.Value
+        };
     }
 
 }

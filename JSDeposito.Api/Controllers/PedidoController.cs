@@ -1,5 +1,5 @@
-﻿using JSDeposito.Core.DTOs;
-using JSDeposito.Core.Entities;
+﻿using JSDeposito.Api.UserExtensions;
+using JSDeposito.Core.DTOs;
 using JSDeposito.Core.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -21,11 +21,24 @@ public class PedidoController : ControllerBase
     [AllowAnonymous]
     public IActionResult Criar(CriarPedidoDto dto)
     {
-        var pedido = _pedidoService.Criar(dto);
-        return Ok(pedido);
+        var response = _pedidoService.CriarPedidoAnonimo(dto);
+
+        Response.Cookies.Append(
+            "pedido_anonimo",
+            response.TokenAnonimo.ToString(),
+            new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = true,
+                SameSite = SameSiteMode.Strict,
+                Expires = DateTimeOffset.UtcNow.AddDays(7)
+            }
+        );
+
+        return Ok(response);
     }
 
-    
+
     [HttpGet("{pedidoId}")]
     public IActionResult Obter(int pedidoId)
     {
@@ -69,5 +82,13 @@ public class PedidoController : ControllerBase
         return NoContent();
     }
 
+    [HttpPost("{pedidoId}/cupom")]
+    public IActionResult AplicarCupom(
+    int pedidoId,
+    AplicarCupomDto dto)
+    {
+        _pedidoService.AplicarCupom(pedidoId, dto.CodigoCupom);
+        return NoContent();
+    }
 
 }

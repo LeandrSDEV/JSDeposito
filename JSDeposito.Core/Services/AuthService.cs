@@ -4,6 +4,7 @@ using JSDeposito.Core.Interfaces;
 using JSDeposito.Core.ValueObjects;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security;
 using System.Security.Claims;
@@ -14,27 +15,43 @@ namespace JSDeposito.Core.Services;
 
 public class AuthService
 {
+
     private readonly IUsuarioRepository _usuarioRepository;
     private readonly IRefreshTokenRepository _refreshTokenRepository;
+    private readonly PedidoService _pedidoService;
     private readonly JwtSettings _jwt;
 
     public AuthService(
         IUsuarioRepository usuarioRepository,
         IRefreshTokenRepository refreshTokenRepository,
+        PedidoService pedidoService,
         IOptions<JwtSettings> jwt)
     {
         _usuarioRepository = usuarioRepository;
         _refreshTokenRepository = refreshTokenRepository;
+        _pedidoService = pedidoService;
         _jwt = jwt.Value;
     }
 
-    public AuthResponse Login(string email, string senha)
+    public AuthResponse Login(
+    string email,
+    string senha,
+    Guid? tokenAnonimoPedido)
     {
         var usuario = _usuarioRepository.ObterPorEmail(email)
             ?? throw new Exception("Credenciais inválidas");
 
-        if (!BCrypt.Net.BCrypt.Verify(senha, usuario.SenhaHash))
+        if (!usuario.ValidarSenha(senha))
             throw new Exception("Credenciais inválidas");
+
+        // 🔥 associação automática do pedido anônimo
+        if (tokenAnonimoPedido.HasValue)
+        {
+            _pedidoService.AssociarPedidoAnonimoAoUsuario(
+                tokenAnonimoPedido.Value,
+                usuario.Id
+            );
+        }
 
         var accessToken = GerarAccessToken(usuario);
         var refreshToken = GerarRefreshToken(usuario.Id);

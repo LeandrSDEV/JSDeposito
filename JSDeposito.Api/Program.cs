@@ -34,8 +34,6 @@ builder.Services.AddScoped<PedidoService>();
 builder.Services.AddScoped<ICupomRepository, CupomRepository>();
 builder.Services.AddScoped<IPagamentoRepository, PagamentoRepository>();
 builder.Services.AddScoped<PagamentoService>();
-builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
-builder.Services.AddScoped<ClienteService>();
 builder.Services.AddScoped<IEnderecoRepository, EnderecoRepository>();
 builder.Services.AddScoped<EnderecoService>();
 builder.Services.AddScoped<CheckoutService>();

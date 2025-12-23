@@ -16,9 +16,9 @@ public class Pedido
     public decimal Desconto { get; private set; }
     public decimal ValorFrete { get; private set; }
     public string? CodigoCupom { get; private set; }
+    public Guid? TokenAnonimo { get; private set; }
     public EnderecoSnapshot? EnderecoEntrega { get; private set; }
     public bool FretePromocional { get; private set; }
-    public int? ClienteId { get; private set; }
 
 
     private readonly List<ItemPedido> _itens = new();
@@ -31,27 +31,30 @@ public class Pedido
     Total = 0;
 }
 
-    
+
 
     public void AdicionarItem(Produto produto, int quantidade)
     {
-        GarantirPedidoEditavel();
+        GarantirItensEditaveis();
 
-        var itemExistente = _itens.FirstOrDefault(i => i.ProdutoId == produto.Id);
+        produto.SaidaEstoque(quantidade);
+
+        var itemExistente = _itens
+            .FirstOrDefault(i => i.ProdutoId == produto.Id);
 
         if (itemExistente != null)
-            throw new Exception("Produto já adicionado ao pedido");
+        {
+            itemExistente.AumentarQuantidade(quantidade);
+        }
+        else
+        {
+            var item = new ItemPedido(produto, quantidade);
+            _itens.Add(item);
+        }
 
-        var item = new ItemPedido(
-            produto.Id,
-            produto.Nome,
-            produto.Preco,
-            quantidade
-        );
-
-        _itens.Add(item);
         RecalcularTotal();
     }
+
 
     private void RecalcularTotal()
     {
@@ -69,13 +72,19 @@ public class Pedido
     {
         GarantirPedidoEditavel();
 
-        var desconto = cupom.CalcularDesconto(_itens.Sum(i => i.Subtotal));
+        if (CodigoCupom != null)
+            throw new Exception("Pedido já possui cupom aplicado");
+
+        var subtotal = _itens.Sum(i => i.Subtotal);
+        var desconto = cupom.CalcularDesconto(subtotal);
 
         if (desconto <= 0)
             throw new Exception("Desconto inválido");
 
         Desconto = desconto;
         CodigoCupom = cupom.Codigo;
+
+        cupom.RegistrarUso();
 
         RecalcularTotal();
     }
@@ -96,7 +105,7 @@ public class Pedido
 
     public ItemPedido RemoverItemPorProduto(int produtoId)
     {
-        GarantirPedidoEditavel();
+        GarantirItensEditaveis();
 
         var item = _itens.FirstOrDefault(i => i.ProdutoId == produtoId);
 
@@ -104,6 +113,7 @@ public class Pedido
             throw new Exception("Item não encontrado no pedido");
 
         _itens.Remove(item);
+
         RecalcularTotal();
 
         return item;
@@ -141,6 +151,15 @@ public class Pedido
             throw new Exception("Pedido não pode ser alterado");
     }
 
+    private void GarantirItensEditaveis()
+    {
+        if (Status != PedidoStatus.Criado)
+            throw new Exception("Pedido não pode ser alterado");
+
+        if (CodigoCupom != null)
+            throw new Exception("Remova o cupom antes de alterar os itens");
+    }
+
     public void DefinirEnderecoEntrega(EnderecoSnapshot endereco)
     {
         if (Status != PedidoStatus.Criado)
@@ -170,5 +189,16 @@ public class Pedido
             throw new Exception("Pedido já possui usuário associado");
 
         UsuarioId = usuarioId;
+    }
+
+    public void GerarTokenAnonimo()
+    {
+        if (TokenAnonimo == null)
+            TokenAnonimo = Guid.NewGuid();
+    }
+
+    public void RemoverTokenAnonimo()
+    {
+        TokenAnonimo = null;
     }
 }
