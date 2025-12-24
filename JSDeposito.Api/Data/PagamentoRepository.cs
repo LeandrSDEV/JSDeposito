@@ -32,4 +32,9 @@ public class PagamentoRepository : IPagamentoRepository
         _context.SaveChanges();
     }
 
+    public Pagamento? ObterPorReferencia(string referencia)
+    {
+        return _context.Pagamentos
+            .FirstOrDefault(p => p.Referencia == referencia);
+    }
 }

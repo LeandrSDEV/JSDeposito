@@ -489,5 +489,26 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "JSDeposito.Api.Controllers.WebhookController",
+    "Method": "ReceberPix",
+    "RelativePath": "api/webhooks/pix",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "JSDeposito.Core.DTOs.PixWebhookDto",
+        "IsRequired": true
+      },
+      {
+        "Name": "X-Webhook-Token",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

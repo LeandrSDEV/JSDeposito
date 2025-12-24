@@ -55,10 +55,16 @@ public class PagamentoService
 
         if (tipo == TipoPagamento.Pix)
         {
-            response.Pix = _pixService.GerarPix(
+            var pix = _pixService.GerarPix(
                 pedido.Total,
                 $"Pedido #{pedido.Id}"
             );
+
+            pagamento.DefinirReferencia(pix.TxId);
+
+            _pagamentoRepository.Atualizar(pagamento);
+
+            response.Pix = pix;
         }
 
         return response;
@@ -100,7 +106,32 @@ public class PagamentoService
         _pagamentoRepository.Atualizar(pagamento);
     }
 
-   
+    public void ProcessarWebhookPix(
+    string referencia,
+    decimal valor,
+    string status)
+    {
+        if (status.ToLower() != "paid")
+            return;
 
+        // 🔎 Agora buscamos pela referência (TxId)
+        var pagamento = _pagamentoRepository
+            .ObterPorReferencia(referencia);
 
+        if (pagamento == null)
+            return; // idempotência
+
+        if (pagamento.Valor != valor)
+            throw new Exception("Valor divergente");
+
+        pagamento.Confirmar();
+
+        var pedido = _pedidoRepository.ObterPorId(pagamento.PedidoId)
+            ?? throw new Exception("Pedido não encontrado");
+
+        pedido.MarcarComoPago();
+
+        _pagamentoRepository.Atualizar(pagamento);
+        _pedidoRepository.Atualizar(pedido);
+    }
 }

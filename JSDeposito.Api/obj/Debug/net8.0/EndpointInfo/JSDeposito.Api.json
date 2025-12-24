@@ -833,6 +833,46 @@
           }
         }
       }
+    },
+    "/api/webhooks/pix": {
+      "post": {
+        "tags": [
+          "Webhook"
+        ],
+        "parameters": [
+          {
+            "name": "X-Webhook-Token",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PixWebhookDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PixWebhookDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PixWebhookDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -1014,6 +1054,24 @@
         },
         "additionalProperties": false
       },
+      "PixWebhookDto": {
+        "type": "object",
+        "properties": {
+          "referencia": {
+            "type": "string",
+            "nullable": true
+          },
+          "valor": {
+            "type": "number",
+            "format": "double"
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "PromocaoFreteDto": {
         "type": "object",
         "properties": {
@@ -1080,8 +1138,14 @@
       "Bearer": {
         "type": "http",
         "description": "Digite: Bearer {seu token JWT}",
-        "scheme": "Bearer",
+        "scheme": "bearer",
         "bearerFormat": "JWT"
+      },
+      "WebhookToken": {
+        "type": "apiKey",
+        "description": "Token secreto do Webhook PIX",
+        "name": "X-Webhook-Token",
+        "in": "header"
       }
     }
   },
