@@ -12,6 +12,12 @@ public class CupomRepository : ICupomRepository
         _context = context;
     }
 
+    public void Criar(Cupom cupom)
+    {
+        _context.Cupons.Add(cupom);
+        _context.SaveChanges();
+    }
+
     public Cupom ObterPorCodigo(string codigo)
     {
         return _context.Cupons.FirstOrDefault(c => c.Codigo == codigo);
@@ -22,4 +28,6 @@ public class CupomRepository : ICupomRepository
         _context.Cupons.Update(cupom);
         _context.SaveChanges();
     }
+
+
 }

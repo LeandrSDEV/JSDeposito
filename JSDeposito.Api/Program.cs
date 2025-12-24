@@ -38,6 +38,7 @@ builder.Services.AddScoped<IEnderecoRepository, EnderecoRepository>();
 builder.Services.AddScoped<EnderecoService>();
 builder.Services.AddScoped<CheckoutService>();
 builder.Services.AddScoped<PixService>();
+builder.Services.AddScoped<ICupomRepository, CupomRepository>();
 
 
 builder.Services.AddSwaggerGen(c =>

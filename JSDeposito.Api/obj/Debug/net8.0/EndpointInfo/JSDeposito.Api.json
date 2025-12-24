@@ -183,6 +183,37 @@
         }
       }
     },
+    "/api/cupons": {
+      "post": {
+        "tags": [
+          "Cupom"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CriarCupomRequestDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CriarCupomRequestDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CriarCupomRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/enderecos": {
       "post": {
         "tags": [
@@ -869,6 +900,34 @@
           },
           "tipoPagamento": {
             "$ref": "#/components/schemas/TipoPagamento"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CriarCupomRequestDto": {
+        "type": "object",
+        "properties": {
+          "codigo": {
+            "type": "string",
+            "nullable": true
+          },
+          "valorDesconto": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "percentual": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "validoAte": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "limiteUso": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false

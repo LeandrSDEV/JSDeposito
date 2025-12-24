@@ -96,6 +96,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "JSDeposito.Api.Controllers.CupomController",
+    "Method": "Criar",
+    "RelativePath": "api/cupons",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "JSDeposito.Core.DTOs.CriarCupomRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "EnderecosController",
     "Method": "Criar",
     "RelativePath": "api/enderecos",
