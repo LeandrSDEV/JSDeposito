@@ -75,7 +75,10 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 
-builder.Services.AddHttpClient<IGeocodingService, NominatimGeocodingService>();
+builder.Services.AddHttpClient<IGeocodingService, NominatimGeocodingService>(client =>
+{
+    client.Timeout = TimeSpan.FromSeconds(8);
+});
 
 
 builder.Services.Configure<DepositoConfig>(

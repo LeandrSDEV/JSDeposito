@@ -26,4 +26,9 @@ public class UsuarioRepository : IUsuarioRepository
             .AsNoTracking()
             .FirstOrDefault(u => u.Id == id);
     }
+    public void Adicionar(Usuario usuario)
+    {
+        _context.Usuarios.Add(usuario);
+        _context.SaveChanges();
+    }
 }

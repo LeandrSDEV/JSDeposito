@@ -74,7 +74,6 @@ public class PedidoController : ControllerBase
         return NoContent();
     }
 
-    [Authorize]
     [HttpPost("{pedidoId}/cancelar")]
     public IActionResult Cancelar(int pedidoId)
     {

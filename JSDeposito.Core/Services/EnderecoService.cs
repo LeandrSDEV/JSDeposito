@@ -29,8 +29,17 @@ public class EnderecoService
         var enderecoCompleto =
             $"{dto.Rua}, {dto.Numero}, {dto.Bairro}, {dto.Cidade}, Brasil";
 
-        var (lat, lon) =
-            await _geocodingService.ObterCoordenadasAsync(enderecoCompleto);
+        double lat = 0, lon = 0;
+
+        try
+        {
+            (lat, lon) =
+                await _geocodingService.ObterCoordenadasAsync(enderecoCompleto);
+        }
+        catch
+        {
+            // log apenas
+        }
 
         var endereco = new Endereco(
             usuarioId,

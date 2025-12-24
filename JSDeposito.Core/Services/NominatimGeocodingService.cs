@@ -18,15 +18,28 @@ public class NominatimGeocodingService : IGeocodingService
 
     public async Task<(double latitude, double longitude)> ObterCoordenadasAsync(string enderecoCompleto)
     {
-        var url =
-            $"search?q={Uri.EscapeDataString(enderecoCompleto)}" +
-            $"&format=json&limit=1";
+        try
+        {
+            var url =
+                $"search?q={Uri.EscapeDataString(enderecoCompleto)}" +
+                $"&format=json&limit=1";
 
-        var response = await _httpClient.GetFromJsonAsync<List<NominatimResponse>>(url);
+            var response =
+                await _httpClient.GetFromJsonAsync<List<NominatimResponse>>(url);
 
-        if (response == null || response.Count == 0)
-            throw new Exception("Endereço não encontrado");
+            if (response == null || response.Count == 0)
+                return (0, 0);
 
-        return (response[0].Lat, response[0].Lon);
+            return (response[0].Lat, response[0].Lon);
+        }
+        catch (TaskCanceledException)
+        {
+            // timeout
+            return (0, 0);
+        }
+        catch
+        {
+            return (0, 0);
+        }
     }
 }

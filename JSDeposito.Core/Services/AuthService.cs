@@ -1,4 +1,5 @@
 ﻿using JSDeposito.Core.Configurations;
+using JSDeposito.Core.DTOs;
 using JSDeposito.Core.Entities;
 using JSDeposito.Core.Interfaces;
 using JSDeposito.Core.ValueObjects;
@@ -124,5 +125,24 @@ public class AuthService
         _refreshTokenRepository.Salvar(refreshToken);
 
         return token;
+    }
+
+    public void Register(RegisterRequest request)
+    {
+        var existe = _usuarioRepository.ObterPorEmail(request.Email);
+        if (existe != null)
+            throw new Exception("E-mail já cadastrado");
+
+        var senhaHash = BCrypt.Net.BCrypt.HashPassword(request.Senha);
+
+        var usuario = new Usuario(
+            request.Nome,
+            request.Email,
+            request.Telefone,
+            senhaHash,
+            role: "Cliente"
+        );
+
+        _usuarioRepository.Adicionar(usuario);
     }
 }

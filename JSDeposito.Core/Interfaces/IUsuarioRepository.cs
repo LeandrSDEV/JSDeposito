@@ -1,9 +1,4 @@
 ﻿using JSDeposito.Core.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JSDeposito.Core.Interfaces
 {
@@ -11,5 +6,6 @@ namespace JSDeposito.Core.Interfaces
     {
         Usuario ObterPorEmail(string email);
         Usuario ObterPorId(int id);
+        void Adicionar(Usuario usuario);
     }
 }

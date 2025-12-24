@@ -23,6 +23,10 @@ namespace JSDeposito.Api.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Usuario>()
+                    .HasIndex(u => u.Email)
+                    .IsUnique();
+
             modelBuilder.Entity<Produto>(entity =>
             {
                 entity.Property(p => p.Preco)

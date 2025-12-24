@@ -17,6 +17,14 @@ namespace JSDeposito.Api.Controllers
             _auth = auth;
         }
 
+        [HttpPost("register")]
+        [AllowAnonymous]
+        public IActionResult Register([FromBody] RegisterRequest request)
+        {
+            _auth.Register(request);
+            return Created("", null);
+        }
+
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginDto dto)
         {
