@@ -23,14 +23,14 @@ public class ProdutoController : ControllerBase
         return Ok(_produtoService.Criar(nome, preco, estoqueInicial));
     }
 
-    [Authorize]
+    
     [HttpGet]
     public IActionResult Listar()
     {
         return Ok(_produtoService.Listar());
     }
 
-    [Authorize]
+    
     [HttpGet("{id}")]
     public IActionResult Obter(int id)
     {

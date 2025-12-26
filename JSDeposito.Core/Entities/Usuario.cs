@@ -26,13 +26,4 @@ public class Usuario
         return BCrypt.Net.BCrypt.Verify(senha, SenhaHash);
     }
 
-    public void AdicionarEndereco(Endereco endereco)
-    {
-        Enderecos.Add(endereco);
-    }
-
-    public void AtualizarTelefone(string telefone)
-    {
-        Telefone = telefone;
-    }
 }

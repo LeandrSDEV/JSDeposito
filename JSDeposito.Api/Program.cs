@@ -1,4 +1,5 @@
 ﻿using JSDeposito.Api.Data;
+using JSDeposito.Api.Middlewares;
 using JSDeposito.Core.Configurations;
 using JSDeposito.Core.Interfaces;
 using JSDeposito.Core.Services;
@@ -9,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Serilog;
 using System.Security;
 using System.Text;
 
@@ -115,6 +117,21 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Information()
+    .MinimumLevel.Override("Microsoft", Serilog.Events.LogEventLevel.Warning)
+    .MinimumLevel.Override("Microsoft.EntityFrameworkCore", Serilog.Events.LogEventLevel.Warning)
+    .Enrich.FromLogContext()
+    .Enrich.WithProperty("Application", "JSDeposito.Api")
+    .WriteTo.Console()
+    .WriteTo.File(
+        "logs/log-.txt",
+        rollingInterval: RollingInterval.Day,
+        retainedFileCountLimit: 7)
+    .CreateLogger();
+
+builder.Host.UseSerilog();
+
 #endregion
 
 #region Repositories
@@ -127,6 +144,7 @@ builder.Services.AddScoped<IEnderecoRepository, EnderecoRepository>();
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
 builder.Services.AddScoped<IPromocaoFreteRepository, PromocaoFreteRepository>();
+
 
 #endregion
 
@@ -144,13 +162,14 @@ builder.Services.AddScoped<FreteService>(sp =>
 {
     var promocaoRepo = sp.GetRequiredService<IPromocaoFreteRepository>();
     var depositoConfig = sp.GetRequiredService<IOptions<DepositoConfig>>().Value;
+    var logger = sp.GetRequiredService<ILogger<FreteService>>();
 
     var origem = new Localizacao(
         depositoConfig.Latitude,
         depositoConfig.Longitude
     );
 
-    return new FreteService(origem, promocaoRepo);
+    return new FreteService(origem, promocaoRepo, logger);
 });
 
 #endregion
@@ -184,17 +203,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseExceptionHandler(app =>
-{
-    app.Run(async context =>
-    {
-        var error = context.Features.Get<IExceptionHandlerFeature>()?.Error;
-
-        if (error is SecurityException)
-            context.Response.StatusCode = StatusCodes.Status403Forbidden;
-    });
-});
-
+app.UseMiddleware<GlobalExceptionMiddleware>();
 app.UseHttpsRedirection();
 
 app.UseAuthentication();

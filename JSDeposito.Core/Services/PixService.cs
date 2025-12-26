@@ -1,21 +1,42 @@
-﻿using JSDeposito.Core.DTOs;
+﻿using Microsoft.Extensions.Logging;
+using JSDeposito.Core.DTOs;
 using System.Text;
 
 namespace JSDeposito.Core.Services;
 
 public class PixService
 {
+    private readonly ILogger<PixService> _logger;
+
+    public PixService(ILogger<PixService> logger)
+    {
+        _logger = logger;
+    }
+
     public PixDto GerarPix(decimal valor, string descricao)
     {
-        // ⚠️ MOCK — depois você troca por integração real (Banco, Mercado Pago, Gerencianet, etc)
+        _logger.LogInformation(
+            "Gerando PIX | Valor: {Valor} | Descrição: {Descricao}",
+            valor,
+            descricao);
 
+        if (valor <= 0)
+            throw new ArgumentException("Valor do Pix deve ser maior que zero");
+
+        // ⚠️ MOCK — depois troca por integração real
         var txId = Guid.NewGuid().ToString("N")[..25];
 
-        var copiaECola = $"00020126360014BR.GOV.BCB.PIX0114+55999999999952040000530398654{valor:F2}5802BR5920JS DEPOSITO6009ARACAJU62070503***6304ABCD";
+        var copiaECola =
+            $"00020126360014BR.GOV.BCB.PIX0114+55999999999952040000530398654{valor:F2}5802BR5920JS DEPOSITO6009ARACAJU62070503***6304ABCD";
 
         var qrCodeBase64 = Convert.ToBase64String(
             Encoding.UTF8.GetBytes(copiaECola)
         );
+
+        _logger.LogInformation(
+            "PIX gerado com sucesso | TxId: {TxId} | Expira em: {ExpiraEm}",
+            txId,
+            DateTime.UtcNow.AddMinutes(30));
 
         return new PixDto
         {

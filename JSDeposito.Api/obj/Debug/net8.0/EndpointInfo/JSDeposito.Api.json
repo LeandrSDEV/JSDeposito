@@ -926,10 +926,6 @@
             "type": "integer",
             "format": "int32"
           },
-          "clienteId": {
-            "type": "integer",
-            "format": "int32"
-          },
           "enderecoId": {
             "type": "integer",
             "format": "int32"

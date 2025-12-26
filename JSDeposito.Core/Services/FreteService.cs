@@ -1,28 +1,49 @@
-﻿using JSDeposito.Core.Interfaces;
+﻿using Microsoft.Extensions.Logging;
+using JSDeposito.Core.Interfaces;
 using JSDeposito.Core.ValueObjects;
 
 public class FreteService
 {
     private readonly Localizacao _origem;
     private readonly IPromocaoFreteRepository _promocaoRepository;
+    private readonly ILogger<FreteService> _logger;
 
     public FreteService(
         Localizacao origem,
-        IPromocaoFreteRepository promocaoRepository)
+        IPromocaoFreteRepository promocaoRepository,
+        ILogger<FreteService> logger)
     {
         _origem = origem;
         _promocaoRepository = promocaoRepository;
+        _logger = logger;
     }
 
     public (decimal valor, bool promocional) CalcularFrete(Localizacao destino)
     {
+        _logger.LogInformation(
+            "Calculando frete | Origem: ({OrigLat},{OrigLon}) | Destino: ({DestLat},{DestLon})",
+            _origem.Latitude,
+            _origem.Longitude,
+            destino.Latitude,
+            destino.Longitude);
+
         var promocao = _promocaoRepository.ObterPromocaoAtiva();
 
         if (promocao != null && promocao.EstaAtiva())
+        {
+            _logger.LogInformation("Frete promocional aplicado | Valor: 0");
             return (0m, true);
+        }
 
         var distancia = CalcularDistanciaKm(destino);
-        return (CalcularValorFrete(distancia), false);
+        var valor = CalcularValorFrete(distancia);
+
+        _logger.LogInformation(
+            "Frete calculado | Distância: {DistanciaKm} km | Valor: {Valor}",
+            Math.Round(distancia, 2),
+            valor);
+
+        return (valor, false);
     }
 
     public double CalcularDistanciaKm(Localizacao destino)

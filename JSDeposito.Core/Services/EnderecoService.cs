@@ -1,4 +1,5 @@
-﻿using JSDeposito.Core.DTOs;
+﻿using Microsoft.Extensions.Logging;
+using JSDeposito.Core.DTOs;
 using JSDeposito.Core.Entities;
 using JSDeposito.Core.Interfaces;
 
@@ -9,25 +10,36 @@ public class EnderecoService
     private readonly IEnderecoRepository _enderecoRepository;
     private readonly IUsuarioRepository _usuarioRepository;
     private readonly IGeocodingService _geocodingService;
-
+    private readonly ILogger<EnderecoService> _logger;
 
     public EnderecoService(
         IEnderecoRepository enderecoRepository,
         IUsuarioRepository usuarioRepository,
-        IGeocodingService geocodingService)
+        IGeocodingService geocodingService,
+        ILogger<EnderecoService> logger)
     {
         _enderecoRepository = enderecoRepository;
         _usuarioRepository = usuarioRepository;
         _geocodingService = geocodingService;
+        _logger = logger;
     }
 
-    public async Task CriarEndereco(EnderecoDto dto, int usuarioId )
+    public async Task CriarEndereco(EnderecoDto dto, int usuarioId)
     {
+        _logger.LogInformation(
+            "Iniciando criação de endereço | UsuarioId: {UsuarioId}",
+            usuarioId);
+
         var usuario = _usuarioRepository.ObterPorId(usuarioId)
             ?? throw new Exception("Usuário não encontrado");
 
         var enderecoCompleto =
             $"{dto.Rua}, {dto.Numero}, {dto.Bairro}, {dto.Cidade}, Brasil";
+
+        _logger.LogInformation(
+            "Geocodificando endereço | UsuarioId: {UsuarioId} | Endereco: {Endereco}",
+            usuarioId,
+            enderecoCompleto);
 
         double lat = 0, lon = 0;
 
@@ -35,10 +47,27 @@ public class EnderecoService
         {
             (lat, lon) =
                 await _geocodingService.ObterCoordenadasAsync(enderecoCompleto);
+
+            _logger.LogInformation(
+                "Geocoding concluído | Latitude: {Lat} | Longitude: {Lon}",
+                lat,
+                lon);
         }
-        catch
+        catch (Exception ex)
         {
-            // log apenas
+            _logger.LogWarning(
+                ex,
+                "Falha ao geocodificar endereço | UsuarioId: {UsuarioId} | Endereco: {Endereco}",
+                usuarioId,
+                enderecoCompleto);
+        }
+
+        if (lat == 0 && lon == 0)
+        {
+            _logger.LogWarning(
+                "Endereço salvo sem coordenadas | UsuarioId: {UsuarioId} | Endereco: {Endereco}",
+                usuarioId,
+                enderecoCompleto);
         }
 
         var endereco = new Endereco(
@@ -52,5 +81,10 @@ public class EnderecoService
         );
 
         _enderecoRepository.Criar(endereco);
+
+        _logger.LogInformation(
+            "Endereço criado com sucesso | UsuarioId: {UsuarioId} | EnderecoId: {EnderecoId}",
+            usuarioId,
+            endereco.Id);
     }
 }

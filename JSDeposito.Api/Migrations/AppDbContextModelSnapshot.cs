@@ -146,7 +146,6 @@ namespace JSDeposito.Api.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Referencia")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<int>("Status")
@@ -199,8 +198,6 @@ namespace JSDeposito.Api.Migrations
                         .HasColumnType("decimal(10,2)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("UsuarioId");
 
                     b.ToTable("Pedidos");
                 });
@@ -337,10 +334,6 @@ namespace JSDeposito.Api.Migrations
 
             modelBuilder.Entity("JSDeposito.Core.Entities.Pedido", b =>
                 {
-                    b.HasOne("JSDeposito.Core.Entities.Usuario", "Usuario")
-                        .WithMany()
-                        .HasForeignKey("UsuarioId");
-
                     b.OwnsOne("JSDeposito.Core.ValueObjects.EnderecoSnapshot", "EnderecoEntrega", b1 =>
                         {
                             b1.Property<int>("PedidoId")
@@ -379,8 +372,6 @@ namespace JSDeposito.Api.Migrations
                         });
 
                     b.Navigation("EnderecoEntrega");
-
-                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("JSDeposito.Core.Entities.Pedido", b =>

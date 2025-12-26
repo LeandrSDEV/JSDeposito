@@ -43,9 +43,6 @@ public class Produto
         Preco = preco;
     }
 
-    public void Ativar() => Ativo = true;
-    public void Desativar() => Ativo = false;
-
     public void EntradaEstoque(int quantidade)
     {
         if (quantidade <= 0)

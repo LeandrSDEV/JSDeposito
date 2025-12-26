@@ -1,7 +1,9 @@
 ﻿using JSDeposito.Core.DTOs;
 using JSDeposito.Core.Entities;
 using JSDeposito.Core.Enums;
+using JSDeposito.Core.Exceptions;
 using JSDeposito.Core.Interfaces;
+using Microsoft.Extensions.Logging;
 using System.Security;
 
 namespace JSDeposito.Core.Services;
@@ -11,15 +13,18 @@ public class PagamentoService
     private readonly IPagamentoRepository _pagamentoRepository;
     private readonly IPedidoRepository _pedidoRepository;
     private readonly PixService _pixService;
+    private readonly ILogger<PagamentoService> _logger;
 
     public PagamentoService(
         IPagamentoRepository pagamentoRepository,
         IPedidoRepository pedidoRepository,
-        PixService pixService)
+        PixService pixService,
+        ILogger<PagamentoService> logger)
     {
         _pagamentoRepository = pagamentoRepository;
         _pedidoRepository = pedidoRepository;
         _pixService = pixService;
+        _logger = logger;
     }
 
     public CriarPagamentoResponseDto CriarPagamento(
@@ -27,14 +32,18 @@ public class PagamentoService
     TipoPagamento tipo,
     int usuarioId)
     {
+        _logger.LogInformation(
+            "Iniciando criação de pagamento | PedidoId: {PedidoId} | UsuarioId: {UsuarioId} | Tipo: {Tipo}",
+            pedidoId, usuarioId, tipo);
+
         var pedido = _pedidoRepository.ObterPorId(pedidoId)
-            ?? throw new Exception("Pedido não encontrado");
+            ?? throw new NotFoundException("Pedido não encontrado");
 
         if (!pedido.UsuarioId.HasValue)
-            throw new Exception("Pedido precisa estar associado a um usuário");
+            throw new BusinessException("Pedido precisa estar associado a um usuário");
 
         if (pedido.UsuarioId != usuarioId)
-            throw new Exception("Pedido não pertence ao usuário autenticado");
+            throw new SecurityException("Pedido não pertence ao usuário autenticado");
 
         pedido.ValidarParaPagamento();
 
@@ -42,10 +51,14 @@ public class PagamentoService
             _pagamentoRepository.ObterPagamentoPendentePorPedido(pedidoId);
 
         if (pagamentoPendente != null)
-            throw new Exception("Já existe um pagamento em andamento");
+            throw new BusinessException("Já existe um pagamento em andamento");
 
         var pagamento = new Pagamento(pedidoId, pedido.Total, tipo);
         _pagamentoRepository.Criar(pagamento);
+
+        _logger.LogInformation(
+            "Pagamento criado | PagamentoId: {PagamentoId} | PedidoId: {PedidoId}",
+            pagamento.Id, pedidoId);
 
         var response = new CriarPagamentoResponseDto
         {
@@ -61,8 +74,11 @@ public class PagamentoService
             );
 
             pagamento.DefinirReferencia(pix.TxId);
-
             _pagamentoRepository.Atualizar(pagamento);
+
+            _logger.LogInformation(
+                "PIX gerado | PagamentoId: {PagamentoId} | TxId: {TxId}",
+                pagamento.Id, pix.TxId);
 
             response.Pix = pix;
         }
@@ -73,37 +89,51 @@ public class PagamentoService
 
     public void ConfirmarPagamento(int pedidoId)
     {
-        var pagamento = _pagamentoRepository.ObterPagamentoPendentePorPedido(pedidoId);
+        _logger.LogInformation(
+            "Confirmando pagamento manualmente | PedidoId: {PedidoId}",
+            pedidoId);
 
-        if (pagamento == null)
-            throw new Exception("Pagamento não encontrado");
+        var pagamento = _pagamentoRepository
+            .ObterPagamentoPendentePorPedido(pedidoId)
+            ?? throw new NotFoundException("Pagamento não encontrado");
 
         if (pagamento.Status != StatusPagamento.Pendente)
-            throw new Exception("Pagamento não pode ser confirmado");
+            throw new BusinessException("Pagamento não pode ser confirmado");
 
         pagamento.Confirmar();
 
-        var pedido = _pedidoRepository.ObterPorId(pedidoId);
-
-        if (pedido == null)
-            throw new Exception("Pedido não encontrado");
+        var pedido = _pedidoRepository.ObterPorId(pedidoId)
+            ?? throw new NotFoundException("Pedido não encontrado");
 
         pedido.MarcarComoPago();
 
         _pagamentoRepository.Atualizar(pagamento);
         _pedidoRepository.Atualizar(pedido);
+
+        _logger.LogInformation(
+            "Pagamento confirmado com sucesso | PagamentoId: {PagamentoId}",
+            pagamento.Id);
     }
 
     public void CancelarPagamento(int pedidoId)
     {
-        var pagamento = _pagamentoRepository.ObterPagamentoPendentePorPedido(pedidoId)
-         ?? throw new Exception("Pagamento não encontrado");
+        _logger.LogWarning(
+            "Cancelando pagamento | PedidoId: {PedidoId}",
+            pedidoId);
+
+        var pagamento = _pagamentoRepository
+            .ObterPagamentoPendentePorPedido(pedidoId)
+            ?? throw new NotFoundException("Pagamento não encontrado");
 
         if (pagamento.Status != StatusPagamento.Pendente)
-            throw new Exception("Pagamento não pode ser cancelado");
+            throw new BusinessException("Pagamento não pode ser cancelado");
 
         pagamento.Cancelar();
         _pagamentoRepository.Atualizar(pagamento);
+
+        _logger.LogInformation(
+            "Pagamento cancelado | PagamentoId: {PagamentoId}",
+            pagamento.Id);
     }
 
     public void ProcessarWebhookPix(
@@ -111,27 +141,51 @@ public class PagamentoService
     decimal valor,
     string status)
     {
-        if (status.ToLower() != "paid")
-            return;
+        _logger.LogInformation(
+            "Webhook PIX recebido | Referencia: {Referencia} | Valor: {Valor} | Status: {Status}",
+            referencia, valor, status);
 
-        // 🔎 Agora buscamos pela referência (TxId)
-        var pagamento = _pagamentoRepository
-            .ObterPorReferencia(referencia);
+        if (status.ToLower() != "paid")
+        {
+            _logger.LogInformation(
+                "Webhook ignorado | Status não pago | Referencia: {Referencia}",
+                referencia);
+            return;
+        }
+
+        var pagamento = _pagamentoRepository.ObterPorReferencia(referencia);
 
         if (pagamento == null)
-            return; // idempotência
+        {
+            _logger.LogWarning(
+                "Webhook PIX ignorado | Pagamento inexistente | Referencia: {Referencia}",
+                referencia);
+            return; // 🔒 idempotência
+        }
+
+        if (pagamento.Status == StatusPagamento.Pago)
+        {
+            _logger.LogInformation(
+                "Webhook PIX duplicado | Pagamento já confirmado | PagamentoId: {PagamentoId}",
+                pagamento.Id);
+            return; // 🔒 idempotência
+        }
 
         if (pagamento.Valor != valor)
-            throw new Exception("Valor divergente");
+            throw new BusinessException("Valor do PIX divergente");
 
         pagamento.Confirmar();
 
         var pedido = _pedidoRepository.ObterPorId(pagamento.PedidoId)
-            ?? throw new Exception("Pedido não encontrado");
+            ?? throw new NotFoundException("Pedido não encontrado");
 
         pedido.MarcarComoPago();
 
         _pagamentoRepository.Atualizar(pagamento);
         _pedidoRepository.Atualizar(pedido);
+
+        _logger.LogInformation(
+            "Pagamento confirmado via PIX | PagamentoId: {PagamentoId} | PedidoId: {PedidoId}",
+            pagamento.Id, pedido.Id);
     }
 }

@@ -9,7 +9,6 @@ public class Pedido
 {
     public int Id { get; private set; }
     public int? UsuarioId { get; private set; }
-    public Usuario? Usuario { get; private set; }
     public DateTime DataCriacao { get; private set; }
     public PedidoStatus Status { get; private set; }
     public decimal Total { get; private set; }
@@ -158,14 +157,6 @@ public class Pedido
 
         if (CodigoCupom != null)
             throw new Exception("Remova o cupom antes de alterar os itens");
-    }
-
-    public void DefinirEnderecoEntrega(EnderecoSnapshot endereco)
-    {
-        if (Status != PedidoStatus.Criado)
-            throw new Exception("Endereço não pode ser alterado");
-
-        EnderecoEntrega = endereco;
     }
 
     public void DefinirEnderecoEAplicarFrete(
