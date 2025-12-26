@@ -152,3 +152,11 @@ C:\Desenvolvedor\JSDeposito\JSDeposito.Api\bin\Debug\net8.0\System.IO.Pipelines.
 C:\Desenvolvedor\JSDeposito\JSDeposito.Api\bin\Debug\net8.0\System.Text.Encodings.Web.dll
 C:\Desenvolvedor\JSDeposito\JSDeposito.Api\bin\Debug\net8.0\System.Text.Json.dll
 C:\Desenvolvedor\JSDeposito\JSDeposito.Api\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
+C:\Desenvolvedor\JSDeposito\JSDeposito.Api\bin\Debug\net8.0\ClosedXML.dll
+C:\Desenvolvedor\JSDeposito\JSDeposito.Api\bin\Debug\net8.0\ClosedXML.Parser.dll
+C:\Desenvolvedor\JSDeposito\JSDeposito.Api\bin\Debug\net8.0\DocumentFormat.OpenXml.dll
+C:\Desenvolvedor\JSDeposito\JSDeposito.Api\bin\Debug\net8.0\DocumentFormat.OpenXml.Framework.dll
+C:\Desenvolvedor\JSDeposito\JSDeposito.Api\bin\Debug\net8.0\ExcelNumberFormat.dll
+C:\Desenvolvedor\JSDeposito\JSDeposito.Api\bin\Debug\net8.0\RBush.dll
+C:\Desenvolvedor\JSDeposito\JSDeposito.Api\bin\Debug\net8.0\SixLabors.Fonts.dll
+C:\Desenvolvedor\JSDeposito\JSDeposito.Api\bin\Debug\net8.0\System.IO.Packaging.dll

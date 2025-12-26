@@ -2,16 +2,16 @@
 using JSDeposito.Api.Middlewares;
 using JSDeposito.Core.Configurations;
 using JSDeposito.Core.Interfaces;
+using JSDeposito.Core.Reports.Interfaces;
+using JSDeposito.Core.Reports.Services;
 using JSDeposito.Core.Services;
 using JSDeposito.Core.ValueObjects;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Serilog;
-using System.Security;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -144,7 +144,7 @@ builder.Services.AddScoped<IEnderecoRepository, EnderecoRepository>();
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
 builder.Services.AddScoped<IPromocaoFreteRepository, PromocaoFreteRepository>();
-
+builder.Services.AddScoped<IRelatorioRepository, RelatorioRepository>();
 
 #endregion
 
@@ -157,6 +157,9 @@ builder.Services.AddScoped<EnderecoService>();
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<CheckoutService>();
 builder.Services.AddScoped<PixService>();
+builder.Services.AddScoped<RelatorioService>();
+builder.Services.AddScoped<ExportacaoRelatorioService>();
+
 
 builder.Services.AddScoped<FreteService>(sp =>
 {

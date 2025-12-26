@@ -491,6 +491,79 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "RelatoriosController",
+    "Method": "ExportarFaturamento",
+    "RelativePath": "api/relatorios/faturamento/export",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "inicio",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "fim",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "formato",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RelatoriosController",
+    "Method": "ProdutosMaisVendidos",
+    "RelativePath": "api/relatorios/produtos-mais-vendidos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "inicio",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "fim",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "top",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RelatoriosController",
+    "Method": "TicketMedio",
+    "RelativePath": "api/relatorios/ticket-medio",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "inicio",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "fim",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "JSDeposito.Api.Controllers.WebhookController",
     "Method": "ReceberPix",
     "RelativePath": "api/webhooks/pix",

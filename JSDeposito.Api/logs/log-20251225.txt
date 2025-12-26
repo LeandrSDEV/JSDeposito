@@ -316,3 +316,37 @@ System.Exception: Estoque insuficiente
 2025-12-25 21:45:10.160 -03:00 [INF] PIX gerado | PagamentoId: 3 | TxId: 6dfd22e674b24666a5bc28e42
 2025-12-25 21:49:57.575 -03:00 [INF] Webhook PIX recebido | Referencia: 6dfd22e674b24666a5bc28e42 | Valor: 105.00 | Status: paid
 2025-12-25 21:49:58.182 -03:00 [INF] Pagamento confirmado via PIX | PagamentoId: 3 | PedidoId: 6
+2025-12-25 22:08:59.588 -03:00 [INF] Tentativa de login | Email: admin@jsdeposito.com
+2025-12-25 22:09:00.214 -03:00 [INF] Login realizado com sucesso | UsuarioId: 1
+2025-12-25 22:09:00.436 -03:00 [INF] Tokens gerados | UsuarioId: 1
+2025-12-25 22:09:13.705 -03:00 [ERR] Erro não tratado | Path: /api/relatorios/faturamento | Method: GET
+System.InvalidOperationException: Unable to resolve service for type 'JSDeposito.Core.Reports.DTOs.RelatorioService' while attempting to activate 'RelatoriosController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method83(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at JSDeposito.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Desenvolvedor\JSDeposito\JSDeposito.Api\Middlewares\GlobalExceptionMiddleware.cs:line 25
+2025-12-25 22:09:13.741 -03:00 [ERR] Erro não tratado | Path: /api/relatorios/faturamento | Method: GET
+System.InvalidOperationException: Unable to resolve service for type 'JSDeposito.Core.Reports.DTOs.RelatorioService' while attempting to activate 'RelatoriosController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method83(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at JSDeposito.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Desenvolvedor\JSDeposito\JSDeposito.Api\Middlewares\GlobalExceptionMiddleware.cs:line 25
+2025-12-25 22:18:05.304 -03:00 [INF] Tentativa de login | Email: admin@jsdeposito.com
+2025-12-25 22:18:05.920 -03:00 [INF] Login realizado com sucesso | UsuarioId: 1
+2025-12-25 22:18:06.157 -03:00 [INF] Tokens gerados | UsuarioId: 1
