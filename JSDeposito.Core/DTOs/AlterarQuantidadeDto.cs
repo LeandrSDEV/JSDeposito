@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace JSDeposito.Core.DTOs
 {
-    public class ItemPedidoDto
+    public class AlterarQuantidadeDto
     {
-        public int ProdutoId { get; set; }
         public int Quantidade { get; set; }
-        public string? ImagemUrl { get; set; }
     }
 }

@@ -7,12 +7,18 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
+builder.Services.AddScoped<CartService>();
+
 builder.Services.AddMudServices();
 builder.Services.AddBlazoredLocalStorage();
 
-builder.Services.AddHttpClient("Api", client =>
+builder.Services.AddScoped(sp =>
 {
-    client.BaseAddress = new Uri("https://localhost:7200/");
+    var config = sp.GetRequiredService<IConfiguration>();
+    return new HttpClient
+    {
+        BaseAddress = new Uri(config["Api:BaseUrl"]!)
+    };
 });
 
 var app = builder.Build();

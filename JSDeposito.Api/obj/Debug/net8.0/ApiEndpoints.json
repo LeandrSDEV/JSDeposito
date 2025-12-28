@@ -293,6 +293,32 @@
   },
   {
     "ContainingType": "JSDeposito.Api.Controllers.PedidoController",
+    "Method": "AlterarQuantidade",
+    "RelativePath": "api/pedidos/{pedidoId}/itens/{produtoId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pedidoId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "produtoId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "JSDeposito.Core.DTOs.AlterarQuantidadeDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "JSDeposito.Api.Controllers.PedidoController",
     "Method": "RemoverPorProduto",
     "RelativePath": "api/pedidos/{pedidoId}/produtos/{produtoId}",
     "HttpMethod": "DELETE",

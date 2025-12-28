@@ -1,5 +1,6 @@
 ﻿using JSDeposito.Api.UserExtensions;
 using JSDeposito.Core.DTOs;
+using JSDeposito.Core.Exceptions;
 using JSDeposito.Core.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -50,12 +51,22 @@ public class PedidoController : ControllerBase
         return Ok(pedido);
     }
 
-    
+
     [HttpPost("{pedidoId}/itens")]
     public IActionResult Adicionar(int pedidoId, AdicionarItemPedidoDto dto)
     {
-        _pedidoService.AdicionarItem(pedidoId, dto);
-        return Ok();
+        try
+        {
+            _pedidoService.AdicionarItem(pedidoId, dto);
+            return Ok();
+        }
+        catch (EstoqueInsuficienteException ex)
+        {
+            return BadRequest(new
+            {
+                message = $"Estoque atual: {ex.EstoqueAtual}"
+            });
+        }
     }
 
 
@@ -63,6 +74,16 @@ public class PedidoController : ControllerBase
     public IActionResult RemoverPorProduto(int pedidoId, int produtoId)
     {
         _pedidoService.RemoverItemPorProduto(pedidoId, produtoId);
+        return NoContent();
+    }
+
+    [HttpPut("{pedidoId}/itens/{produtoId}")]
+    public IActionResult AlterarQuantidade(
+    int pedidoId,
+    int produtoId,
+    [FromBody] AlterarQuantidadeDto dto)
+    {
+        _pedidoService.AlterarQuantidade(pedidoId, produtoId, dto.Quantidade);
         return NoContent();
     }
 

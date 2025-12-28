@@ -461,6 +461,57 @@
         }
       }
     },
+    "/api/pedidos/{pedidoId}/itens/{produtoId}": {
+      "put": {
+        "tags": [
+          "Pedido"
+        ],
+        "parameters": [
+          {
+            "name": "pedidoId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "produtoId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AlterarQuantidadeDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AlterarQuantidadeDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AlterarQuantidadeDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/pedidos/{pedidoId}/frete/{enderecoId}": {
       "post": {
         "tags": [
@@ -998,6 +1049,16 @@
         },
         "additionalProperties": false
       },
+      "AlterarQuantidadeDto": {
+        "type": "object",
+        "properties": {
+          "quantidade": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
       "AplicarCupomDto": {
         "type": "object",
         "properties": {
@@ -1129,6 +1190,10 @@
           "quantidade": {
             "type": "integer",
             "format": "int32"
+          },
+          "imagemUrl": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false

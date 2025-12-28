@@ -1,15 +1,122 @@
 ﻿@page "/"
+@using MudBlazor
+@inject HttpClient Http
+@inject CartService CartService
+@rendermode InteractiveServer
+@inject ISnackbar Snackbar
 
-<h1>JSDeposito</h1>
+<MudContainer MaxWidth="MaxWidth.ExtraLarge">
 
-@inject IHttpClientFactory HttpFactory
+    <!-- TÍTULO -->
+    <MudText Typo="Typo.h4" Class="mb-2 font-weight-bold">
+        🍻 Vitrine de Produtos
+    </MudText>
 
-<button @onclick="Baixar">Baixar Estoque</button>
+    <MudText Typo="Typo.subtitle1" Class="mb-6 text-secondary">
+        As melhores bebidas, com o melhor preço
+    </MudText>
+
+    @if (produtos == null)
+    {
+        <MudProgressCircular Indeterminate="true" Size="Size.Large" />
+    }
+    else
+    {
+        <MudGrid Spacing="4">
+            @foreach (var produto in produtos)
+            {
+                <MudItem xs="12" sm="6" md="4" lg="3">
+                    <MudCard Class="h-100">
+
+                        <MudCardContent>
+                            <MudText Typo="Typo.h6" Class="mb-1">
+                                @produto.Nome
+                            </MudText>
+
+                            <MudText Typo="Typo.subtitle2" Color="Color.Secondary">
+                                R$ @produto.Preco.ToString("N2")
+                            </MudText>
+                        </MudCardContent>
+
+                        <MudCardActions Class="pa-3">
+                            <MudStack Row Spacing="2" AlignItems="AlignItems.Center" Class="w-100">
+
+                                <MudNumericField T="int"
+                                                 Min="1"
+                                                 Max="99"
+                                                 @bind-Value="quantidades[produto.Id]"
+                                                 Immediate="true"
+                                                 Style="width: 70px" />
+
+                                <MudButton Color="Color.Primary"
+                                           Variant="Variant.Filled"
+                                           FullWidth="true"
+                                           OnClick="() => AddCarrinho(produto.Id)">
+                                    Adicionar
+                                </MudButton>
+
+                            </MudStack>
+                        </MudCardActions>
+
+                    </MudCard>
+                </MudItem>
+            }
+        </MudGrid>
+    }
+
+</MudContainer>
+
 
 @code {
-    async Task Baixar()
+
+    private List<ProdutoDto>? produtos;
+
+    protected override async Task OnInitializedAsync()
     {
-        var client = HttpFactory.CreateClient("Api");
-        await client.PostAsync("api/produtos/1/baixar?quantidade=1", null);
+        produtos = await Http.GetFromJsonAsync<List<ProdutoDto>>("api/produtos");
+
+        foreach (var produto in produtos)
+        {
+            quantidades[produto.Id] = 1;
+        }
+    }
+
+    public class ProdutoDto
+    {
+        public int Id { get; set; }
+        public string Nome { get; set; } = "";
+        public decimal Preco { get; set; }
+    }
+
+
+    Dictionary<int, int> quantidades = new();
+
+    int GetQuantidade(int produtoId)
+        => quantidades.TryGetValue(produtoId, out var q) ? q : 1;
+
+    void SetQuantidade(int produtoId, int valor)
+        => quantidades[produtoId] = valor;
+
+
+    async Task AddCarrinho(int produtoId)
+    {
+        var quantidade = GetQuantidade(produtoId);
+
+        var resultado = await CartService.AddItemAsync(produtoId, quantidade);
+
+        if (resultado.Sucesso)
+        {
+            Snackbar.Add(
+                $"{quantidade} item(ns) adicionados ao carrinho",
+                Severity.Success
+            );
+        }
+        else
+        {
+            Snackbar.Add(
+                resultado.Erro!,
+                Severity.Warning
+            );
+        }
     }
 }

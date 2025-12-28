@@ -115,6 +115,17 @@ public class PedidoService
         var produto = _produtoRepository.ObterPorId(dto.ProdutoId)
             ?? throw new NotFoundException("Produto não encontrado");
 
+        // REGRA DE ESTOQUE duplicada para garantir consistência
+        if (produto.Estoque < dto.Quantidade)
+            throw new BusinessException(
+                $"Estoque atual: {produto.Estoque}"
+            );
+
+        if (produto.Estoque < dto.Quantidade)
+            throw new BusinessException(
+                $"Estoque atual: {produto.Estoque}"
+            );
+
         pedido.AdicionarItem(produto, dto.Quantidade);
 
         _produtoRepository.Atualizar(produto);
@@ -124,6 +135,7 @@ public class PedidoService
             "Item adicionado | PedidoId: {PedidoId} | ProdutoId: {ProdutoId}",
             pedidoId, dto.ProdutoId);
     }
+
 
     public void RemoverItemPorProduto(int pedidoId, int produtoId)
     {
@@ -186,6 +198,30 @@ public class PedidoService
             pedidoId);
     }
 
+    public void AlterarQuantidade(int pedidoId, int produtoId, int quantidade)
+    {
+        var pedido = _pedidoRepository.ObterPorId(pedidoId)
+            ?? throw new NotFoundException("Pedido não encontrado");
+
+        if (pedido.Status != PedidoStatus.Criado)
+            throw new BusinessException("Pedido não pode ser alterado");
+
+        var item = pedido.Itens.FirstOrDefault(i => i.ProdutoId == produtoId)
+            ?? throw new NotFoundException("Item não encontrado no pedido");
+
+        // 🔒 valida estoque
+        if (quantidade > item.Produto.Estoque)
+            throw new BusinessException(
+                $"Estoque atual: {item.Produto.Estoque}");
+
+        if (quantidade <= 0)
+            pedido.RemoverItemPorProduto(produtoId);
+        else
+            item.AlterarQuantidade(quantidade);
+
+        _pedidoRepository.Atualizar(pedido);
+    }
+
     public void AssociarPedidoAnonimoAoUsuario(Guid tokenAnonimo, int usuarioId)
     {
         var pedido = _pedidoRepository.ObterPorTokenAnonimo(tokenAnonimo)
@@ -232,6 +268,6 @@ public class PedidoService
 
     }
 
-    
+
 
 }
