@@ -1,9 +1,14 @@
+using Blazored.LocalStorage;
 using JSDeposito.Blazor.Components;
+using MudBlazor.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
+builder.Services.AddMudServices();
+builder.Services.AddBlazoredLocalStorage();
 
 builder.Services.AddHttpClient("Api", client =>
 {
