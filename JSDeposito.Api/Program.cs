@@ -7,6 +7,7 @@ using JSDeposito.Core.Reports.Services;
 using JSDeposito.Core.Services;
 using JSDeposito.Core.ValueObjects;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -20,6 +21,21 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("ConfirmarPagamento",
+        policy => policy.RequireRole("Admin"));
+});
+
+builder.Services.AddRateLimiter(options =>
+{
+    options.AddFixedWindowLimiter("pix", opt =>
+    {
+        opt.Window = TimeSpan.FromMinutes(1);
+        opt.PermitLimit = 30;
+    });
+});
 
 builder.Services.AddSwaggerGen(c =>
 {
@@ -145,6 +161,7 @@ builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
 builder.Services.AddScoped<IPromocaoFreteRepository, PromocaoFreteRepository>();
 builder.Services.AddScoped<IRelatorioRepository, RelatorioRepository>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 #endregion
 

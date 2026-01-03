@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "/XcroShJINY=",
+  "dgSpecHash": "iZqqW7hFX6c=",
   "success": true,
-  "projectFilePath": "C:\\Desenvolvedor\\JSDeposito\\JSDeposito.Core\\JSDeposito.Core.csproj",
+  "projectFilePath": "D:\\Desenvolvimento\\C#\\JSDeposito\\JSDeposito.Core\\JSDeposito.Core.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\LEANDRO\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\LEANDRO\\.nuget\\packages\\closedxml\\0.105.0\\closedxml.0.105.0.nupkg.sha512",

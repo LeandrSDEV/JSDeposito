@@ -33,11 +33,11 @@ public class PagamentoController : ControllerBase
         return Ok(resultado);
     }
 
-    [Authorize(Roles = "Admin")]
+    [Authorize(Policy = "ConfirmarPagamento")]
     [HttpPost("{pedidoId}/confirmar")]
     public IActionResult Confirmar(int pedidoId)
     {
-        _pagamentoService.ConfirmarPagamento(pedidoId);
+        _pagamentoService.ConfirmarPagamentoAsync(pedidoId);
         return Ok();
     }
 

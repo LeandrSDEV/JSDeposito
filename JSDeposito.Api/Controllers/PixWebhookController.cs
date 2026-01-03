@@ -2,6 +2,7 @@
 using JSDeposito.Core.DTOs;
 using JSDeposito.Core.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.Extensions.Options;
 
 namespace JSDeposito.Api.Controllers;
@@ -21,6 +22,7 @@ public class WebhookController : ControllerBase
         _config = config.Value;
     }
 
+    [EnableRateLimiting("pix")]
     [HttpPost]
     public IActionResult ReceberPix(
         [FromBody] PixWebhookDto dto,

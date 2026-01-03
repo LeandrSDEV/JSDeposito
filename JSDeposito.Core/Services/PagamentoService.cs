@@ -13,18 +13,21 @@ public class PagamentoService
     private readonly IPagamentoRepository _pagamentoRepository;
     private readonly IPedidoRepository _pedidoRepository;
     private readonly PixService _pixService;
+    private readonly IUnitOfWork _unitOfWork;
     private readonly ILogger<PagamentoService> _logger;
 
     public PagamentoService(
         IPagamentoRepository pagamentoRepository,
         IPedidoRepository pedidoRepository,
         PixService pixService,
-        ILogger<PagamentoService> logger)
+        ILogger<PagamentoService> logger,
+        IUnitOfWork unitOfWork)
     {
         _pagamentoRepository = pagamentoRepository;
         _pedidoRepository = pedidoRepository;
         _pixService = pixService;
         _logger = logger;
+        _unitOfWork = unitOfWork;
     }
 
     public CriarPagamentoResponseDto CriarPagamento(
@@ -87,32 +90,30 @@ public class PagamentoService
     }
 
 
-    public void ConfirmarPagamento(int pedidoId)
+    public async Task ConfirmarPagamentoAsync(int pedidoId)
     {
-        _logger.LogInformation(
-            "Confirmando pagamento manualmente | PedidoId: {PedidoId}",
-            pedidoId);
+        await _unitOfWork.BeginAsync();
 
-        var pagamento = _pagamentoRepository
-            .ObterPagamentoPendentePorPedido(pedidoId)
-            ?? throw new NotFoundException("Pagamento não encontrado");
+        try
+        {
+            var pagamento = _pagamentoRepository
+                .ObterPagamentoPendentePorPedido(pedidoId)
+                ?? throw new NotFoundException("Pagamento não encontrado");
 
-        if (pagamento.Status != StatusPagamento.Pendente)
-            throw new BusinessException("Pagamento não pode ser confirmado");
+            pagamento.Confirmar();
 
-        pagamento.Confirmar();
+            var pedido = _pedidoRepository.ObterPorId(pedidoId)
+                ?? throw new NotFoundException("Pedido não encontrado");
 
-        var pedido = _pedidoRepository.ObterPorId(pedidoId)
-            ?? throw new NotFoundException("Pedido não encontrado");
+            pedido.MarcarComoPago();
 
-        pedido.MarcarComoPago();
-
-        _pagamentoRepository.Atualizar(pagamento);
-        _pedidoRepository.Atualizar(pedido);
-
-        _logger.LogInformation(
-            "Pagamento confirmado com sucesso | PagamentoId: {PagamentoId}",
-            pagamento.Id);
+            await _unitOfWork.CommitAsync();
+        }
+        catch
+        {
+            await _unitOfWork.RollbackAsync();
+            throw;
+        }
     }
 
     public void CancelarPagamento(int pedidoId)
@@ -171,8 +172,11 @@ public class PagamentoService
             return; // 🔒 idempotência
         }
 
-        if (pagamento.Valor != valor)
-            throw new BusinessException("Valor do PIX divergente");
+        if (Math.Abs(pagamento.Valor - valor) > 0.01m)
+        {
+            _logger.LogError("Divergência de valor PIX...");
+            return;
+        }
 
         pagamento.Confirmar();
 

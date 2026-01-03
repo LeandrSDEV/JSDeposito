@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "X1dZLklIMXw=",
+  "dgSpecHash": "GfNAPPaqXy4=",
   "success": true,
-  "projectFilePath": "C:\\Desenvolvedor\\JSDeposito\\JSDeposito.Blazor\\JSDeposito.Blazor.csproj",
+  "projectFilePath": "D:\\Desenvolvimento\\C#\\JSDeposito\\JSDeposito.Blazor\\JSDeposito.Blazor.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\LEANDRO\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\LEANDRO\\.nuget\\packages\\blazored.localstorage\\4.3.0\\blazored.localstorage.4.3.0.nupkg.sha512",
