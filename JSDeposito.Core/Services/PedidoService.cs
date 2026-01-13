@@ -5,6 +5,7 @@ using JSDeposito.Core.Exceptions;
 using JSDeposito.Core.Interfaces;
 using JSDeposito.Core.ValueObjects;
 using Microsoft.Extensions.Logging;
+using System.Security.Claims;
 
 namespace JSDeposito.Core.Services;
 
@@ -268,6 +269,75 @@ public class PedidoService
 
     }
 
+    public void ExcluirPedido(int pedidoId)
+    {
+        var pedido = _pedidoRepository.ObterPorId(pedidoId)
+            ?? throw new NotFoundException("Pedido não encontrado");
 
+        // Devolve estoque dos itens antes de remover
+        foreach (var item in pedido.Itens)
+        {
+            var produto = _produtoRepository.ObterPorId(item.ProdutoId)
+                ?? throw new NotFoundException($"Produto {item.ProdutoId} não encontrado");
+            produto.EntradaEstoque(item.Quantidade);
+            _produtoRepository.Atualizar(produto);
+        }
 
+        // Remove do banco
+        _pedidoRepository.Remover(pedido);
+    }
+
+    public Pedido? ObterPedidoAbertoDoUsuario(int usuarioId)
+    {
+        var pedido = _pedidoRepository.ObterPedidoAbertoDoUsuario(usuarioId);
+
+        return pedido;
+    }
+
+    public ConflitoCarrinhoResponse? VerificarOuAssociarCarrinho(
+    Guid tokenAnonimo,
+    int usuarioId)
+    {
+        var pedidoAnonimo = _pedidoRepository.ObterPorTokenAnonimo(tokenAnonimo);
+        if (pedidoAnonimo == null) return null;
+
+        var pedidoUsuario = _pedidoRepository.ObterPedidoAbertoDoUsuario(usuarioId);
+
+        // ✅ Não existe pedido do usuário → associa direto
+        if (pedidoUsuario == null)
+        {
+            pedidoAnonimo.AssociarUsuario(usuarioId);
+            pedidoAnonimo.RemoverTokenAnonimo();
+            _pedidoRepository.Atualizar(pedidoAnonimo);
+            return null;
+        }
+
+        // ⚠️ Conflito
+        return new ConflitoCarrinhoResponse(
+            true,
+            pedidoUsuario.Id,
+            pedidoAnonimo.Id
+        );
+    }
+
+    public void ValidarAcessoAoPedido(
+    int pedidoId,
+    int? usuarioId,
+    Guid? tokenAnonimo)
+    {
+        var pedido = _pedidoRepository.ObterPorId(pedidoId)
+            ?? throw new NotFoundException("Pedido não encontrado");
+
+        // 🔐 Usuário logado
+        if (usuarioId.HasValue && pedido.UsuarioId == usuarioId.Value)
+            return;
+
+        // 👻 Pedido anônimo
+        if (pedido.UsuarioId == null &&
+            tokenAnonimo.HasValue &&
+            pedido.TokenAnonimo == tokenAnonimo.Value)
+            return;
+
+        throw new BusinessException("Você não tem permissão para acessar este pedido");
+    }
 }

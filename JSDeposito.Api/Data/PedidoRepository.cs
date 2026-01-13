@@ -1,5 +1,6 @@
 ﻿using JSDeposito.Api.Data;
 using JSDeposito.Core.Entities;
+using JSDeposito.Core.Enums;
 using JSDeposito.Core.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -37,5 +38,21 @@ public class PedidoRepository : IPedidoRepository
     {
         return _context.Pedidos
             .FirstOrDefault(p => p.TokenAnonimo == token);
+    }
+
+    public void Remover(Pedido pedido)
+    {
+        _context.Pedidos.Remove(pedido);
+        _context.SaveChanges();
+    }
+
+    public Pedido? ObterPedidoAbertoDoUsuario(int usuarioId)
+    {
+        return _context.Pedidos
+            .Include(p => p.Itens)
+            .FirstOrDefault(p =>
+                p.UsuarioId == usuarioId &&
+                p.Status == PedidoStatus.Criado
+            );
     }
 }

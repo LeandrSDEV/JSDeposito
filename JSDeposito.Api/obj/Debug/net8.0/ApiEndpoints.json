@@ -191,7 +191,7 @@
       {
         "Name": "dto",
         "Type": "JSDeposito.Core.DTOs.CriarPedidoDto",
-        "IsRequired": true
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -201,6 +201,22 @@
     "Method": "Obter",
     "RelativePath": "api/pedidos/{pedidoId}",
     "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pedidoId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "JSDeposito.Api.Controllers.PedidoController",
+    "Method": "Excluir",
+    "RelativePath": "api/pedidos/{pedidoId}",
+    "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -319,7 +335,7 @@
   },
   {
     "ContainingType": "JSDeposito.Api.Controllers.PedidoController",
-    "Method": "RemoverPorProduto",
+    "Method": "RemoverProduto",
     "RelativePath": "api/pedidos/{pedidoId}/produtos/{produtoId}",
     "HttpMethod": "DELETE",
     "IsController": true,
@@ -336,6 +352,46 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "JSDeposito.Api.Controllers.PedidoController",
+    "Method": "AssociarCarrinho",
+    "RelativePath": "api/pedidos/associar-carrinho",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "JSDeposito.Api.Controllers.PedidoController",
+    "Method": "DescartarAnonimo",
+    "RelativePath": "api/pedidos/descartar-anonimo",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "JSDeposito.Api.Controllers.PedidoController",
+    "Method": "PedidoAtual",
+    "RelativePath": "api/pedidos/pedido-atual",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "JSDeposito.Api.Controllers.PedidoController",
+    "Method": "SubstituirCarrinho",
+    "RelativePath": "api/pedidos/substituir",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace JSDeposito.Core.DTOs
 {
-    public class ItemPedidoDto
-    {
-        public int ProdutoId { get; set; }
-        public int Quantidade { get; set; }
-    }
+    public record ConflitoCarrinhoResponse(
+    bool ConflitoCarrinho,
+    int PedidoUsuarioId,
+    int PedidoAnonimoId
+);
 }

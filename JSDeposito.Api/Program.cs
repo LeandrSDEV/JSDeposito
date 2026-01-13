@@ -17,6 +17,18 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy
+            .WithOrigins("http://localhost:5173")
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials();
+    });
+});
+
 #region Controllers & Swagger
 
 builder.Services.AddControllers();
@@ -230,6 +242,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+app.UseCors();
 
 #endregion
 

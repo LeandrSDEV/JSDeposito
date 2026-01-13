@@ -1,0 +1,172 @@
+2026-01-09 09:04:31.104 -03:00 [INF] Tentativa de login | Email: admin@jsdeposito.com
+2026-01-09 09:04:31.766 -03:00 [INF] Login realizado com sucesso | UsuarioId: 1
+2026-01-09 09:04:32.034 -03:00 [INF] Tokens gerados | UsuarioId: 1
+2026-01-09 09:05:08.297 -03:00 [INF] Criando produto | Nome: Coca-Cola 2L | Preço: 10.99 | EstoqueInicial: 18
+2026-01-09 09:05:08.399 -03:00 [INF] Produto criado | ProdutoId: 1
+2026-01-09 09:06:35.679 -03:00 [INF] Listando produtos ativos
+2026-01-09 09:07:53.298 -03:00 [INF] Listando produtos ativos
+2026-01-09 09:07:53.316 -03:00 [INF] Listando produtos ativos
+2026-01-09 09:09:37.887 -03:00 [INF] Criando produto | Nome: Itaipava 350ml  | Preço: 29.00 | EstoqueInicial: 5
+2026-01-09 09:09:37.895 -03:00 [INF] Produto criado | ProdutoId: 2
+2026-01-09 09:09:41.011 -03:00 [INF] Listando produtos ativos
+2026-01-09 09:09:41.018 -03:00 [INF] Listando produtos ativos
+2026-01-09 09:13:32.642 -03:00 [INF] Criando produto | Nome: Amstel 350ml  | Preço: 38.49 | EstoqueInicial: 4
+2026-01-09 09:13:32.652 -03:00 [INF] Produto criado | ProdutoId: 3
+2026-01-09 09:13:35.437 -03:00 [INF] Listando produtos ativos
+2026-01-09 09:13:35.454 -03:00 [INF] Listando produtos ativos
+2026-01-09 09:16:57.741 -03:00 [INF] Tentativa de login | Email: admin@jsdeposito.com
+2026-01-09 09:16:57.912 -03:00 [INF] Login realizado com sucesso | UsuarioId: 1
+2026-01-09 09:16:57.918 -03:00 [INF] Tokens gerados | UsuarioId: 1
+2026-01-09 09:17:11.594 -03:00 [INF] Criando produto | Nome: SKOL 350ml | Preço: 33.00 | EstoqueInicial: 1
+2026-01-09 09:17:11.600 -03:00 [INF] Produto criado | ProdutoId: 4
+2026-01-09 09:17:40.002 -03:00 [INF] Listando produtos ativos
+2026-01-09 09:17:40.009 -03:00 [INF] Listando produtos ativos
+2026-01-09 22:09:15.116 -03:00 [INF] Listando produtos ativos
+2026-01-09 22:09:15.281 -03:00 [INF] Listando produtos ativos
+2026-01-09 22:16:02.355 -03:00 [INF] Listando produtos ativos
+2026-01-09 22:16:02.365 -03:00 [INF] Listando produtos ativos
+2026-01-09 22:23:18.210 -03:00 [INF] Listando produtos ativos
+2026-01-09 22:23:18.220 -03:00 [INF] Listando produtos ativos
+2026-01-09 22:31:57.983 -03:00 [INF] Listando produtos ativos
+2026-01-09 22:31:57.997 -03:00 [INF] Listando produtos ativos
+2026-01-09 22:32:59.591 -03:00 [INF] Listando produtos ativos
+2026-01-09 22:32:59.604 -03:00 [INF] Listando produtos ativos
+2026-01-09 22:34:00.430 -03:00 [INF] Listando produtos ativos
+2026-01-09 22:34:00.446 -03:00 [INF] Listando produtos ativos
+2026-01-09 22:34:19.727 -03:00 [INF] Listando produtos ativos
+2026-01-09 22:34:19.751 -03:00 [INF] Listando produtos ativos
+2026-01-09 22:34:48.956 -03:00 [INF] Listando produtos ativos
+2026-01-09 22:34:48.971 -03:00 [INF] Listando produtos ativos
+2026-01-09 22:42:35.943 -03:00 [INF] Listando produtos ativos
+2026-01-09 22:42:35.954 -03:00 [INF] Listando produtos ativos
+2026-01-09 22:43:11.729 -03:00 [INF] Listando produtos ativos
+2026-01-09 22:43:11.737 -03:00 [INF] Listando produtos ativos
+2026-01-09 22:47:33.549 -03:00 [INF] Listando produtos ativos
+2026-01-09 22:47:33.567 -03:00 [INF] Listando produtos ativos
+2026-01-09 22:48:53.736 -03:00 [INF] Listando produtos ativos
+2026-01-09 22:48:53.743 -03:00 [INF] Listando produtos ativos
+2026-01-09 22:51:03.896 -03:00 [INF] Listando produtos ativos
+2026-01-09 22:51:03.916 -03:00 [INF] Listando produtos ativos
+2026-01-09 22:57:26.159 -03:00 [INF] Listando produtos ativos
+2026-01-09 22:57:26.170 -03:00 [INF] Listando produtos ativos
+2026-01-09 22:57:27.687 -03:00 [INF] Listando produtos ativos
+2026-01-09 22:57:27.694 -03:00 [INF] Listando produtos ativos
+2026-01-09 22:58:28.047 -03:00 [INF] Tentativa de login | Email: admin@jsdeposito.com
+2026-01-09 22:58:28.502 -03:00 [INF] Login realizado com sucesso | UsuarioId: 1
+2026-01-09 22:58:28.733 -03:00 [INF] Tokens gerados | UsuarioId: 1
+2026-01-09 22:59:11.333 -03:00 [INF] Criando produto | Nome: Energy UP | Preço: 59.00 | EstoqueInicial: 100
+2026-01-09 22:59:11.352 -03:00 [INF] Produto criado | ProdutoId: 5
+2026-01-09 22:59:27.081 -03:00 [INF] Criando produto | Nome: Bally | Preço: 68.00 | EstoqueInicial: 100
+2026-01-09 22:59:27.109 -03:00 [INF] Produto criado | ProdutoId: 6
+2026-01-09 22:59:47.468 -03:00 [INF] Criando produto | Nome: Brahma Chop 350mll | Preço: 36.00 | EstoqueInicial: 100
+2026-01-09 22:59:47.478 -03:00 [INF] Produto criado | ProdutoId: 7
+2026-01-09 23:00:05.735 -03:00 [INF] Criando produto | Nome: Stela  | Preço: 45.00 | EstoqueInicial: 100
+2026-01-09 23:00:05.770 -03:00 [INF] Produto criado | ProdutoId: 8
+2026-01-09 23:00:20.301 -03:00 [INF] Criando produto | Nome: Slova | Preço: 16 | EstoqueInicial: 100
+2026-01-09 23:00:20.326 -03:00 [INF] Produto criado | ProdutoId: 9
+2026-01-09 23:00:36.125 -03:00 [INF] Criando produto | Nome: Sminorfi 1L | Preço: 45 | EstoqueInicial: 100
+2026-01-09 23:00:36.132 -03:00 [INF] Produto criado | ProdutoId: 10
+2026-01-09 23:00:44.693 -03:00 [INF] Criando produto | Nome: Asboslut 1L | Preço: 90 | EstoqueInicial: 100
+2026-01-09 23:00:44.699 -03:00 [INF] Produto criado | ProdutoId: 11
+2026-01-09 23:00:46.696 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:00:46.707 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:05:16.223 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:05:16.231 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:08:10.918 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:08:10.924 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:08:55.534 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:08:55.543 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:09:16.173 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:09:16.185 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:13:07.225 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:13:11.395 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:13:11.414 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:13:48.254 -03:00 [ERR] Erro não tratado | Path: /api/cupons | Method: POST
+System.Exception: Cupom deve ter valor OU percentual
+   at Cupom..ctor(String codigo, Nullable`1 valorDesconto, Nullable`1 percentual, DateTime validoAte, Int32 limiteUso) in D:\Desenvolvimento\C#\JSDeposito\JSDeposito.Core\Entities\Cupom.cs:line 23
+   at JSDeposito.Api.Controllers.CupomController.Criar(CriarCupomRequestDto dto) in D:\Desenvolvimento\C#\JSDeposito\JSDeposito.Api\Controllers\CupomController.cs:line 29
+   at lambda_method145(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at JSDeposito.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in D:\Desenvolvimento\C#\JSDeposito\JSDeposito.Api\Middlewares\GlobalExceptionMiddleware.cs:line 25
+2026-01-09 23:13:48.324 -03:00 [ERR] Erro não tratado | Path: /api/cupons | Method: POST
+System.Exception: Cupom deve ter valor OU percentual
+   at Cupom..ctor(String codigo, Nullable`1 valorDesconto, Nullable`1 percentual, DateTime validoAte, Int32 limiteUso) in D:\Desenvolvimento\C#\JSDeposito\JSDeposito.Core\Entities\Cupom.cs:line 23
+   at JSDeposito.Api.Controllers.CupomController.Criar(CriarCupomRequestDto dto) in D:\Desenvolvimento\C#\JSDeposito\JSDeposito.Api\Controllers\CupomController.cs:line 29
+   at lambda_method145(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at JSDeposito.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in D:\Desenvolvimento\C#\JSDeposito\JSDeposito.Api\Middlewares\GlobalExceptionMiddleware.cs:line 25
+2026-01-09 23:14:09.108 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:14:09.120 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:17:55.209 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:17:55.218 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:18:01.253 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:18:01.269 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:21:03.214 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:21:08.570 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:21:08.582 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:23:57.219 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:23:57.226 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:23:59.367 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:23:59.380 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:26:02.212 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:30:42.220 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:31:13.209 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:31:13.216 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:32:01.207 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:34:38.214 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:34:42.591 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:34:42.597 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:36:33.208 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:36:35.819 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:36:35.826 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:38:40.657 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:38:41.060 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:38:44.705 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:38:44.726 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:41:48.206 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:41:51.606 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:41:51.624 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:46:25.205 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:46:35.206 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:46:35.213 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:46:41.230 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:46:51.222 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:46:51.226 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:47:52.028 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:47:54.693 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:48:02.974 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:48:02.981 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:49:31.206 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:49:31.214 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:49:40.206 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:49:40.211 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:49:48.492 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:49:48.506 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:50:00.954 -03:00 [INF] Listando produtos ativos
+2026-01-09 23:50:00.965 -03:00 [INF] Listando produtos ativos

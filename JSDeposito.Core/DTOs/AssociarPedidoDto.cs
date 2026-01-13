@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace JSDeposito.Core.DTOs
 {
-    public class ItemPedidoDto
+    public class AssociarPedidoDto
     {
-        public int ProdutoId { get; set; }
-        public int Quantidade { get; set; }
+        public Guid TokenAnonimo { get; set; }
+        public int UsuarioId { get; set; }
     }
 }

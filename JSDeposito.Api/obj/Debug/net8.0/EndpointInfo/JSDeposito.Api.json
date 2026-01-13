@@ -385,6 +385,27 @@
             "description": "OK"
           }
         }
+      },
+      "delete": {
+        "tags": [
+          "Pedido"
+        ],
+        "parameters": [
+          {
+            "name": "pedidoId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     },
     "/api/pedidos/{pedidoId}/itens": {
@@ -602,6 +623,54 @@
             }
           }
         },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/pedidos/pedido-atual": {
+      "get": {
+        "tags": [
+          "Pedido"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/pedidos/associar-carrinho": {
+      "post": {
+        "tags": [
+          "Pedido"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/pedidos/descartar-anonimo": {
+      "post": {
+        "tags": [
+          "Pedido"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/pedidos/substituir": {
+      "post": {
+        "tags": [
+          "Pedido"
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -1190,10 +1259,6 @@
           "quantidade": {
             "type": "integer",
             "format": "int32"
-          },
-          "imagemUrl": {
-            "type": "string",
-            "nullable": true
           }
         },
         "additionalProperties": false

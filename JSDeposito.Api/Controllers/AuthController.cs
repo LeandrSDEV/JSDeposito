@@ -11,10 +11,14 @@ namespace JSDeposito.Api.Controllers
     public class AuthController : ControllerBase
     {
         private readonly AuthService _auth;
+        private readonly ILogger<AuthController> _logger;
+        private readonly AuthService _authService;
 
-        public AuthController(AuthService auth)
+        public AuthController(AuthService auth, ILogger<AuthController> logger, AuthService authService)
         {
             _auth = auth;
+            _logger = logger;
+            _authService = authService;
         }
 
         [HttpPost("register")]
@@ -28,24 +32,27 @@ namespace JSDeposito.Api.Controllers
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginDto dto)
         {
-            Guid? tokenAnonimo = null;
+            Guid? tokenAnonimoPedido = null;
 
-            if (Request.Cookies.TryGetValue("pedido_anonimo", out var token))
+            if (Request.Cookies.TryGetValue("pedido_anonimo", out var cookieValue)
+                && Guid.TryParse(cookieValue, out var guid))
             {
-                tokenAnonimo = Guid.Parse(token);
+                tokenAnonimoPedido = guid;
             }
 
-            var result = _auth.Login(
+            var response = _authService.Login(
                 dto.Email,
                 dto.Senha,
-                tokenAnonimo
+                tokenAnonimoPedido
             );
 
-            // apaga cookie após associação
-            if (tokenAnonimo.HasValue)
+            // 🔥 remove cookie APÓS associar
+            if (tokenAnonimoPedido.HasValue)
+            {
                 Response.Cookies.Delete("pedido_anonimo");
+            }
 
-            return Ok(result);
+            return Ok(response);
         }
 
         [Authorize]
@@ -60,6 +67,7 @@ namespace JSDeposito.Api.Controllers
             _auth.Logout(request.RefreshToken);
             return NoContent();
         }
+
     }
 
     

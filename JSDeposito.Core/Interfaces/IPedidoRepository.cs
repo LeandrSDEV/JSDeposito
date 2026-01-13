@@ -8,5 +8,7 @@ public interface IPedidoRepository
     Pedido? ObterPorId(int id);
     void Atualizar(Pedido pedido);
     Pedido? ObterPorTokenAnonimo(Guid token);
+    void Remover(Pedido pedido);
+    Pedido? ObterPedidoAbertoDoUsuario(int usuarioId);
 
 }
