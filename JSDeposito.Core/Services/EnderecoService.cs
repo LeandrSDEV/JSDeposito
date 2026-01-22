@@ -2,6 +2,7 @@
 using JSDeposito.Core.DTOs;
 using JSDeposito.Core.Entities;
 using JSDeposito.Core.Interfaces;
+using JSDeposito.Core.Exceptions;
 
 namespace JSDeposito.Core.Services;
 
@@ -87,4 +88,20 @@ public class EnderecoService
             usuarioId,
             endereco.Id);
     }
+    public List<Endereco> ListarAtivosPorUsuario(int usuarioId)
+    {
+        return _enderecoRepository.ObterAtivosPorUsuario(usuarioId);
+    }
+
+    public Endereco ObterPorIdDoUsuario(int enderecoId, int usuarioId)
+    {
+        var endereco = _enderecoRepository.ObterPorId(enderecoId)
+            ?? throw new NotFoundException("Endereço não encontrado");
+
+        if (!endereco.Ativo || endereco.UsuarioId != usuarioId)
+            throw new BusinessException("Endereço inválido");
+
+        return endereco;
+    }
+
 }

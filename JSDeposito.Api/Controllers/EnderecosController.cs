@@ -25,4 +25,45 @@ public class EnderecosController : ControllerBase
         await _service.CriarEndereco(dto, usuarioId);
         return Ok();
     }
+
+    [Authorize(Roles = "Cliente")]
+    [HttpGet]
+    public IActionResult Listar()
+    {
+        var usuarioId = User.GetUserId();
+        var enderecos = _service.ListarAtivosPorUsuario(usuarioId)
+            .Select(e => new
+            {
+                id = e.Id,
+                rua = e.Rua,
+                numero = e.Numero,
+                bairro = e.Bairro,
+                cidade = e.Cidade,
+                latitude = e.Latitude,
+                longitude = e.Longitude
+            })
+            .ToList();
+
+        return Ok(enderecos);
+    }
+
+    [Authorize(Roles = "Cliente")]
+    [HttpGet("{enderecoId:int}")]
+    public IActionResult Obter(int enderecoId)
+    {
+        var usuarioId = User.GetUserId();
+        var e = _service.ObterPorIdDoUsuario(enderecoId, usuarioId);
+
+        return Ok(new
+        {
+            id = e.Id,
+            rua = e.Rua,
+            numero = e.Numero,
+            bairro = e.Bairro,
+            cidade = e.Cidade,
+            latitude = e.Latitude,
+            longitude = e.Longitude
+        });
+    }
+
 }

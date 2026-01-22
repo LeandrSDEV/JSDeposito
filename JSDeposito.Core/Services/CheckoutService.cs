@@ -120,14 +120,24 @@ public class CheckoutService
         var pedido = _pedidoRepository.ObterPorId(pedidoId)
             ?? throw new Exception("Pedido não encontrado");
 
-        if (!pedido.EstaEmAberto())
-            throw new Exception("Pedido não pode ser finalizado");
+        // Segurança: pedido deve pertencer ao usuário. Se ainda estiver anônimo, associa aqui.
+        if (!pedido.UsuarioId.HasValue)
+        {
+            pedido.AssociarUsuario(usuarioId);
+        }
+        else if (pedido.UsuarioId != usuarioId)
+        {
+            throw new SecurityException("Pedido não pertence ao usuário");
+        }
 
-        pedido.AssociarUsuario(usuarioId);
+        // Valida se está pronto para pagamento (itens, endereço, frete etc.)
+        pedido.ValidarParaPagamento();
+
         _pedidoRepository.Atualizar(pedido);
 
         _logger.LogInformation(
-            "Pedido finalizado | PedidoId: {PedidoId}",
+            "Pedido validado para pagamento | PedidoId: {PedidoId}",
             pedidoId);
     }
+
 }

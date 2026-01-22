@@ -96,6 +96,46 @@ public class PedidoService
             pedidoId, valorFrete);
     }
 
+    public void AplicarFreteParaUsuario(int pedidoId, int enderecoId, int usuarioId)
+    {
+        // Garante que o pedido é do usuário logado
+        ValidarAcessoAoPedido(pedidoId, usuarioId, null);
+
+        var endereco = _enderecoRepository.ObterPorId(enderecoId)
+            ?? throw new NotFoundException("Endereço não encontrado");
+
+        if (!endereco.Ativo || endereco.UsuarioId != usuarioId)
+            throw new BusinessException("Endereço inválido para o usuário");
+
+        _logger.LogInformation(
+            "Aplicando frete | PedidoId: {PedidoId} | EnderecoId: {EnderecoId} | UsuarioId: {UsuarioId}",
+            pedidoId, enderecoId, usuarioId);
+
+        var pedido = _pedidoRepository.ObterPorId(pedidoId)
+            ?? throw new NotFoundException("Pedido não encontrado");
+
+        var snapshot = new EnderecoSnapshot(
+            endereco.Rua,
+            endereco.Numero,
+            endereco.Bairro,
+            endereco.Cidade,
+            endereco.Latitude,
+            endereco.Longitude
+        );
+
+        var (valorFrete, promocional) =
+            _freteService.CalcularFrete(
+                new Localizacao(snapshot.Latitude, snapshot.Longitude)
+            );
+
+        pedido.DefinirEnderecoEAplicarFrete(snapshot, valorFrete, promocional);
+        _pedidoRepository.Atualizar(pedido);
+
+        _logger.LogInformation(
+            "Frete aplicado | PedidoId: {PedidoId} | Valor: {ValorFrete}",
+            pedidoId, valorFrete);
+    }
+
     public Pedido ObterPedido(int pedidoId)
     {
         return _pedidoRepository.ObterPorId(pedidoId);
@@ -118,14 +158,7 @@ public class PedidoService
 
         // REGRA DE ESTOQUE duplicada para garantir consistência
         if (produto.Estoque < dto.Quantidade)
-            throw new BusinessException(
-                $"Estoque atual: {produto.Estoque}"
-            );
-
-        if (produto.Estoque < dto.Quantidade)
-            throw new BusinessException(
-                $"Estoque atual: {produto.Estoque}"
-            );
+            throw new BusinessException($"Estoque atual: {produto.Estoque}");
 
         pedido.AdicionarItem(produto, dto.Quantidade);
 
@@ -269,7 +302,54 @@ public class PedidoService
 
     }
 
-    public void ExcluirPedido(int pedidoId)
+    
+
+public void LimparItensDoPedido(int pedidoId)
+{
+    _logger.LogInformation("Limpando itens do pedido {PedidoId}", pedidoId);
+
+    var pedido = _pedidoRepository.ObterPorId(pedidoId)
+        ?? throw new NotFoundException("Pedido não encontrado");
+
+    if (pedido.Status != PedidoStatus.Criado)
+        throw new BusinessException("Pedido não pode ser alterado");
+
+    // Devolve estoque de tudo que estava no carrinho
+    foreach (var item in pedido.Itens.ToList())
+    {
+        var produto = _produtoRepository.ObterPorId(item.ProdutoId)
+            ?? throw new NotFoundException($"Produto {item.ProdutoId} não encontrado");
+
+        produto.EntradaEstoque(item.Quantidade);
+        _produtoRepository.Atualizar(produto);
+    }
+
+    pedido.LimparItens();
+    _pedidoRepository.Atualizar(pedido);
+}
+
+public void AplicarFretePorLocalizacao(int pedidoId, EnderecoSnapshot endereco)
+{
+    _logger.LogInformation(
+        "Aplicando frete por localização | PedidoId: {PedidoId} | Lat: {Lat} | Lng: {Lng}",
+        pedidoId, endereco.Latitude, endereco.Longitude);
+
+    var pedido = _pedidoRepository.ObterPorId(pedidoId)
+        ?? throw new NotFoundException("Pedido não encontrado");
+
+    if (pedido.Status != PedidoStatus.Criado)
+        throw new BusinessException("Pedido não pode ser alterado");
+
+    var (valorFrete, promocional) =
+        _freteService.CalcularFrete(
+            new Localizacao(endereco.Latitude, endereco.Longitude)
+        );
+
+    pedido.DefinirEnderecoEAplicarFrete(endereco, valorFrete, promocional);
+    _pedidoRepository.Atualizar(pedido);
+}
+
+public void ExcluirPedido(int pedidoId)
     {
         var pedido = _pedidoRepository.ObterPorId(pedidoId)
             ?? throw new NotFoundException("Pedido não encontrado");

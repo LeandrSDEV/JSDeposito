@@ -3,6 +3,7 @@ using JSDeposito.Core.DTOs;
 using JSDeposito.Core.Exceptions;
 using JSDeposito.Core.Interfaces;
 using JSDeposito.Core.Services;
+using JSDeposito.Core.ValueObjects;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -65,8 +66,13 @@ public class PedidoController : ControllerBase
     [HttpGet("{pedidoId}")]
     public IActionResult Obter(int pedidoId)
     {
-        var pedido = _pedidoService.ObterPedido(pedidoId);
+        _pedidoService.ValidarAcessoAoPedido(
+            pedidoId,
+            User.Identity?.IsAuthenticated == true ? User.GetUserId() : (int?)null,
+            ObterTokenAnonimo()
+        );
 
+        var pedido = _pedidoService.ObterPedido(pedidoId);
         if (pedido == null)
             return NotFound("Pedido não encontrado");
 
@@ -118,38 +124,90 @@ public class PedidoController : ControllerBase
     [HttpPost("{pedidoId}/frete/{enderecoId}")]
     public IActionResult AplicarFrete(int pedidoId, int enderecoId)
     {
-        _pedidoService.AplicarFrete(pedidoId, enderecoId);
+        var usuarioId = User.GetUserId();
+        _pedidoService.AplicarFreteParaUsuario(pedidoId, enderecoId, usuarioId);
         return NoContent();
     }
 
     [HttpPost("{pedidoId}/cancelar")]
     public IActionResult Cancelar(int pedidoId)
     {
+        _pedidoService.ValidarAcessoAoPedido(
+            pedidoId,
+            User.Identity?.IsAuthenticated == true ? User.GetUserId() : (int?)null,
+            ObterTokenAnonimo()
+        );
+
         _pedidoService.CancelarPedido(pedidoId);
         return NoContent();
     }
 
     [HttpPost("{pedidoId}/cupom")]
-    public IActionResult AplicarCupom(
-    int pedidoId,
-    AplicarCupomDto dto)
+    public IActionResult AplicarCupom(int pedidoId, AplicarCupomDto dto)
     {
+        _pedidoService.ValidarAcessoAoPedido(
+            pedidoId,
+            User.Identity?.IsAuthenticated == true ? User.GetUserId() : (int?)null,
+            ObterTokenAnonimo()
+        );
+
         _pedidoService.AplicarCupom(pedidoId, dto.CodigoCupom);
         return NoContent();
     }
 
-    [HttpDelete("{pedidoId}")]
+
+    
+
+[HttpDelete("{pedidoId}/itens")]
+public IActionResult LimparItens(int pedidoId)
+{
+    _pedidoService.ValidarAcessoAoPedido(
+        pedidoId,
+        User.Identity?.IsAuthenticated == true ? User.GetUserId() : (int?)null,
+        ObterTokenAnonimo()
+    );
+
+    _pedidoService.LimparItensDoPedido(pedidoId);
+    return NoContent();
+}
+
+[HttpPost("{pedidoId}/frete-localizacao")]
+[AllowAnonymous]
+public IActionResult AplicarFreteLocalizacao(int pedidoId, [FromBody] AplicarFreteLocalizacaoDto dto)
+{
+    _pedidoService.ValidarAcessoAoPedido(
+        pedidoId,
+        User.Identity?.IsAuthenticated == true ? User.GetUserId() : (int?)null,
+        ObterTokenAnonimo()
+    );
+
+    var snap = new EnderecoSnapshot(
+        dto.Rua ?? "",
+        dto.Numero ?? "",
+        dto.Bairro ?? "",
+        dto.Cidade ?? "",
+        dto.Latitude,
+        dto.Longitude
+    );
+
+    _pedidoService.AplicarFretePorLocalizacao(pedidoId, snap);
+    return NoContent();
+}
+
+[HttpDelete("{pedidoId}")]
     public IActionResult Excluir(int pedidoId)
     {
-        var pedido = _pedidoService.ObterPedido(pedidoId)
-            ?? throw new NotFoundException("Pedido não encontrado");
+        _pedidoService.ValidarAcessoAoPedido(
+            pedidoId,
+            User.Identity?.IsAuthenticated == true ? User.GetUserId() : (int?)null,
+            ObterTokenAnonimo()
+        );
 
         _pedidoService.ExcluirPedido(pedidoId);
-
         return NoContent();
     }
 
-    [Authorize]
+    [Authorize(Roles = "Cliente")]
     [HttpGet("pedido-atual")]
     public IActionResult PedidoAtual()
     {
@@ -162,6 +220,7 @@ public class PedidoController : ControllerBase
         return Ok(pedido);
     }
 
+    [Authorize(Roles = "Cliente")]
     [HttpPost("associar-carrinho")]
     public IActionResult AssociarCarrinho()
     {
@@ -177,14 +236,17 @@ public class PedidoController : ControllerBase
         if (conflito != null)
             return Conflict(new
             {
-                message = "Usuário já possui um carrinho ativo"
+                message = "Usuário já possui um carrinho ativo",
+                conflitoCarrinho = true,
+                pedidoUsuarioId = conflito.PedidoUsuarioId,
+                pedidoAnonimoId = conflito.PedidoAnonimoId
             });
 
         RemoverCookieAnonimo();
         return Ok();
     }
 
-    [Authorize]
+    [Authorize(Roles = "Cliente")]
     [HttpPost("descartar-anonimo")]
     public IActionResult DescartarAnonimo()
     {
@@ -199,7 +261,7 @@ public class PedidoController : ControllerBase
         return Ok();
     }
 
-    [Authorize]
+    [Authorize(Roles = "Cliente")]
     [HttpPost("substituir")]
     public IActionResult SubstituirCarrinho()
     {

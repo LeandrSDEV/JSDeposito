@@ -31,7 +31,6 @@ public class AuthController : ControllerBase
         return StatusCode(201);
     }
 
-    [Authorize]
     [HttpPost("refresh")]
     public ActionResult<AuthResponse> Refresh([FromBody] RefreshRequest req)
     {
@@ -39,7 +38,6 @@ public class AuthController : ControllerBase
         return Ok(res);
     }
 
-    [Authorize]
     [HttpPost("logout")]
     public IActionResult Logout([FromBody] RefreshRequest req)
     {

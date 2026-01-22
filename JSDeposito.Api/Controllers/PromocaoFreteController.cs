@@ -1,7 +1,9 @@
-﻿using JSDeposito.Core.Entities;
+﻿using JSDeposito.Core.DTOs;
+using JSDeposito.Core.Entities;
 using JSDeposito.Core.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+
 
 namespace JSDeposito.Api.Controllers;
 

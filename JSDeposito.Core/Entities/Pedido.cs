@@ -182,7 +182,22 @@ public class Pedido
             TokenAnonimo = Guid.NewGuid();
     }
 
-    public void RemoverTokenAnonimo()
+    
+
+public void LimparItens()
+{
+    // Permite limpar mesmo que exista cupom aplicado
+    GarantirPedidoEditavel();
+
+    _itens.Clear();
+    Desconto = 0;
+    CodigoCupom = null;
+
+    // Mantém endereço/frete (usuário pode reutilizar), mas total deve refletir
+    RecalcularTotal();
+}
+
+public void RemoverTokenAnonimo()
     {
         TokenAnonimo = null;
     }
