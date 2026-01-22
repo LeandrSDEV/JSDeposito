@@ -2,6 +2,9 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
+namespace JSDeposito.Api.Controllers;
+
+
 [ApiController]
 [Route("api/relatorios")]
 public class RelatoriosController : ControllerBase

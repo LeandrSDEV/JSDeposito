@@ -2,6 +2,9 @@
 using JSDeposito.Core.Interfaces;
 using JSDeposito.Core.ValueObjects;
 
+namespace JSDeposito.Core.Services;
+
+
 public class FreteService
 {
     private readonly Localizacao _origem;

@@ -5,7 +5,6 @@ using JSDeposito.Core.Interfaces;
 using JSDeposito.Core.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
 
 namespace JSDeposito.Api.Controllers;
 
@@ -27,6 +26,16 @@ public class PedidoController : ControllerBase
     public IActionResult Criar([FromBody] CriarPedidoDto? dto)
     {
         dto ??= new CriarPedidoDto();
+
+        // 🔒 SE USUÁRIO ESTIVER LOGADO, NÃO CRIA OUTRO PEDIDO
+        if (User.Identity?.IsAuthenticated == true)
+        {
+            var usuarioId = User.GetUserId();
+            var pedidoExistente = _pedidoRepository.ObterPedidoAbertoDoUsuario(usuarioId);
+
+            if (pedidoExistente != null)
+                return Ok(new { pedidoId = pedidoExistente.Id });
+        }
 
         // 🔁 evita múltiplos pedidos anônimos
         if (Request.Cookies.TryGetValue("pedido_anonimo", out var tokenStr) &&
@@ -50,10 +59,7 @@ public class PedidoController : ControllerBase
                 Expires = DateTimeOffset.UtcNow.AddDays(7)
             });
 
-        return Ok(new
-        {
-            pedidoId = response.PedidoId
-        });
+        return Ok(new { pedidoId = response.PedidoId });
     }
 
     [HttpGet("{pedidoId}")]
@@ -73,7 +79,7 @@ public class PedidoController : ControllerBase
     {
         _pedidoService.ValidarAcessoAoPedido(
     pedidoId,
-    User.Identity?.IsAuthenticated == true ? User.GetUsuarioId() : null,
+    User.Identity?.IsAuthenticated == true ? User.GetUserId() : null,
     ObterTokenAnonimo()
 );
         _pedidoService.AdicionarItem(pedidoId, dto);
@@ -86,7 +92,7 @@ public class PedidoController : ControllerBase
     {
         _pedidoService.ValidarAcessoAoPedido(
     pedidoId,
-    User.Identity?.IsAuthenticated == true ? User.GetUsuarioId() : null,
+    User.Identity?.IsAuthenticated == true ? User.GetUserId() : null,
     ObterTokenAnonimo()
 );
         _pedidoService.RemoverItemPorProduto(pedidoId, produtoId);
@@ -101,7 +107,7 @@ public class PedidoController : ControllerBase
     {
         _pedidoService.ValidarAcessoAoPedido(
     pedidoId,
-    User.Identity?.IsAuthenticated == true ? User.GetUsuarioId() : null,
+    User.Identity?.IsAuthenticated == true ? User.GetUserId() : null,
     ObterTokenAnonimo()
 );
         _pedidoService.AlterarQuantidade(pedidoId, produtoId, dto.Quantidade);
@@ -147,7 +153,7 @@ public class PedidoController : ControllerBase
     [HttpGet("pedido-atual")]
     public IActionResult PedidoAtual()
     {
-        var usuarioId = User.GetUsuarioId();
+        var usuarioId = User.GetUserId();
         var pedido = _pedidoService.ObterPedidoAbertoDoUsuario(usuarioId);
 
         if (pedido == null)
@@ -162,14 +168,17 @@ public class PedidoController : ControllerBase
         var token = Request.Cookies["pedido_anonimo"];
         if (string.IsNullOrEmpty(token)) return Ok();
 
-        var usuarioId = User.GetUsuarioId();
+        var usuarioId = User.GetUserId();
 
         var conflito = _pedidoService.VerificarOuAssociarCarrinho(
             Guid.Parse(token),
             usuarioId);
 
         if (conflito != null)
-            return Conflict(conflito);
+            return Conflict(new
+            {
+                message = "Usuário já possui um carrinho ativo"
+            });
 
         RemoverCookieAnonimo();
         return Ok();
@@ -198,7 +207,7 @@ public class PedidoController : ControllerBase
         if (string.IsNullOrEmpty(token))
             return BadRequest();
 
-        var usuarioId = User.GetUsuarioId();
+        var usuarioId = User.GetUserId();
 
         var pedidoAnonimo = _pedidoRepository.ObterPorTokenAnonimo(Guid.Parse(token))
             ?? throw new NotFoundException("Pedido anônimo não encontrado");

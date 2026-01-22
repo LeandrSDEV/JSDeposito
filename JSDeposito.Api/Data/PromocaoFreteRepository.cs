@@ -1,7 +1,9 @@
-﻿using JSDeposito.Api.Data;
-using JSDeposito.Core.Entities;
+﻿using JSDeposito.Core.Entities;
 using JSDeposito.Core.Interfaces;
 using Microsoft.EntityFrameworkCore;
+
+namespace JSDeposito.Api.Data;
+
 
 public class PromocaoFreteRepository : IPromocaoFreteRepository
 {
@@ -18,7 +20,7 @@ public class PromocaoFreteRepository : IPromocaoFreteRepository
         _context.SaveChanges();
     }
 
-    public PromocaoFrete ObterPorId(int id)
+    public PromocaoFrete? ObterPorId(int id)
     {
         return _context.PromocaoFretes.FirstOrDefault(p => p.Id == id);
     }

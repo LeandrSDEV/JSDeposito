@@ -1,11 +1,10 @@
 ﻿using JSDeposito.Core.Entities;
 
-namespace JSDeposito.Core.Interfaces
+namespace JSDeposito.Core.Interfaces;
+
+public interface IUsuarioRepository
 {
-    public interface IUsuarioRepository
-    {
-        Usuario ObterPorEmail(string email);
-        Usuario ObterPorId(int id);
-        void Adicionar(Usuario usuario);
-    }
+    Usuario? ObterPorEmail(string email);
+    Usuario? ObterPorId(int id);
+    void Adicionar(Usuario usuario);
 }

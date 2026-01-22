@@ -18,7 +18,7 @@ public class CupomRepository : ICupomRepository
         _context.SaveChanges();
     }
 
-    public Cupom ObterPorCodigo(string codigo)
+    public Cupom? ObterPorCodigo(string codigo)
     {
         return _context.Cupons.FirstOrDefault(c => c.Codigo == codigo);
     }

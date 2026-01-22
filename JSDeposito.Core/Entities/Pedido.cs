@@ -1,11 +1,6 @@
-﻿using JSDeposito.Core.DomainEvents;
-using JSDeposito.Core.Enums;
+﻿using JSDeposito.Core.Enums;
 using JSDeposito.Core.Exceptions;
 using JSDeposito.Core.ValueObjects;
-using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-
 namespace JSDeposito.Core.Entities;
 
 public class Pedido
@@ -21,12 +16,6 @@ public class Pedido
     public Guid? TokenAnonimo { get; private set; }
     public EnderecoSnapshot? EnderecoEntrega { get; private set; }
     public bool FretePromocional { get; private set; }
-
-
-    private readonly List<DomainEvent> _events = new();
-    [NotMapped]
-    public IReadOnlyCollection<DomainEvent> Events => _events;
-
     private readonly List<ItemPedido> _itens = new();
     public IReadOnlyCollection<ItemPedido> Itens => _itens.AsReadOnly();
 
@@ -36,8 +25,6 @@ public class Pedido
     Status = PedidoStatus.Criado;
     Total = 0;
 }
-
-
 
     public void AdicionarItem(Produto produto, int quantidade)
     {
@@ -61,7 +48,6 @@ public class Pedido
         RecalcularTotal();
     }
 
-
     private void RecalcularTotal()
     {
         Total = _itens.Sum(i => i.Subtotal) - Desconto + ValorFrete;
@@ -73,7 +59,6 @@ public class Pedido
             throw new BusinessException("Pedido inválido");
 
         Status = PedidoStatus.Pago;
-        _events.Add(new PedidoPagoEvent(Id));
     }
 
     public void AplicarCupom(Cupom cupom)

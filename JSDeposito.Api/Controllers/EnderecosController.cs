@@ -3,8 +3,8 @@ using JSDeposito.Core.DTOs;
 using JSDeposito.Core.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
 
+namespace JSDeposito.Api.Controllers;
 
 [ApiController]
 [Route("api/enderecos")]
@@ -22,10 +22,6 @@ public class EnderecosController : ControllerBase
     public async Task<IActionResult> Criar([FromBody] EnderecoDto dto)
     {
         var usuarioId = User.GetUserId();
-
-        var claim = User.FindFirst(ClaimTypes.NameIdentifier);
-        Console.WriteLine(claim?.Value);
-
         await _service.CriarEndereco(dto, usuarioId);
         return Ok();
     }

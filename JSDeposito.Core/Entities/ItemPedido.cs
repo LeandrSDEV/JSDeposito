@@ -1,5 +1,7 @@
-﻿using JSDeposito.Core.Entities;
-using JSDeposito.Core.Exceptions;
+﻿using JSDeposito.Core.Exceptions;
+
+namespace JSDeposito.Core.Entities;
+
 
 public class ItemPedido
 {

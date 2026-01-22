@@ -4,22 +4,13 @@ namespace JSDeposito.Api.UserExtensions;
 
 public static class ClaimsPrincipalExtensions
 {
-    public static int GetUsuarioId(this ClaimsPrincipal user)
+    public static int GetUserId(this ClaimsPrincipal user)
     {
-        if (user == null)
-            throw new ArgumentNullException(nameof(user));
+        var idClaim = user.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
-        if (user.Identity?.IsAuthenticated != true)
-            throw new UnauthorizedAccessException("Usuário não autenticado");
+        if (string.IsNullOrWhiteSpace(idClaim) || !int.TryParse(idClaim, out var userId))
+            throw new InvalidOperationException("Usuário não autenticado ou claim de identificação inválido.");
 
-        var claim = user.FindFirst(ClaimTypes.NameIdentifier);
-
-        if (claim == null)
-            throw new UnauthorizedAccessException("Claim de usuário não encontrada");
-
-        if (!int.TryParse(claim.Value, out var usuarioId))
-            throw new UnauthorizedAccessException("Id do usuário inválido");
-
-        return usuarioId;
+        return userId;
     }
 }

@@ -4,75 +4,52 @@ using JSDeposito.Core.ValueObjects;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace JSDeposito.Api.Controllers
+namespace JSDeposito.Api.Controllers;
+
+[ApiController]
+[Route("api/auth")]
+public class AuthController : ControllerBase
 {
-    [ApiController]
-    [Route("api/auth")]
-    public class AuthController : ControllerBase
+    private readonly AuthService _authService;
+
+    public AuthController(AuthService authService)
     {
-        private readonly AuthService _auth;
-        private readonly ILogger<AuthController> _logger;
-        private readonly AuthService _authService;
-
-        public AuthController(AuthService auth, ILogger<AuthController> logger, AuthService authService)
-        {
-            _auth = auth;
-            _logger = logger;
-            _authService = authService;
-        }
-
-        [HttpPost("register")]
-        [AllowAnonymous]
-        public IActionResult Register([FromBody] RegisterRequest request)
-        {
-            _auth.Register(request);
-            return Created("", null);
-        }
-
-        [HttpPost("login")]
-        public IActionResult Login([FromBody] LoginDto dto)
-        {
-            Guid? tokenAnonimoPedido = null;
-
-            if (Request.Cookies.TryGetValue("pedido_anonimo", out var cookieValue)
-                && Guid.TryParse(cookieValue, out var guid))
-            {
-                tokenAnonimoPedido = guid;
-            }
-
-            var response = _authService.Login(
-                dto.Email,
-                dto.Senha,
-                tokenAnonimoPedido
-            );
-
-            // 🔥 remove cookie APÓS associar
-            if (tokenAnonimoPedido.HasValue)
-            {
-                Response.Cookies.Delete("pedido_anonimo");
-            }
-
-            return Ok(response);
-        }
-
-        [Authorize]
-        [HttpPost("refresh")]
-        public IActionResult Refresh(RefreshRequest request)
-            => Ok(_auth.Refresh(request.RefreshToken));
-
-        [Authorize]
-        [HttpPost("logout")]
-        public IActionResult Logout(LogoutRequest request)
-        {
-            _auth.Logout(request.RefreshToken);
-            return NoContent();
-        }
-
+        _authService = authService;
     }
 
-    
-    public record RefreshRequest(string RefreshToken);
-    public record LogoutRequest(string RefreshToken);
+    [HttpPost("login")]
+    public ActionResult<AuthResponse> Login([FromBody] LoginRequest req, [FromQuery] Guid? tokenAnonimoPedido)
+    {
+        var res = _authService.Login(req.Email, req.Senha, tokenAnonimoPedido);
+        return Ok(res);
+    }
 
+    [HttpPost("register")]
+    public IActionResult Register([FromBody] RegisterRequest req)
+    {
+        _authService.Register(new JSDeposito.Core.DTOs.RegisterRequest(req.Nome, req.Email, req.Telefone, req.Senha));
+        return StatusCode(201);
+    }
 
+    [Authorize]
+    [HttpPost("refresh")]
+    public ActionResult<AuthResponse> Refresh([FromBody] RefreshRequest req)
+    {
+        var res = _authService.Refresh(req.RefreshToken);
+        return Ok(res);
+    }
+
+    [Authorize]
+    [HttpPost("logout")]
+    public IActionResult Logout([FromBody] RefreshRequest req)
+    {
+        _authService.Logout(req.RefreshToken);
+        return NoContent();
+    }
 }
+
+public record LoginRequest(string Email, string Senha);
+
+public record RegisterRequest(string Nome, string Email, string Telefone, string Senha);
+
+public record RefreshRequest(string RefreshToken);

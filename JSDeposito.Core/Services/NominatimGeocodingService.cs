@@ -5,6 +5,9 @@ using Microsoft.Extensions.Logging;
 using System.Net.Http.Json;
 using System.Text.Json.Serialization;
 
+namespace JSDeposito.Core.Services;
+
+
 public class NominatimGeocodingService : IGeocodingService
 {
     private readonly HttpClient _httpClient;

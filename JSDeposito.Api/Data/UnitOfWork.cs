@@ -1,6 +1,8 @@
-﻿using JSDeposito.Api.Data;
-using JSDeposito.Core.Interfaces;
+﻿using JSDeposito.Core.Interfaces;
 using Microsoft.EntityFrameworkCore.Storage;
+
+namespace JSDeposito.Api.Data;
+
 
 
 public class UnitOfWork : IUnitOfWork
@@ -29,4 +31,3 @@ public class UnitOfWork : IUnitOfWork
         await _transaction!.RollbackAsync();
     }
 }
-

@@ -73,8 +73,6 @@ public class AuthService
         {
             _logger.LogWarning("Refresh token inválido ou expirado");
             throw new SecurityException("Refresh token inválido");
-
-            throw new NotImplementedException();
         }
 
         var usuario = _usuarioRepository.ObterPorId(token.UsuarioId)

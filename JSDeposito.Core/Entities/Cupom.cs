@@ -1,4 +1,7 @@
-﻿public class Cupom
+﻿
+namespace JSDeposito.Core.Entities;
+
+public class Cupom
 {
     public int Id { get; private set; }
     public string Codigo { get; private set; }
