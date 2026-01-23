@@ -1,0 +1,594 @@
+2026-01-23 06:33:46.338 -03:00 [INF] Listando produtos ativos
+2026-01-23 06:33:46.394 -03:00 [INF] Tentativa de refresh token
+2026-01-23 06:33:46.542 -03:00 [INF] Listando produtos ativos
+2026-01-23 06:33:46.542 -03:00 [INF] Refresh token válido | UsuarioId: 6
+2026-01-23 06:33:46.758 -03:00 [INF] Novos tokens emitidos | UsuarioId: 6
+2026-01-23 06:33:47.200 -03:00 [INF] Listando produtos ativos
+2026-01-23 06:33:47.267 -03:00 [INF] Tentativa de refresh token
+2026-01-23 06:33:47.294 -03:00 [INF] Listando produtos ativos
+2026-01-23 06:33:47.305 -03:00 [WRN] Refresh token inválido ou expirado
+2026-01-23 06:33:47.311 -03:00 [ERR] Erro não tratado | Path: /api/auth/refresh | Method: POST
+System.Security.SecurityException: Refresh token inválido
+   at JSDeposito.Core.Services.AuthService.Refresh(String refreshToken) in D:\Desenvolvimento\backend\JSDeposito.Core\Services\AuthService.cs:line 75
+   at JSDeposito.Api.Controllers.AuthController.Refresh(RefreshRequest req) in D:\Desenvolvimento\backend\JSDeposito.Api\Controllers\AuthController.cs:line 37
+   at lambda_method12(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at JSDeposito.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in D:\Desenvolvimento\backend\JSDeposito.Api\Middlewares\GlobalExceptionMiddleware.cs:line 25
+2026-01-23 06:33:47.419 -03:00 [ERR] Erro não tratado | Path: /api/auth/refresh | Method: POST
+System.Security.SecurityException: Refresh token inválido
+   at JSDeposito.Core.Services.AuthService.Refresh(String refreshToken) in D:\Desenvolvimento\backend\JSDeposito.Core\Services\AuthService.cs:line 75
+   at JSDeposito.Api.Controllers.AuthController.Refresh(RefreshRequest req) in D:\Desenvolvimento\backend\JSDeposito.Api\Controllers\AuthController.cs:line 37
+   at lambda_method12(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at JSDeposito.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in D:\Desenvolvimento\backend\JSDeposito.Api\Middlewares\GlobalExceptionMiddleware.cs:line 25
+2026-01-23 06:33:57.375 -03:00 [INF] Criando pedido anônimo
+2026-01-23 06:33:57.464 -03:00 [INF] Pedido anônimo criado | PedidoId: 115
+2026-01-23 06:33:57.654 -03:00 [INF] Adicionando item | PedidoId: 115 | ProdutoId: 5
+2026-01-23 06:33:57.725 -03:00 [INF] Item adicionado | PedidoId: 115 | ProdutoId: 5
+2026-01-23 06:34:09.164 -03:00 [INF] Adicionando item | PedidoId: 115 | ProdutoId: 3
+2026-01-23 06:34:09.168 -03:00 [ERR] Erro não tratado | Path: /api/pedidos/115/itens | Method: POST
+JSDeposito.Core.Exceptions.BusinessException: Estoque atual: 0
+   at JSDeposito.Core.Services.PedidoService.AdicionarItem(Int32 pedidoId, AdicionarItemPedidoDto dto) in D:\Desenvolvimento\backend\JSDeposito.Core\Services\PedidoService.cs:line 161
+   at JSDeposito.Api.Controllers.PedidoController.Adicionar(Int32 pedidoId, AdicionarItemPedidoDto dto) in D:\Desenvolvimento\backend\JSDeposito.Api\Controllers\PedidoController.cs:line 91
+   at lambda_method262(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at JSDeposito.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in D:\Desenvolvimento\backend\JSDeposito.Api\Middlewares\GlobalExceptionMiddleware.cs:line 25
+2026-01-23 06:34:09.179 -03:00 [ERR] Erro não tratado | Path: /api/pedidos/115/itens | Method: POST
+JSDeposito.Core.Exceptions.BusinessException: Estoque atual: 0
+   at JSDeposito.Core.Services.PedidoService.AdicionarItem(Int32 pedidoId, AdicionarItemPedidoDto dto) in D:\Desenvolvimento\backend\JSDeposito.Core\Services\PedidoService.cs:line 161
+   at JSDeposito.Api.Controllers.PedidoController.Adicionar(Int32 pedidoId, AdicionarItemPedidoDto dto) in D:\Desenvolvimento\backend\JSDeposito.Api\Controllers\PedidoController.cs:line 91
+   at lambda_method262(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at JSDeposito.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in D:\Desenvolvimento\backend\JSDeposito.Api\Middlewares\GlobalExceptionMiddleware.cs:line 25
+2026-01-23 06:34:09.858 -03:00 [INF] Adicionando item | PedidoId: 115 | ProdutoId: 3
+2026-01-23 06:34:09.862 -03:00 [ERR] Erro não tratado | Path: /api/pedidos/115/itens | Method: POST
+JSDeposito.Core.Exceptions.BusinessException: Estoque atual: 0
+   at JSDeposito.Core.Services.PedidoService.AdicionarItem(Int32 pedidoId, AdicionarItemPedidoDto dto) in D:\Desenvolvimento\backend\JSDeposito.Core\Services\PedidoService.cs:line 161
+   at JSDeposito.Api.Controllers.PedidoController.Adicionar(Int32 pedidoId, AdicionarItemPedidoDto dto) in D:\Desenvolvimento\backend\JSDeposito.Api\Controllers\PedidoController.cs:line 91
+   at lambda_method262(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at JSDeposito.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in D:\Desenvolvimento\backend\JSDeposito.Api\Middlewares\GlobalExceptionMiddleware.cs:line 25
+2026-01-23 06:34:09.870 -03:00 [ERR] Erro não tratado | Path: /api/pedidos/115/itens | Method: POST
+JSDeposito.Core.Exceptions.BusinessException: Estoque atual: 0
+   at JSDeposito.Core.Services.PedidoService.AdicionarItem(Int32 pedidoId, AdicionarItemPedidoDto dto) in D:\Desenvolvimento\backend\JSDeposito.Core\Services\PedidoService.cs:line 161
+   at JSDeposito.Api.Controllers.PedidoController.Adicionar(Int32 pedidoId, AdicionarItemPedidoDto dto) in D:\Desenvolvimento\backend\JSDeposito.Api\Controllers\PedidoController.cs:line 91
+   at lambda_method262(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at JSDeposito.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in D:\Desenvolvimento\backend\JSDeposito.Api\Middlewares\GlobalExceptionMiddleware.cs:line 25
+2026-01-23 06:34:10.073 -03:00 [INF] Adicionando item | PedidoId: 115 | ProdutoId: 3
+2026-01-23 06:34:10.077 -03:00 [ERR] Erro não tratado | Path: /api/pedidos/115/itens | Method: POST
+JSDeposito.Core.Exceptions.BusinessException: Estoque atual: 0
+   at JSDeposito.Core.Services.PedidoService.AdicionarItem(Int32 pedidoId, AdicionarItemPedidoDto dto) in D:\Desenvolvimento\backend\JSDeposito.Core\Services\PedidoService.cs:line 161
+   at JSDeposito.Api.Controllers.PedidoController.Adicionar(Int32 pedidoId, AdicionarItemPedidoDto dto) in D:\Desenvolvimento\backend\JSDeposito.Api\Controllers\PedidoController.cs:line 91
+   at lambda_method262(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at JSDeposito.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in D:\Desenvolvimento\backend\JSDeposito.Api\Middlewares\GlobalExceptionMiddleware.cs:line 25
+2026-01-23 06:34:10.086 -03:00 [ERR] Erro não tratado | Path: /api/pedidos/115/itens | Method: POST
+JSDeposito.Core.Exceptions.BusinessException: Estoque atual: 0
+   at JSDeposito.Core.Services.PedidoService.AdicionarItem(Int32 pedidoId, AdicionarItemPedidoDto dto) in D:\Desenvolvimento\backend\JSDeposito.Core\Services\PedidoService.cs:line 161
+   at JSDeposito.Api.Controllers.PedidoController.Adicionar(Int32 pedidoId, AdicionarItemPedidoDto dto) in D:\Desenvolvimento\backend\JSDeposito.Api\Controllers\PedidoController.cs:line 91
+   at lambda_method262(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at JSDeposito.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in D:\Desenvolvimento\backend\JSDeposito.Api\Middlewares\GlobalExceptionMiddleware.cs:line 25
+2026-01-23 06:34:10.273 -03:00 [INF] Adicionando item | PedidoId: 115 | ProdutoId: 3
+2026-01-23 06:34:10.278 -03:00 [ERR] Erro não tratado | Path: /api/pedidos/115/itens | Method: POST
+JSDeposito.Core.Exceptions.BusinessException: Estoque atual: 0
+   at JSDeposito.Core.Services.PedidoService.AdicionarItem(Int32 pedidoId, AdicionarItemPedidoDto dto) in D:\Desenvolvimento\backend\JSDeposito.Core\Services\PedidoService.cs:line 161
+   at JSDeposito.Api.Controllers.PedidoController.Adicionar(Int32 pedidoId, AdicionarItemPedidoDto dto) in D:\Desenvolvimento\backend\JSDeposito.Api\Controllers\PedidoController.cs:line 91
+   at lambda_method262(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at JSDeposito.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in D:\Desenvolvimento\backend\JSDeposito.Api\Middlewares\GlobalExceptionMiddleware.cs:line 25
+2026-01-23 06:34:10.287 -03:00 [ERR] Erro não tratado | Path: /api/pedidos/115/itens | Method: POST
+JSDeposito.Core.Exceptions.BusinessException: Estoque atual: 0
+   at JSDeposito.Core.Services.PedidoService.AdicionarItem(Int32 pedidoId, AdicionarItemPedidoDto dto) in D:\Desenvolvimento\backend\JSDeposito.Core\Services\PedidoService.cs:line 161
+   at JSDeposito.Api.Controllers.PedidoController.Adicionar(Int32 pedidoId, AdicionarItemPedidoDto dto) in D:\Desenvolvimento\backend\JSDeposito.Api\Controllers\PedidoController.cs:line 91
+   at lambda_method262(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at JSDeposito.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in D:\Desenvolvimento\backend\JSDeposito.Api\Middlewares\GlobalExceptionMiddleware.cs:line 25
+2026-01-23 06:34:27.708 -03:00 [INF] Adicionando item | PedidoId: 115 | ProdutoId: 8
+2026-01-23 06:34:27.724 -03:00 [INF] Item adicionado | PedidoId: 115 | ProdutoId: 8
+2026-01-23 06:35:00.637 -03:00 [INF] Listando produtos ativos
+2026-01-23 06:35:00.654 -03:00 [INF] Listando produtos ativos
+2026-01-23 06:35:06.704 -03:00 [INF] Adicionando item | PedidoId: 112 | ProdutoId: 8
+2026-01-23 06:35:06.744 -03:00 [INF] Item adicionado | PedidoId: 112 | ProdutoId: 8
+2026-01-23 06:36:03.731 -03:00 [INF] Aplicando frete | PedidoId: 112 | EnderecoId: 1 | UsuarioId: 6
+2026-01-23 06:36:03.734 -03:00 [INF] Calculando frete | Origem: (-10.908214,-37.083165) | Destino: (-10.9062811,-37.0827666)
+2026-01-23 06:36:03.742 -03:00 [INF] Frete calculado | Distância: 0.22 km | Valor: 5
+2026-01-23 06:36:03.753 -03:00 [INF] Frete aplicado | PedidoId: 112 | Valor: 5
+2026-01-23 06:36:20.021 -03:00 [INF] Finalizando pedido | PedidoId: 112 | UsuarioId: 6
+2026-01-23 06:36:20.026 -03:00 [INF] Pedido validado para pagamento | PedidoId: 112
+2026-01-23 06:36:20.043 -03:00 [INF] Iniciando criação de pagamento | PedidoId: 112 | UsuarioId: 6 | Tipo: "Pix"
+2026-01-23 06:36:20.128 -03:00 [INF] Pagamento criado | PagamentoId: 1 | PedidoId: 112
+2026-01-23 06:36:20.912 -03:00 [INF] Gerando PIX | Valor: 142.99 | Descrição: Pedido #112
+2026-01-23 06:36:20.992 -03:00 [INF] PIX gerado com sucesso | TxId: 22d76bcb7ef14bfaab398f74c | Expira em: "2026-01-23T10:06:20.9921720Z"
+2026-01-23 06:36:21.003 -03:00 [INF] PIX gerado | PagamentoId: 1 | TxId: 22d76bcb7ef14bfaab398f74c
+2026-01-23 06:36:35.139 -03:00 [INF] Listando produtos ativos
+2026-01-23 06:36:35.148 -03:00 [INF] Listando produtos ativos
+2026-01-23 06:36:44.081 -03:00 [INF] Aplicando frete | PedidoId: 112 | EnderecoId: 2 | UsuarioId: 6
+2026-01-23 06:36:44.084 -03:00 [INF] Calculando frete | Origem: (-10.908214,-37.083165) | Destino: (-10.9093786,-37.0845893)
+2026-01-23 06:36:44.086 -03:00 [INF] Frete calculado | Distância: 0.2 km | Valor: 5
+2026-01-23 06:36:44.092 -03:00 [INF] Frete aplicado | PedidoId: 112 | Valor: 5
+2026-01-23 06:36:45.485 -03:00 [INF] Finalizando pedido | PedidoId: 112 | UsuarioId: 6
+2026-01-23 06:36:45.508 -03:00 [INF] Pedido validado para pagamento | PedidoId: 112
+2026-01-23 06:36:45.524 -03:00 [INF] Iniciando criação de pagamento | PedidoId: 112 | UsuarioId: 6 | Tipo: "Pix"
+2026-01-23 06:36:45.532 -03:00 [INF] Gerando PIX | Valor: 142.99 | Descrição: Pedido #112
+2026-01-23 06:36:45.544 -03:00 [INF] PIX gerado com sucesso | TxId: 7120b231a2e74f8b852786dd3 | Expira em: "2026-01-23T10:06:45.5442596Z"
+2026-01-23 06:38:02.343 -03:00 [INF] Aplicando frete | PedidoId: 112 | EnderecoId: 2 | UsuarioId: 6
+2026-01-23 06:38:02.345 -03:00 [INF] Calculando frete | Origem: (-10.908214,-37.083165) | Destino: (-10.9093786,-37.0845893)
+2026-01-23 06:38:02.347 -03:00 [INF] Frete calculado | Distância: 0.2 km | Valor: 5
+2026-01-23 06:38:02.349 -03:00 [INF] Frete aplicado | PedidoId: 112 | Valor: 5
+2026-01-23 06:38:03.419 -03:00 [INF] Finalizando pedido | PedidoId: 112 | UsuarioId: 6
+2026-01-23 06:38:03.423 -03:00 [INF] Pedido validado para pagamento | PedidoId: 112
+2026-01-23 06:38:03.432 -03:00 [INF] Iniciando criação de pagamento | PedidoId: 112 | UsuarioId: 6 | Tipo: "Pix"
+2026-01-23 06:38:03.435 -03:00 [INF] Gerando PIX | Valor: 142.99 | Descrição: Pedido #112
+2026-01-23 06:38:03.440 -03:00 [INF] PIX gerado com sucesso | TxId: 735799f4512140e896cc8dfad | Expira em: "2026-01-23T10:08:03.4408185Z"
+2026-01-23 06:38:05.458 -03:00 [INF] Listando produtos ativos
+2026-01-23 06:38:05.467 -03:00 [INF] Listando produtos ativos
+2026-01-23 06:38:11.582 -03:00 [INF] Limpando itens do pedido 112
+2026-01-23 06:39:35.063 -03:00 [INF] Listando produtos ativos
+2026-01-23 06:39:35.069 -03:00 [INF] Listando produtos ativos
+2026-01-23 06:40:15.787 -03:00 [INF] Adicionando item | PedidoId: 112 | ProdutoId: 1
+2026-01-23 06:40:15.797 -03:00 [INF] Item adicionado | PedidoId: 112 | ProdutoId: 1
+2026-01-23 06:42:29.488 -03:00 [INF] Listando produtos ativos
+2026-01-23 06:42:29.498 -03:00 [INF] Listando produtos ativos
+2026-01-23 06:44:13.574 -03:00 [INF] Listando produtos ativos
+2026-01-23 06:44:13.593 -03:00 [INF] Listando produtos ativos
+2026-01-23 06:50:10.354 -03:00 [INF] Listando produtos ativos
+2026-01-23 06:50:10.422 -03:00 [INF] Listando produtos ativos
+2026-01-23 06:50:27.722 -03:00 [INF] Listando produtos ativos
+2026-01-23 06:50:27.747 -03:00 [INF] Listando produtos ativos
+2026-01-23 06:50:31.523 -03:00 [INF] Adicionando item | PedidoId: 112 | ProdutoId: 1
+2026-01-23 06:50:31.532 -03:00 [INF] Item adicionado | PedidoId: 112 | ProdutoId: 1
+2026-01-23 06:50:33.450 -03:00 [INF] Adicionando item | PedidoId: 112 | ProdutoId: 1
+2026-01-23 06:50:33.457 -03:00 [INF] Item adicionado | PedidoId: 112 | ProdutoId: 1
+2026-01-23 06:50:37.027 -03:00 [INF] Adicionando item | PedidoId: 112 | ProdutoId: 1
+2026-01-23 06:50:37.035 -03:00 [INF] Item adicionado | PedidoId: 112 | ProdutoId: 1
+2026-01-23 06:50:37.841 -03:00 [INF] Adicionando item | PedidoId: 112 | ProdutoId: 1
+2026-01-23 06:50:37.850 -03:00 [INF] Item adicionado | PedidoId: 112 | ProdutoId: 1
+2026-01-23 06:50:38.386 -03:00 [INF] Adicionando item | PedidoId: 112 | ProdutoId: 1
+2026-01-23 06:50:38.392 -03:00 [INF] Item adicionado | PedidoId: 112 | ProdutoId: 1
+2026-01-23 06:50:38.577 -03:00 [INF] Adicionando item | PedidoId: 112 | ProdutoId: 1
+2026-01-23 06:50:38.585 -03:00 [INF] Item adicionado | PedidoId: 112 | ProdutoId: 1
+2026-01-23 06:50:38.762 -03:00 [INF] Adicionando item | PedidoId: 112 | ProdutoId: 1
+2026-01-23 06:50:38.765 -03:00 [ERR] Erro não tratado | Path: /api/pedidos/112/itens | Method: POST
+JSDeposito.Core.Exceptions.BusinessException: Estoque atual: 0
+   at JSDeposito.Core.Services.PedidoService.AdicionarItem(Int32 pedidoId, AdicionarItemPedidoDto dto) in D:\Desenvolvimento\backend\JSDeposito.Core\Services\PedidoService.cs:line 161
+   at JSDeposito.Api.Controllers.PedidoController.Adicionar(Int32 pedidoId, AdicionarItemPedidoDto dto) in D:\Desenvolvimento\backend\JSDeposito.Api\Controllers\PedidoController.cs:line 91
+   at lambda_method262(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at JSDeposito.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in D:\Desenvolvimento\backend\JSDeposito.Api\Middlewares\GlobalExceptionMiddleware.cs:line 25
+2026-01-23 06:50:38.773 -03:00 [ERR] Erro não tratado | Path: /api/pedidos/112/itens | Method: POST
+JSDeposito.Core.Exceptions.BusinessException: Estoque atual: 0
+   at JSDeposito.Core.Services.PedidoService.AdicionarItem(Int32 pedidoId, AdicionarItemPedidoDto dto) in D:\Desenvolvimento\backend\JSDeposito.Core\Services\PedidoService.cs:line 161
+   at JSDeposito.Api.Controllers.PedidoController.Adicionar(Int32 pedidoId, AdicionarItemPedidoDto dto) in D:\Desenvolvimento\backend\JSDeposito.Api\Controllers\PedidoController.cs:line 91
+   at lambda_method262(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at JSDeposito.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in D:\Desenvolvimento\backend\JSDeposito.Api\Middlewares\GlobalExceptionMiddleware.cs:line 25
+2026-01-23 06:50:38.937 -03:00 [INF] Adicionando item | PedidoId: 112 | ProdutoId: 1
+2026-01-23 06:50:38.939 -03:00 [ERR] Erro não tratado | Path: /api/pedidos/112/itens | Method: POST
+JSDeposito.Core.Exceptions.BusinessException: Estoque atual: 0
+   at JSDeposito.Core.Services.PedidoService.AdicionarItem(Int32 pedidoId, AdicionarItemPedidoDto dto) in D:\Desenvolvimento\backend\JSDeposito.Core\Services\PedidoService.cs:line 161
+   at JSDeposito.Api.Controllers.PedidoController.Adicionar(Int32 pedidoId, AdicionarItemPedidoDto dto) in D:\Desenvolvimento\backend\JSDeposito.Api\Controllers\PedidoController.cs:line 91
+   at lambda_method262(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at JSDeposito.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in D:\Desenvolvimento\backend\JSDeposito.Api\Middlewares\GlobalExceptionMiddleware.cs:line 25
+2026-01-23 06:50:38.949 -03:00 [ERR] Erro não tratado | Path: /api/pedidos/112/itens | Method: POST
+JSDeposito.Core.Exceptions.BusinessException: Estoque atual: 0
+   at JSDeposito.Core.Services.PedidoService.AdicionarItem(Int32 pedidoId, AdicionarItemPedidoDto dto) in D:\Desenvolvimento\backend\JSDeposito.Core\Services\PedidoService.cs:line 161
+   at JSDeposito.Api.Controllers.PedidoController.Adicionar(Int32 pedidoId, AdicionarItemPedidoDto dto) in D:\Desenvolvimento\backend\JSDeposito.Api\Controllers\PedidoController.cs:line 91
+   at lambda_method262(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at JSDeposito.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in D:\Desenvolvimento\backend\JSDeposito.Api\Middlewares\GlobalExceptionMiddleware.cs:line 25
+2026-01-23 06:50:39.114 -03:00 [INF] Adicionando item | PedidoId: 112 | ProdutoId: 1
+2026-01-23 06:50:39.116 -03:00 [ERR] Erro não tratado | Path: /api/pedidos/112/itens | Method: POST
+JSDeposito.Core.Exceptions.BusinessException: Estoque atual: 0
+   at JSDeposito.Core.Services.PedidoService.AdicionarItem(Int32 pedidoId, AdicionarItemPedidoDto dto) in D:\Desenvolvimento\backend\JSDeposito.Core\Services\PedidoService.cs:line 161
+   at JSDeposito.Api.Controllers.PedidoController.Adicionar(Int32 pedidoId, AdicionarItemPedidoDto dto) in D:\Desenvolvimento\backend\JSDeposito.Api\Controllers\PedidoController.cs:line 91
+   at lambda_method262(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at JSDeposito.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in D:\Desenvolvimento\backend\JSDeposito.Api\Middlewares\GlobalExceptionMiddleware.cs:line 25
+2026-01-23 06:50:39.122 -03:00 [ERR] Erro não tratado | Path: /api/pedidos/112/itens | Method: POST
+JSDeposito.Core.Exceptions.BusinessException: Estoque atual: 0
+   at JSDeposito.Core.Services.PedidoService.AdicionarItem(Int32 pedidoId, AdicionarItemPedidoDto dto) in D:\Desenvolvimento\backend\JSDeposito.Core\Services\PedidoService.cs:line 161
+   at JSDeposito.Api.Controllers.PedidoController.Adicionar(Int32 pedidoId, AdicionarItemPedidoDto dto) in D:\Desenvolvimento\backend\JSDeposito.Api\Controllers\PedidoController.cs:line 91
+   at lambda_method262(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at JSDeposito.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in D:\Desenvolvimento\backend\JSDeposito.Api\Middlewares\GlobalExceptionMiddleware.cs:line 25
+2026-01-23 06:50:39.288 -03:00 [INF] Adicionando item | PedidoId: 112 | ProdutoId: 1
+2026-01-23 06:50:39.290 -03:00 [ERR] Erro não tratado | Path: /api/pedidos/112/itens | Method: POST
+JSDeposito.Core.Exceptions.BusinessException: Estoque atual: 0
+   at JSDeposito.Core.Services.PedidoService.AdicionarItem(Int32 pedidoId, AdicionarItemPedidoDto dto) in D:\Desenvolvimento\backend\JSDeposito.Core\Services\PedidoService.cs:line 161
+   at JSDeposito.Api.Controllers.PedidoController.Adicionar(Int32 pedidoId, AdicionarItemPedidoDto dto) in D:\Desenvolvimento\backend\JSDeposito.Api\Controllers\PedidoController.cs:line 91
+   at lambda_method262(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at JSDeposito.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in D:\Desenvolvimento\backend\JSDeposito.Api\Middlewares\GlobalExceptionMiddleware.cs:line 25
+2026-01-23 06:50:39.299 -03:00 [ERR] Erro não tratado | Path: /api/pedidos/112/itens | Method: POST
+JSDeposito.Core.Exceptions.BusinessException: Estoque atual: 0
+   at JSDeposito.Core.Services.PedidoService.AdicionarItem(Int32 pedidoId, AdicionarItemPedidoDto dto) in D:\Desenvolvimento\backend\JSDeposito.Core\Services\PedidoService.cs:line 161
+   at JSDeposito.Api.Controllers.PedidoController.Adicionar(Int32 pedidoId, AdicionarItemPedidoDto dto) in D:\Desenvolvimento\backend\JSDeposito.Api\Controllers\PedidoController.cs:line 91
+   at lambda_method262(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at JSDeposito.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in D:\Desenvolvimento\backend\JSDeposito.Api\Middlewares\GlobalExceptionMiddleware.cs:line 25
+2026-01-23 06:50:39.466 -03:00 [INF] Adicionando item | PedidoId: 112 | ProdutoId: 1
+2026-01-23 06:50:39.468 -03:00 [ERR] Erro não tratado | Path: /api/pedidos/112/itens | Method: POST
+JSDeposito.Core.Exceptions.BusinessException: Estoque atual: 0
+   at JSDeposito.Core.Services.PedidoService.AdicionarItem(Int32 pedidoId, AdicionarItemPedidoDto dto) in D:\Desenvolvimento\backend\JSDeposito.Core\Services\PedidoService.cs:line 161
+   at JSDeposito.Api.Controllers.PedidoController.Adicionar(Int32 pedidoId, AdicionarItemPedidoDto dto) in D:\Desenvolvimento\backend\JSDeposito.Api\Controllers\PedidoController.cs:line 91
+   at lambda_method262(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at JSDeposito.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in D:\Desenvolvimento\backend\JSDeposito.Api\Middlewares\GlobalExceptionMiddleware.cs:line 25
+2026-01-23 06:50:39.476 -03:00 [ERR] Erro não tratado | Path: /api/pedidos/112/itens | Method: POST
+JSDeposito.Core.Exceptions.BusinessException: Estoque atual: 0
+   at JSDeposito.Core.Services.PedidoService.AdicionarItem(Int32 pedidoId, AdicionarItemPedidoDto dto) in D:\Desenvolvimento\backend\JSDeposito.Core\Services\PedidoService.cs:line 161
+   at JSDeposito.Api.Controllers.PedidoController.Adicionar(Int32 pedidoId, AdicionarItemPedidoDto dto) in D:\Desenvolvimento\backend\JSDeposito.Api\Controllers\PedidoController.cs:line 91
+   at lambda_method262(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at JSDeposito.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in D:\Desenvolvimento\backend\JSDeposito.Api\Middlewares\GlobalExceptionMiddleware.cs:line 25
+2026-01-23 06:50:39.633 -03:00 [INF] Adicionando item | PedidoId: 112 | ProdutoId: 1
+2026-01-23 06:50:39.636 -03:00 [ERR] Erro não tratado | Path: /api/pedidos/112/itens | Method: POST
+JSDeposito.Core.Exceptions.BusinessException: Estoque atual: 0
+   at JSDeposito.Core.Services.PedidoService.AdicionarItem(Int32 pedidoId, AdicionarItemPedidoDto dto) in D:\Desenvolvimento\backend\JSDeposito.Core\Services\PedidoService.cs:line 161
+   at JSDeposito.Api.Controllers.PedidoController.Adicionar(Int32 pedidoId, AdicionarItemPedidoDto dto) in D:\Desenvolvimento\backend\JSDeposito.Api\Controllers\PedidoController.cs:line 91
+   at lambda_method262(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at JSDeposito.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in D:\Desenvolvimento\backend\JSDeposito.Api\Middlewares\GlobalExceptionMiddleware.cs:line 25
+2026-01-23 06:50:39.643 -03:00 [ERR] Erro não tratado | Path: /api/pedidos/112/itens | Method: POST
+JSDeposito.Core.Exceptions.BusinessException: Estoque atual: 0
+   at JSDeposito.Core.Services.PedidoService.AdicionarItem(Int32 pedidoId, AdicionarItemPedidoDto dto) in D:\Desenvolvimento\backend\JSDeposito.Core\Services\PedidoService.cs:line 161
+   at JSDeposito.Api.Controllers.PedidoController.Adicionar(Int32 pedidoId, AdicionarItemPedidoDto dto) in D:\Desenvolvimento\backend\JSDeposito.Api\Controllers\PedidoController.cs:line 91
+   at lambda_method262(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at JSDeposito.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in D:\Desenvolvimento\backend\JSDeposito.Api\Middlewares\GlobalExceptionMiddleware.cs:line 25
+2026-01-23 06:50:40.824 -03:00 [INF] Adicionando item | PedidoId: 112 | ProdutoId: 1
+2026-01-23 06:50:40.827 -03:00 [ERR] Erro não tratado | Path: /api/pedidos/112/itens | Method: POST
+JSDeposito.Core.Exceptions.BusinessException: Estoque atual: 0
+   at JSDeposito.Core.Services.PedidoService.AdicionarItem(Int32 pedidoId, AdicionarItemPedidoDto dto) in D:\Desenvolvimento\backend\JSDeposito.Core\Services\PedidoService.cs:line 161
+   at JSDeposito.Api.Controllers.PedidoController.Adicionar(Int32 pedidoId, AdicionarItemPedidoDto dto) in D:\Desenvolvimento\backend\JSDeposito.Api\Controllers\PedidoController.cs:line 91
+   at lambda_method262(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at JSDeposito.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in D:\Desenvolvimento\backend\JSDeposito.Api\Middlewares\GlobalExceptionMiddleware.cs:line 25
+2026-01-23 06:50:40.836 -03:00 [ERR] Erro não tratado | Path: /api/pedidos/112/itens | Method: POST
+JSDeposito.Core.Exceptions.BusinessException: Estoque atual: 0
+   at JSDeposito.Core.Services.PedidoService.AdicionarItem(Int32 pedidoId, AdicionarItemPedidoDto dto) in D:\Desenvolvimento\backend\JSDeposito.Core\Services\PedidoService.cs:line 161
+   at JSDeposito.Api.Controllers.PedidoController.Adicionar(Int32 pedidoId, AdicionarItemPedidoDto dto) in D:\Desenvolvimento\backend\JSDeposito.Api\Controllers\PedidoController.cs:line 91
+   at lambda_method262(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at JSDeposito.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in D:\Desenvolvimento\backend\JSDeposito.Api\Middlewares\GlobalExceptionMiddleware.cs:line 25
+2026-01-23 06:50:41.024 -03:00 [INF] Adicionando item | PedidoId: 112 | ProdutoId: 1
+2026-01-23 06:50:41.026 -03:00 [ERR] Erro não tratado | Path: /api/pedidos/112/itens | Method: POST
+JSDeposito.Core.Exceptions.BusinessException: Estoque atual: 0
+   at JSDeposito.Core.Services.PedidoService.AdicionarItem(Int32 pedidoId, AdicionarItemPedidoDto dto) in D:\Desenvolvimento\backend\JSDeposito.Core\Services\PedidoService.cs:line 161
+   at JSDeposito.Api.Controllers.PedidoController.Adicionar(Int32 pedidoId, AdicionarItemPedidoDto dto) in D:\Desenvolvimento\backend\JSDeposito.Api\Controllers\PedidoController.cs:line 91
+   at lambda_method262(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at JSDeposito.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in D:\Desenvolvimento\backend\JSDeposito.Api\Middlewares\GlobalExceptionMiddleware.cs:line 25
+2026-01-23 06:50:41.044 -03:00 [ERR] Erro não tratado | Path: /api/pedidos/112/itens | Method: POST
+JSDeposito.Core.Exceptions.BusinessException: Estoque atual: 0
+   at JSDeposito.Core.Services.PedidoService.AdicionarItem(Int32 pedidoId, AdicionarItemPedidoDto dto) in D:\Desenvolvimento\backend\JSDeposito.Core\Services\PedidoService.cs:line 161
+   at JSDeposito.Api.Controllers.PedidoController.Adicionar(Int32 pedidoId, AdicionarItemPedidoDto dto) in D:\Desenvolvimento\backend\JSDeposito.Api\Controllers\PedidoController.cs:line 91
+   at lambda_method262(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at JSDeposito.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in D:\Desenvolvimento\backend\JSDeposito.Api\Middlewares\GlobalExceptionMiddleware.cs:line 25
+2026-01-23 06:50:44.915 -03:00 [INF] Limpando itens do pedido 112

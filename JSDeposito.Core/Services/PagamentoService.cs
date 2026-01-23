@@ -53,8 +53,33 @@ public class PagamentoService
         var pagamentoPendente =
             _pagamentoRepository.ObterPagamentoPendentePorPedido(pedidoId);
 
+        // 🔁 Idempotência: se já existe pagamento pendente do mesmo tipo, reaproveita e (para PIX) regenera o QR.
         if (pagamentoPendente != null)
-            throw new BusinessException("Já existe um pagamento em andamento");
+        {
+            if (pagamentoPendente.Tipo != tipo)
+                throw new BusinessException("Já existe um pagamento em andamento com outro tipo");
+
+            var responseExistente = new CriarPagamentoResponseDto
+            {
+                PagamentoId = pagamentoPendente.Id,
+                Status = pagamentoPendente.Status
+            };
+
+            if (tipo == TipoPagamento.Pix)
+            {
+                var pix = _pixService.GerarPix(
+                    pedido.Total,
+                    $"Pedido #{pedido.Id}"
+                );
+
+                pagamentoPendente.DefinirReferencia(pix.TxId);
+                _pagamentoRepository.Atualizar(pagamentoPendente);
+
+                responseExistente.Pix = pix;
+            }
+
+            return responseExistente;
+        }
 
         var pagamento = new Pagamento(pedidoId, pedido.Total, tipo);
         _pagamentoRepository.Criar(pagamento);

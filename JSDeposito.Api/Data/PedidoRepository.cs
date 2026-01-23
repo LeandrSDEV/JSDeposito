@@ -25,6 +25,7 @@ public class PedidoRepository : IPedidoRepository
     {
         return _context.Pedidos
             .Include(p => p.Itens)
+            .ThenInclude(i => i.Produto)
             .FirstOrDefault(p => p.Id == id);
     }
 
@@ -37,6 +38,8 @@ public class PedidoRepository : IPedidoRepository
     public Pedido? ObterPorTokenAnonimo(Guid token)
     {
         return _context.Pedidos
+            .Include(p => p.Itens)
+            .ThenInclude(i => i.Produto)
             .FirstOrDefault(p => p.TokenAnonimo == token);
     }
 
@@ -50,6 +53,7 @@ public class PedidoRepository : IPedidoRepository
     {
         return _context.Pedidos
             .Include(p => p.Itens)
+            .ThenInclude(i => i.Produto)
             .FirstOrDefault(p =>
                 p.UsuarioId == usuarioId &&
                 p.Status == PedidoStatus.Criado

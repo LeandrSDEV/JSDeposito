@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using JSDeposito.Core.DTOs;
 using System.Text;
+using QRCoder;
 
 namespace JSDeposito.Core.Services;
 
@@ -29,9 +30,9 @@ public class PixService
         var copiaECola =
             $"00020126360014BR.GOV.BCB.PIX0114+55999999999952040000530398654{valor:F2}5802BR5920JS DEPOSITO6009ARACAJU62070503***6304ABCD";
 
-        var qrCodeBase64 = Convert.ToBase64String(
-            Encoding.UTF8.GetBytes(copiaECola)
-        );
+        var qrPngBytes = new PngByteQRCode(new QRCodeGenerator().CreateQrCode(copiaECola, QRCodeGenerator.ECCLevel.Q)).GetGraphic(10);
+
+        var qrCodeBase64 = Convert.ToBase64String(qrPngBytes);
 
         _logger.LogInformation(
             "PIX gerado com sucesso | TxId: {TxId} | Expira em: {ExpiraEm}",

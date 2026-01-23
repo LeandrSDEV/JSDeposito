@@ -17,6 +17,7 @@ public class PagamentoController : ControllerBase
         _pagamentoService = pagamentoService;
     }
 
+    [Authorize(Roles = "Cliente")]
     [HttpPost("{pedidoId}/pagamento")]
     public IActionResult CriarPagamento(
     int pedidoId,
